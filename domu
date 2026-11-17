@@ -14,25 +14,27 @@
            ===================================================================== */
         :root {
             --gold: #B98732;
-            --gold-hover: #9E7125;
-            --gold-tint: #FBF6EE;
-            --gold-border: #E8D7B8;
-            --gold-soft: rgba(185, 135, 50, 0.14);
+            --gold-hover: #9F7124;
+            --gold-tint: #F6EFE2;
+            --gold-border: #E5D3B3;
+            --gold-soft: rgba(185, 135, 50, 0.15);
 
             --bg-page: #FAF8F5;
             --bg-surface: #FFFFFF;
-            --bg-subtle: #F4EFE8;
-            --border-light: #ECE6DC;
-            --border-medium: #DFD6C7;
+            --bg-subtle: #F3EDE4;
+            --border-light: #EAE3D8;
+            --border-medium: #DCD2C3;
 
             --text-primary: #26221E;
-            --text-secondary: #6E655B;
-            --text-muted: #968C80;
+            --text-secondary: #6E665F;
+            --text-muted: #968D84;
 
-            --sage-badge: #EEF3EF;
-            --sage-text: #3B5746;
-            --terra-badge: #F9EDE9;
-            --terra-text: #9C4E38;
+            --sage-badge: #EDF3EE;
+            --sage-text: #3A5745;
+            --terra-badge: #F9ECE8;
+            --terra-text: #9B4C36;
+            --danger-bg: #FDECEC;
+            --danger-text: #B43838;
 
             --font-serif: 'Cormorant Garamond', Georgia, serif;
             --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -45,8 +47,8 @@
 
             --shadow-xs: 0 2px 8px rgba(38, 34, 30, 0.04);
             --shadow-sm: 0 6px 20px rgba(38, 34, 30, 0.06);
-            --shadow-md: 0 14px 36px rgba(38, 34, 30, 0.10);
-            --shadow-gold: 0 8px 22px rgba(185, 135, 50, 0.26);
+            --shadow-md: 0 14px 36px rgba(38, 34, 30, 0.11);
+            --shadow-gold: 0 8px 22px rgba(185, 135, 50, 0.25);
         }
 
         *, *::before, *::after {
@@ -79,6 +81,11 @@
             cursor: pointer;
             border: none;
             background: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
         }
 
         .container {
@@ -125,12 +132,10 @@
             border-radius: 14px;
             background: var(--gold);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             box-shadow: var(--shadow-gold);
             flex-shrink: 0;
-            overflow: hidden;
         }
 
         .brand-text-wrap {
@@ -140,7 +145,7 @@
 
         .brand-title {
             font-family: var(--font-serif);
-            font-size: 1.45rem;
+            font-size: 1.48rem;
             font-weight: 700;
             line-height: 1.1;
             letter-spacing: 0.02em;
@@ -195,7 +200,7 @@
             padding: 2px 8px;
             border-radius: var(--radius-pill);
             background: var(--gold-tint);
-            color: var(--gold);
+            color: var(--gold-hover);
             border: 1px solid var(--gold-border);
         }
 
@@ -215,9 +220,15 @@
             white-space: nowrap;
         }
 
-        .btn-gold:hover {
+        .btn-gold:hover:not(:disabled) {
             background: var(--gold-hover);
             transform: translateY(-1px);
+        }
+
+        .btn-gold:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
         }
 
         .btn-outline-gold {
@@ -233,6 +244,7 @@
             padding: 9px 16px;
             border-radius: var(--radius-pill);
             transition: all 0.2s ease;
+            white-space: nowrap;
         }
 
         .btn-outline-gold:hover {
@@ -284,7 +296,7 @@
         .hero-desc {
             font-size: 0.96rem;
             color: var(--text-secondary);
-            max-width: 640px;
+            max-width: 660px;
             margin: 0 auto;
         }
 
@@ -302,7 +314,7 @@
 
         .search-grid {
             display: grid;
-            grid-template-columns: 1.3fr 1fr 1.5fr;
+            grid-template-columns: 1.3fr 1fr 1.55fr;
             gap: 18px;
             align-items: end;
         }
@@ -327,7 +339,7 @@
         }
 
         .field-label-accent {
-            color: var(--gold);
+            color: var(--gold-hover);
             font-weight: 700;
             text-transform: none;
             letter-spacing: 0;
@@ -385,10 +397,6 @@
             display: flex;
         }
 
-        .clear-input-btn:hover {
-            color: var(--text-primary);
-        }
-
         .range-box {
             height: 44px;
             background: var(--bg-page);
@@ -407,7 +415,6 @@
             height: 6px;
         }
 
-        /* Segmented Offer Type Switcher */
         .segmented-control {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -440,7 +447,6 @@
             box-shadow: 0 2px 8px rgba(185, 135, 50, 0.28);
         }
 
-        /* Quick City/ZIP Chips + Fulltext Row */
         .search-secondary-row {
             margin-top: 16px;
             padding-top: 16px;
@@ -500,7 +506,6 @@
             padding-bottom: 64px;
         }
 
-        /* Left Sidebar Filter Card */
         .filters-sidebar {
             background: var(--bg-surface);
             border: 1px solid var(--border-light);
@@ -552,13 +557,9 @@
         .reset-link {
             font-size: 0.78rem;
             font-weight: 600;
-            color: var(--gold);
+            color: var(--gold-hover);
             text-decoration: underline;
             text-underline-offset: 3px;
-        }
-
-        .reset-link:hover {
-            color: var(--gold-hover);
         }
 
         .filter-group {
@@ -576,9 +577,6 @@
             letter-spacing: 0.08em;
             color: var(--text-secondary);
             margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
         .tag-cloud {
@@ -629,7 +627,88 @@
             border-color: #FFFFFF;
         }
 
-        /* Catalog Toolbar & Active Tags */
+        /* Grafické barevné čtverečky bez slov (swatches v levém filtru i ve formuláři) */
+        .swatch-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .swatch-btn {
+            position: relative;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1.5px solid rgba(38, 34, 30, 0.16);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+            flex-shrink: 0;
+        }
+
+        .swatch-btn:hover {
+            transform: translateY(-2px) scale(1.06);
+            box-shadow: 0 5px 12px rgba(38, 34, 30, 0.16);
+            z-index: 2;
+        }
+
+        .swatch-btn::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 7px);
+            left: 50%;
+            transform: translateX(-50%) translateY(3px);
+            background: var(--text-primary);
+            color: #FFFFFF;
+            font-size: 0.71rem;
+            font-weight: 600;
+            white-space: nowrap;
+            padding: 4px 9px;
+            border-radius: 6px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+        }
+
+        .swatch-btn:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .swatch-btn.selected {
+            border: 2.5px solid var(--gold);
+            box-shadow: 0 0 0 2.5px #FFFFFF, 0 0 0 4.5px var(--gold), 0 6px 14px rgba(185, 135, 50, 0.28);
+            transform: scale(1.04);
+        }
+
+        .swatch-check {
+            display: none;
+            width: 15px;
+            height: 15px;
+        }
+
+        .swatch-btn.selected .swatch-check {
+            display: block;
+        }
+
+        .custom-style-box {
+            margin-top: 10px;
+            padding: 11px 13px;
+            background: var(--gold-tint);
+            border: 1px solid var(--gold-border);
+            border-radius: var(--radius-sm);
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .custom-style-box.visible {
+            display: flex;
+        }
+
         .catalog-main {
             min-width: 0;
         }
@@ -668,11 +747,6 @@
             font-weight: 600;
             color: var(--text-primary);
             cursor: pointer;
-        }
-
-        .sort-select:focus {
-            outline: none;
-            border-color: var(--gold);
         }
 
         .active-tags-strip {
@@ -736,16 +810,26 @@
             box-shadow: 0 6px 22px rgba(185, 135, 50, 0.11);
         }
 
-        /* Visual Artwork Container (Never breaks!) */
         .card-visual {
             position: relative;
-            height: 185px;
+            height: 195px;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             border-bottom: 1px solid var(--border-light);
+        }
+
+        .card-visual img.card-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+
+        .listing-card:hover .card-visual img.card-photo {
+            transform: scale(1.04);
         }
 
         .card-visual-svg {
@@ -783,13 +867,13 @@
         .type-prodej {
             background: var(--sage-badge);
             color: var(--sage-text);
-            border: 1px solid rgba(59, 87, 70, 0.18);
+            border: 1px solid rgba(58, 87, 69, 0.2);
         }
 
         .type-pujceni {
             background: var(--terra-badge);
             color: var(--terra-text);
-            border: 1px solid rgba(156, 78, 56, 0.18);
+            border: 1px solid rgba(155, 76, 54, 0.2);
         }
 
         .type-kompletni {
@@ -818,6 +902,9 @@
             left: 12px;
             right: 12px;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
         }
 
         .location-tag {
@@ -827,7 +914,7 @@
             background: rgba(255, 255, 255, 0.95);
             border: 1px solid var(--border-light);
             color: var(--text-primary);
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             font-weight: 600;
             padding: 5px 11px;
             border-radius: var(--radius-pill);
@@ -848,6 +935,17 @@
             display: flex;
             flex-direction: column;
             flex: 1;
+        }
+
+        .card-meta-line {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            font-size: 0.74rem;
+            font-weight: 600;
+            color: var(--gold-hover);
+            margin-bottom: 6px;
         }
 
         .card-title {
@@ -878,7 +976,8 @@
             margin-bottom: 4px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            justify-content: space-between;
+            gap: 6px;
         }
 
         .bundle-preview-list {
@@ -942,7 +1041,8 @@
         .price-block {
             display: flex;
             align-items: baseline;
-            gap: 4px;
+            gap: 5px;
+            flex-wrap: wrap;
         }
 
         .price-value {
@@ -954,6 +1054,15 @@
         .price-unit {
             font-size: 0.75rem;
             color: var(--text-muted);
+        }
+
+        .discount-pill {
+            font-size: 0.69rem;
+            font-weight: 700;
+            background: var(--sage-badge);
+            color: var(--sage-text);
+            padding: 2px 7px;
+            border-radius: var(--radius-pill);
         }
 
         .card-cta {
@@ -973,7 +1082,6 @@
             color: #FFFFFF;
         }
 
-        /* Empty State */
         .empty-state {
             background: var(--bg-surface);
             border: 1px solid var(--border-light);
@@ -1081,7 +1189,6 @@
             transition: width 0.3s ease;
         }
 
-        /* Partnerský banner pro svatební místa & náhledy e-mailů */
         .venue-partner-banner {
             background: linear-gradient(135deg, var(--gold-tint) 0%, #FFFFFF 100%);
             border: 1.5px solid var(--gold-border);
@@ -1147,13 +1254,13 @@
         }
 
         /* =====================================================================
-           MODALS (Detail, Add Listing, Table Booking)
+           MODALS & SMART ADD LISTING FORM
            ===================================================================== */
         .modal-backdrop {
             position: fixed;
             inset: 0;
             z-index: 60;
-            background: rgba(38, 34, 30, 0.55);
+            background: rgba(38, 34, 30, 0.58);
             backdrop-filter: blur(4px);
             display: none;
             align-items: center;
@@ -1171,15 +1278,15 @@
             border: 1px solid var(--border-light);
             border-radius: var(--radius-xl);
             width: 100%;
-            max-width: 680px;
-            max-height: 90vh;
+            max-width: 760px;
+            max-height: 92vh;
             overflow-y: auto;
             box-shadow: var(--shadow-md);
             position: relative;
         }
 
         .modal-header {
-            padding: 22px 26px 16px;
+            padding: 20px 26px 16px;
             border-bottom: 1px solid var(--border-light);
             display: flex;
             align-items: center;
@@ -1188,7 +1295,7 @@
             position: sticky;
             top: 0;
             background: var(--bg-surface);
-            z-index: 2;
+            z-index: 5;
         }
 
         .modal-title {
@@ -1219,6 +1326,26 @@
             padding: 22px 26px 28px;
         }
 
+        .form-section-card {
+            background: var(--bg-page);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+
+        .form-section-heading {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
         .form-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1231,7 +1358,7 @@
 
         .form-input, .form-select, .form-textarea {
             width: 100%;
-            background: var(--bg-page);
+            background: var(--bg-surface);
             border: 1px solid var(--border-medium);
             border-radius: var(--radius-sm);
             padding: 10px 13px;
@@ -1242,9 +1369,132 @@
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
             border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-soft);
+        }
+
+        /* Type Switcher inside Add Modal */
+        .modal-type-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .modal-type-btn {
+            padding: 12px 10px;
+            border-radius: var(--radius-md);
+            border: 1.5px solid var(--border-medium);
+            background: var(--bg-surface);
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .modal-type-btn strong {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--text-primary);
+        }
+
+        .modal-type-btn span {
+            display: block;
+            font-size: 0.73rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .modal-type-btn.active {
+            border-color: var(--gold);
+            background: var(--gold-tint);
+            box-shadow: 0 4px 12px rgba(185, 135, 50, 0.16);
+        }
+
+        .modal-type-btn.active strong {
+            color: var(--gold-hover);
+        }
+
+        /* Drag & Drop Photo Compression Zone */
+        .photo-dropzone {
+            border: 2px dashed var(--gold-border);
+            background: var(--bg-surface);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .photo-dropzone:hover, .photo-dropzone.dragover {
+            border-color: var(--gold);
+            background: var(--gold-tint);
+        }
+
+        .photo-previews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .photo-thumb-card {
+            position: relative;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--border-medium);
             background: var(--bg-surface);
         }
 
+        .photo-thumb-card img {
+            width: 100%;
+            height: 105px;
+            object-fit: cover;
+        }
+
+        .photo-savings-badge {
+            font-size: 0.67rem;
+            font-weight: 600;
+            padding: 5px 7px;
+            background: var(--sage-badge);
+            color: var(--sage-text);
+            line-height: 1.25;
+        }
+
+        .photo-main-tag {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            background: var(--gold);
+            color: #FFFFFF;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: var(--radius-pill);
+        }
+
+        .photo-remove-btn {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(38, 34, 30, 0.78);
+            color: #FFFFFF;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Bundle Items Repeater */
+        .bundle-row {
+            display: grid;
+            grid-template-columns: 84px minmax(0, 1fr) 36px;
+            gap: 8px;
+            margin-bottom: 8px;
+            align-items: center;
+        }
+
+        /* Checkbox Pills in Modal */
         .checkbox-pills {
             display: flex;
             flex-wrap: wrap;
@@ -1255,27 +1505,199 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 5px 11px;
+            padding: 6px 12px;
             border-radius: var(--radius-pill);
-            background: var(--bg-page);
-            border: 1px solid var(--border-light);
-            font-size: 0.78rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-medium);
+            font-size: 0.79rem;
             cursor: pointer;
             user-select: none;
+            transition: all 0.15s ease;
+        }
+
+        .check-pill-label:hover {
+            border-color: var(--gold);
         }
 
         .check-pill-label input {
             accent-color: var(--gold);
         }
 
-        .top-upsell-box {
+        .delivery-distance-box {
+            margin-top: 10px;
+            padding: 12px 14px;
             background: var(--gold-tint);
             border: 1px solid var(--gold-border);
+            border-radius: var(--radius-sm);
+            display: none;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .delivery-distance-box.visible {
+            display: flex;
+        }
+
+        .top-upsell-box {
+            background: var(--gold-tint);
+            border: 1.5px solid var(--gold-border);
             border-radius: var(--radius-md);
             padding: 14px 16px;
             display: flex;
             align-items: flex-start;
             gap: 12px;
+        }
+
+        /* =====================================================================
+           INTERACTIVE RENTAL CALENDAR (Both in Add Form & Detail Modal)
+           ===================================================================== */
+        .calendar-widget {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-md);
+            padding: 16px;
+        }
+
+        .cal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .cal-nav-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-page);
+            border: 1px solid var(--border-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .cal-nav-btn:hover {
+            background: var(--gold-tint);
+            border-color: var(--gold);
+            color: var(--gold-hover);
+        }
+
+        .cal-month-title {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .cal-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 4px;
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .cal-days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 4px;
+        }
+
+        .cal-day {
+            height: 36px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid transparent;
+            transition: all 0.15s ease;
+        }
+
+        .cal-day.empty {
+            pointer-events: none;
+        }
+
+        .cal-day.free {
+            background: var(--sage-badge);
+            color: var(--sage-text);
+            border-color: rgba(58, 87, 69, 0.18);
+        }
+
+        .cal-day.free:hover {
+            border-color: var(--gold);
+            transform: scale(1.04);
+        }
+
+        .cal-day.weekend {
+            font-weight: 700;
+        }
+
+        .cal-day.booked {
+            background: var(--danger-bg);
+            color: var(--danger-text);
+            text-decoration: line-through;
+            opacity: 0.82;
+        }
+
+        .cal-day.booked.locked {
+            cursor: not-allowed;
+        }
+
+        .cal-day.selected {
+            background: var(--gold) !important;
+            color: #FFFFFF !important;
+            border-color: var(--gold-hover) !important;
+            box-shadow: 0 2px 8px rgba(185, 135, 50, 0.35);
+        }
+
+        .cal-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-dot {
+            display: inline-block;
+            width: 11px;
+            height: 11px;
+            border-radius: 3px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        /* Gallery thumbnails in Detail Modal */
+        .detail-gallery-thumbs {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .detail-thumb {
+            width: 68px;
+            height: 52px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid transparent;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .detail-thumb.active {
+            border-color: var(--gold);
         }
 
         /* Toast Notification */
@@ -1307,6 +1729,110 @@
         }
 
         /* =====================================================================
+           QR PLATBA ZA TOP ZVÝRAZNĚNÍ (SPD FORMÁT)
+           ===================================================================== */
+        .qr-payment-layout {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            gap: 20px;
+            align-items: center;
+            background: var(--bg-page);
+            border: 1px solid var(--gold-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-bottom: 18px;
+        }
+
+        .qr-frame {
+            background: #FFFFFF;
+            border: 2px solid var(--gold);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-xs);
+        }
+
+        .qr-frame canvas, .qr-frame img {
+            width: 176px;
+            height: 176px;
+            display: block;
+        }
+
+        .qr-caption {
+            font-size: 0.69rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold-hover);
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .bank-details-list {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .bank-detail-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            padding: 9px 13px;
+            font-size: 0.84rem;
+        }
+
+        .bank-detail-label {
+            color: var(--text-secondary);
+            font-size: 0.77rem;
+            font-weight: 600;
+        }
+
+        .bank-detail-val {
+            font-weight: 700;
+            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy-mini-btn {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--gold-hover);
+            background: var(--gold-tint);
+            border: 1px solid var(--gold-border);
+            padding: 3px 8px;
+            border-radius: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .copy-mini-btn:hover {
+            background: var(--gold);
+            color: #FFFFFF;
+        }
+
+        .detail-top-promo {
+            background: linear-gradient(135deg, var(--gold-tint) 0%, #FFFFFF 100%);
+            border: 1.5px solid var(--gold-border);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        /* =====================================================================
            RESPONSIVE BREAKPOINTS
            ===================================================================== */
         @media (max-width: 1024px) {
@@ -1331,7 +1857,13 @@
             .segmented-control {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
+            .modal-type-tabs {
+                grid-template-columns: 1fr;
+            }
             .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .qr-payment-layout {
                 grid-template-columns: 1fr;
             }
             .header-inner {
@@ -1342,6 +1874,8 @@
             }
         }
     </style>
+    <!-- Lehká knihovna pro generování ostrého QR kódu (SPD bankovní platba) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -1352,7 +1886,6 @@
         <div class="container header-inner">
             <a href="#" class="brand-link" onclick="switchView('bazar'); return false;">
                 <div class="brand-mark" aria-hidden="true">
-                    <!-- Kaligrafický monogram "mn" podle předlohy -->
                     <svg viewBox="0 0 120 80" width="44" height="32" fill="none">
                         <path d="M 6,44 C 18,43 24,38 29,38 C 32,38 28,53 31,53 C 34,53 41,38 45,38 C 48,38 44,53 47,53 C 50,53 56,39 60,39 C 63,39 58,64 62,64 C 67,64 73,41 76,41 C 79,41 76,51 81,51 C 87,51 96,35 114,35"
                               stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1384,7 +1917,6 @@
     </header>
 
     <main class="container">
-        <!-- Úvodní nadpis -->
         <section class="hero-section">
             <div class="hero-kicker">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -1392,7 +1924,7 @@
             </div>
             <h1 class="hero-title">Svatební poklady <em>z vašeho okolí</em></h1>
             <p class="hero-desc">
-                Pořiďte si sladěnou výzdobu od nevěst z vašeho okresu, půjčte si slavobránu na víkend nebo nakupte kompletní svatbu v jedné krabici.
+                Pořiďte si sladěnou výzdobu od nevěst z vašeho okresu, rezervujte si termín půjčení slavobrány nebo nakupte kompletní svatbu v jedné krabici.
             </p>
         </section>
 
@@ -1400,10 +1932,8 @@
              POHLED 1: LOKÁLNÍ BAZAR & PŮJČOVNA
              ================================================================= -->
         <div id="view-bazar">
-            <!-- Vyhledávací a lokalizační lišta -->
             <section class="search-panel" aria-label="Vyhledávání podle lokality">
                 <div class="search-grid">
-                    <!-- Město nebo PSČ -->
                     <div class="field-group">
                         <label class="field-label" for="location-input">
                             <span>Město nebo PSČ</span>
@@ -1418,7 +1948,6 @@
                         </div>
                     </div>
 
-                    <!-- Dojezdová vzdálenost (10–150 km) -->
                     <div class="field-group">
                         <label class="field-label" for="distance-slider">
                             <span>Dojezdová vzdálenost</span>
@@ -1429,7 +1958,6 @@
                         </div>
                     </div>
 
-                    <!-- Typ nabídky -->
                     <div class="field-group">
                         <span class="field-label">Typ nabídky</span>
                         <div class="segmented-control" role="group" aria-label="Typ nabídky">
@@ -1441,7 +1969,6 @@
                     </div>
                 </div>
 
-                <!-- Rychlé čipy měst/PSČ + Fulltext -->
                 <div class="search-secondary-row">
                     <div class="quick-cities">
                         <span class="quick-label">Oblíbené lokality:</span>
@@ -1462,9 +1989,8 @@
                 </div>
             </section>
 
-            <!-- Hlavní layout: Levý sloupec tagů + Pravý katalog -->
             <div class="catalog-layout">
-                <!-- Levý panel s multi-choice filtry -->
+                <!-- Levý panel s multi-choice filtry (generováno z TAG_CONFIG) -->
                 <aside class="filters-sidebar" aria-label="Podrobné filtry">
                     <div class="sidebar-header">
                         <h2 class="sidebar-title">
@@ -1474,32 +2000,27 @@
                         <button type="button" class="reset-link" onclick="resetAllFilters()">Vymazat filtry</button>
                     </div>
 
-                    <!-- 1. Barevná paleta -->
                     <div class="filter-group">
                         <div class="filter-group-title">Barevná paleta</div>
-                        <div id="filter-colors" class="tag-cloud"></div>
+                        <div id="filter-colors" class="swatch-grid"></div>
                     </div>
 
-                    <!-- 2. Styl svatby -->
                     <div class="filter-group">
                         <div class="filter-group-title">Styl svatby</div>
                         <div id="filter-styles" class="tag-cloud"></div>
                     </div>
 
-                    <!-- 3. Materiál -->
                     <div class="filter-group">
                         <div class="filter-group-title">Materiál</div>
                         <div id="filter-materials" class="tag-cloud"></div>
                     </div>
 
-                    <!-- 4. Využití -->
                     <div class="filter-group">
                         <div class="filter-group-title">Využití na svatbě</div>
                         <div id="filter-uses" class="tag-cloud"></div>
                     </div>
                 </aside>
 
-                <!-- Katalog výsledků -->
                 <div class="catalog-main">
                     <div class="results-toolbar">
                         <h2 class="results-heading">
@@ -1547,7 +2068,6 @@
 
             <div id="garage-grid" class="garage-grid"></div>
 
-            <!-- Partnerský blok pro svatební místa, stodoly a statky -->
             <div class="venue-partner-banner">
                 <div style="max-width: 680px;">
                     <div class="hero-kicker" style="margin-bottom: 8px;">Spolupráce pro majitele objektů &amp; koordinátory</div>
@@ -1574,7 +2094,7 @@
     </main>
 
     <!-- =====================================================================
-         MODÁL 1: DETAIL INZERÁTU & KONTAKT NA NEVĚSTU
+         MODÁL 1: DETAIL INZERÁTU + REZERVAČNÍ KALENDÁŘ PRONÁJMU
          ===================================================================== -->
     <div id="detail-modal" class="modal-backdrop" onclick="if(event.target === this) closeModal('detail-modal')">
         <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="detail-modal-title">
@@ -1587,7 +2107,7 @@
     </div>
 
     <!-- =====================================================================
-         MODÁL 2: PŘIDAT VÝZDOBU (VLOŽENÍ INZERÁTU)
+         MODÁL 2: CHYTRÉ VLOŽENÍ INZERÁTU (PRODEJ / PŮJČENÍ / SVATBA V KRABICI)
          ===================================================================== -->
     <div id="add-modal" class="modal-backdrop" onclick="if(event.target === this) closeModal('add-modal')">
         <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="add-modal-title">
@@ -1597,76 +2117,252 @@
             </div>
             <div class="modal-body">
                 <form id="add-listing-form" onsubmit="submitNewListing(event)">
-                    <div class="form-grid">
-                        <div class="field-group form-full">
-                            <label class="field-label" for="new-title">Název nabídky *</label>
-                            <input required type="text" id="new-title" class="form-input" placeholder="Např. Sada 20 skleněných váz a zlatých svícnů">
+                    <!-- Krok 1: Chytrý přepínač typu nabídky -->
+                    <div class="modal-type-tabs" role="group" aria-label="Typ nabídky">
+                        <button type="button" class="modal-type-btn active" data-add-type="Prodej" onclick="setAddModalType('Prodej')">
+                            <strong>Prodej</strong>
+                            <span>Jednotlivé kusy nebo sada</span>
+                        </button>
+                        <button type="button" class="modal-type-btn" data-add-type="Půjčení" onclick="setAddModalType('Půjčení')">
+                            <strong>Půjčení</strong>
+                            <span>Pronájem na víkend s kalendářem</span>
+                        </button>
+                        <button type="button" class="modal-type-btn" data-add-type="Kompletní svatba" onclick="setAddModalType('Kompletní svatba')">
+                            <strong>Kompletní svatba</strong>
+                            <span>Celá svatba v krabici</span>
+                        </button>
+                    </div>
+
+                    <!-- Krok 2: Základní údaje & Fotografie s automatickou kompresí -->
+                    <div class="form-section-card">
+                        <div class="form-section-heading">
+                            <span>1. Základní údaje a fotografie</span>
+                            <span style="font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600; color: var(--sage-text); background: var(--sage-badge); padding: 3px 10px; border-radius: 999px;">Auto-optimalizace max 1200 px</span>
                         </div>
 
-                        <div class="field-group">
-                            <label class="field-label" for="new-type">Typ nabídky *</label>
-                            <select id="new-type" class="form-select" onchange="toggleNewBundleField()">
-                                <option value="Prodej">Prodej</option>
-                                <option value="Půjčení">Půjčení (cena za víkend)</option>
-                                <option value="Kompletní svatba">Kompletní svatba (Svatba v krabici)</option>
-                            </select>
+                        <div class="form-grid">
+                            <div class="field-group form-full">
+                                <label class="field-label" for="new-title">Název inzerátu *</label>
+                                <input required type="text" id="new-title" class="form-input" placeholder="Např. Sada 20 skleněných váz a zlatých svícnů">
+                            </div>
+
+                            <div class="field-group form-full">
+                                <label class="field-label">Fotografie výzdoby (max. 6 fotek • automaticky zmenšíme pro rychlé načítání)</label>
+                                <div id="photo-dropzone" class="photo-dropzone" onclick="document.getElementById('photo-file-input').click()" ondragover="handlePhotoDragOver(event)" ondragleave="handlePhotoDragLeave(event)" ondrop="handlePhotoDrop(event)">
+                                    <div style="font-size: 1.4rem; margin-bottom: 4px;">📸</div>
+                                    <div style="font-size: 0.86rem; font-weight: 600; color: var(--text-primary);">Klikněte nebo přetáhněte fotky z mobilu či počítače</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;">Tip: Fotka přímo ze svatby prodává 3× rychleji. Velké soubory samy zkomprimujeme na max. 1200 px.</div>
+                                </div>
+                                <input type="file" id="photo-file-input" accept="image/*" multiple style="display: none;" onchange="handlePhotoFiles(this.files)">
+                                <div id="photo-previews-grid" class="photo-previews-grid"></div>
+                            </div>
+
+                            <div class="field-group form-full">
+                                <label class="field-label" for="new-desc">Podrobný popis, rozměry a stav</label>
+                                <textarea id="new-desc" rows="2" class="form-textarea" placeholder="Popište stav věcí, rozměry a případné detaily..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Krok 3: Dynamická sekce podle typu nabídky + Velikost svatby -->
+                    <div class="form-section-card">
+                        <div class="form-section-heading">
+                            <span id="dynamic-section-title">2. Parametry prodeje</span>
                         </div>
 
-                        <div class="field-group">
-                            <label class="field-label" for="new-price">Cena v Kč *</label>
-                            <input required type="number" min="0" step="10" id="new-price" class="form-input" placeholder="950">
+                        <!-- Společné pole pro všechny 3 varianty: Velikost svatby -->
+                        <div class="form-grid" style="margin-bottom: 14px;">
+                            <div class="field-group form-full">
+                                <label class="field-label" for="new-wedding-size">Z jak velké svatby / pro kolik hostů výzdoba je? *</label>
+                                <select id="new-wedding-size" class="form-select" required>
+                                    <option value="do 30 hostů">Komorní svatba (do 30 hostů)</option>
+                                    <option value="30–60 hostů" selected>Střední svatba (30–60 hostů)</option>
+                                    <option value="60–100 hostů">Větší svatba (60–100 hostů)</option>
+                                    <option value="100+ hostů">Velká svatba (100+ hostů)</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div id="new-bundle-wrap" class="field-group form-full" style="display: none;">
-                            <label class="field-label" for="new-bundle-items">Položky v balíčku Kompletní svatba (oddělte čárkou)</label>
-                            <input type="text" id="new-bundle-items" class="form-input" placeholder="Např. 10× šifonový běhoun, 24× svícen, 30× vázička, uvítací cedule">
+                        <!-- Varianta A: PRODEJ -->
+                        <div id="dyn-prodej" class="form-grid">
+                            <div class="field-group">
+                                <label class="field-label" for="new-price-sale">Cena celkem (Kč) *</label>
+                                <input type="number" min="0" step="10" id="new-price-sale" class="form-input" placeholder="890">
+                            </div>
+                            <div class="field-group">
+                                <label class="field-label" for="new-pcs-count">Počet kusů v sadě</label>
+                                <input type="text" id="new-pcs-count" class="form-input" placeholder="Např. 1 sada / 24 ks">
+                            </div>
+                            <div class="field-group form-full">
+                                <label class="field-label" for="new-condition">Stav výzdoby</label>
+                                <select id="new-condition" class="form-select">
+                                    <option value="Jako nové (1× použité na svatbě)">Jako nové (1× použité na svatbě)</option>
+                                    <option value="Nové (nepoužité)">Nové (nepoužité)</option>
+                                    <option value="Drobné známky použití">Nese drobné známky použití</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div class="field-group">
-                            <label class="field-label" for="new-city">Město / obec vyzvednutí *</label>
-                            <input required type="text" id="new-city" class="form-input" placeholder="Např. Bystřice nad Pernštejnem">
+                        <!-- Varianta B: PŮJČENÍ + INTERAKTIVNÍ KALENDÁŘ OBSADITELNOSTI -->
+                        <div id="dyn-pujceni" style="display: none;">
+                            <div class="form-grid" style="margin-bottom: 14px;">
+                                <div class="field-group">
+                                    <label class="field-label" for="new-price-rent">Cena za pronájem (Kč) *</label>
+                                    <input type="number" min="0" step="10" id="new-price-rent" class="form-input" placeholder="1200">
+                                </div>
+                                <div class="field-group">
+                                    <label class="field-label" for="new-rent-period">Období pronájmu</label>
+                                    <select id="new-rent-period" class="form-select">
+                                        <option value="/ víkend (čt–po)">za víkend (čt–po)</option>
+                                        <option value="/ 1 den">za 1 den</option>
+                                    </select>
+                                </div>
+                                <div class="field-group form-full">
+                                    <label class="field-label" for="new-deposit">Vratná kauce (Kč – nepovinné)</label>
+                                    <input type="number" min="0" step="100" id="new-deposit" class="form-input" placeholder="Např. 1000">
+                                </div>
+                            </div>
+
+                            <div class="field-group">
+                                <label class="field-label">Kalendář dostupnosti 2027 – kliknutím označte už obsazené dny</label>
+                                <div id="add-rental-calendar" class="calendar-widget"></div>
+                            </div>
                         </div>
 
-                        <div class="field-group">
-                            <label class="field-label" for="new-zip">PSČ *</label>
-                            <input required type="text" id="new-zip" class="form-input" placeholder="Např. 593 01">
+                        <!-- Varianta C: KOMPLETNÍ SVATBA V KRABICI -->
+                        <div id="dyn-kompletni" style="display: none;">
+                            <div class="form-grid" style="margin-bottom: 14px;">
+                                <div class="field-group">
+                                    <label class="field-label" for="new-price-bundle">Cena za celý balíček (Kč) *</label>
+                                    <input type="number" min="0" step="10" id="new-price-bundle" class="form-input" placeholder="4900" oninput="updateBundleDiscountPreview()">
+                                </div>
+                                <div class="field-group">
+                                    <label class="field-label" for="new-orig-price">
+                                        <span>Původní pořizovací cena (Kč)</span>
+                                        <span id="bundle-discount-live" class="field-label-accent"></span>
+                                    </label>
+                                    <input type="number" min="0" step="10" id="new-orig-price" class="form-input" placeholder="9200" oninput="updateBundleDiscountPreview()">
+                                </div>
+                            </div>
+
+                            <div class="field-group" style="margin-bottom: 12px;">
+                                <label class="field-label">Co všechno krabice obsahuje?</label>
+                                <div id="bundle-items-container"></div>
+                                <button type="button" class="btn-outline-gold" style="align-self: flex-start; margin-top: 4px;" onclick="addBundleRow()">
+                                    + Přidat další položku do krabice
+                                </button>
+                            </div>
+
+                            <div class="field-group">
+                                <label class="field-label" for="new-split-option">Možnost prodeje po částech</label>
+                                <select id="new-split-option" class="form-select">
+                                    <option value="Pouze jako kompletní celek">Pouze jako kompletní celek</option>
+                                    <option value="Lze se domluvit i na jednotlivých kusech">Lze se domluvit i na jednotlivých kusech</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Krok 4: Tagy ze sdíleného TAG_CONFIG -->
+                    <div class="form-section-card">
+                        <div class="form-section-heading">
+                            <span>3. Tagy pro snadné nalezení nevěstami</span>
+                        </div>
+                        <div class="form-grid">
+                            <div class="field-group form-full">
+                                <span class="field-label">Barevná paleta (vyberte odstíny kliknutím na čtverečky)</span>
+                                <div id="form-colors" class="swatch-grid"></div>
+                            </div>
+                            <div class="field-group form-full">
+                                <span class="field-label">Styl svatby</span>
+                                <div id="form-styles" class="checkbox-pills"></div>
+                                <div id="custom-style-box" class="custom-style-box">
+                                    <label class="field-label" for="new-custom-style" style="color: var(--gold-hover); text-transform: none; letter-spacing: 0; font-size: 0.8rem;">
+                                        Doplňte si vlastní styl (1 tag):
+                                    </label>
+                                    <input type="text" id="new-custom-style" class="form-input" maxlength="32" placeholder="např. Lesní víla, Industriální, Harry Potter...">
+                                </div>
+                            </div>
+                            <div class="field-group form-full">
+                                <span class="field-label">Materiál</span>
+                                <div id="form-materials" class="checkbox-pills"></div>
+                            </div>
+                            <div class="field-group form-full">
+                                <span class="field-label">Využití na svatbě</span>
+                                <div id="form-uses" class="checkbox-pills"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Krok 5: Lokalita a způsob předání (včetně vlastní km vzdálenosti dovozu) -->
+                    <div class="form-section-card">
+                        <div class="form-section-heading">
+                            <span>4. Lokalita a způsob předání</span>
+                        </div>
+                        <div class="form-grid">
+                            <div class="field-group">
+                                <label class="field-label" for="new-city">Město / obec vyzvednutí *</label>
+                                <input required type="text" id="new-city" class="form-input" placeholder="Např. Bystřice nad Pernštejnem">
+                            </div>
+                            <div class="field-group">
+                                <label class="field-label" for="new-zip">PSČ *</label>
+                                <input required type="text" id="new-zip" class="form-input" placeholder="Např. 593 01">
+                            </div>
+
+                            <div class="field-group form-full">
+                                <span class="field-label">Možnosti předání (můžete vybrat více)</span>
+                                <div class="checkbox-pills">
+                                    <label class="check-pill-label">
+                                        <input type="checkbox" id="deliv-personal" checked>
+                                        <span>Osobní odběr v místě</span>
+                                    </label>
+                                    <label class="check-pill-label">
+                                        <input type="checkbox" id="deliv-bring" onchange="toggleDeliveryDistanceInput()">
+                                        <span>Mohu dovézt v okolí</span>
+                                    </label>
+                                    <label class="check-pill-label">
+                                        <input type="checkbox" id="deliv-parcel">
+                                        <span>Lze poslat přes Zásilkovnu / Balíkovnu</span>
+                                    </label>
+                                </div>
+
+                                <div id="delivery-distance-box" class="delivery-distance-box">
+                                    <label for="deliv-km" style="font-size: 0.82rem; font-weight: 600; color: var(--gold-hover);">Do jaké vzdálenosti od bydliště zvládnete výzdobu dovézt?</label>
+                                    <div style="display: inline-flex; align-items: center; gap: 6px;">
+                                        <span>do</span>
+                                        <input type="number" id="deliv-km" min="1" max="200" value="25" class="form-input" style="width: 84px; padding: 6px 10px; text-align: center; font-weight: 700;">
+                                        <strong>km</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Krok 6: Kontakt & Zviditelnění -->
+                    <div class="form-section-card" style="margin-bottom: 0;">
+                        <div class="form-section-heading">
+                            <span>5. Kontakt a zveřejnění</span>
+                        </div>
+                        <div class="form-grid" style="margin-bottom: 14px;">
+                            <div class="field-group">
+                                <label class="field-label" for="new-seller">Vaše jméno / přezdívka *</label>
+                                <input required type="text" id="new-seller" class="form-input" placeholder="Např. Tereza K.">
+                            </div>
+                            <div class="field-group">
+                                <label class="field-label" for="new-email">E-mail (pro správu inzerátu) *</label>
+                                <input required type="email" id="new-email" class="form-input" placeholder="tereza@email.cz">
+                            </div>
+                            <div class="field-group form-full">
+                                <label class="field-label" for="new-phone">Telefon <span style="font-weight: 400; text-transform: none;">(nepovinné – zobrazí se zájemkyním)</span></label>
+                                <input type="tel" id="new-phone" class="form-input" placeholder="+420 777 123 456">
+                            </div>
                         </div>
 
-                        <div class="field-group form-full">
-                            <label class="field-label" for="new-seller">Vaše jméno (nevěsta / půjčovna)</label>
-                            <input type="text" id="new-seller" class="form-input" placeholder="Např. Tereza K.">
-                        </div>
-
-                        <div class="field-group form-full">
-                            <span class="field-label">Barevná paleta</span>
-                            <div id="form-colors" class="checkbox-pills"></div>
-                        </div>
-
-                        <div class="field-group form-full">
-                            <span class="field-label">Styl svatby</span>
-                            <div id="form-styles" class="checkbox-pills"></div>
-                        </div>
-
-                        <div class="field-group form-full">
-                            <span class="field-label">Materiál</span>
-                            <div id="form-materials" class="checkbox-pills"></div>
-                        </div>
-
-                        <div class="field-group form-full">
-                            <span class="field-label">Využití na svatbě</span>
-                            <div id="form-uses" class="checkbox-pills"></div>
-                        </div>
-
-                        <div class="field-group form-full">
-                            <label class="field-label" for="new-desc">Popis a stav výzdoby</label>
-                            <textarea id="new-desc" rows="3" class="form-textarea" placeholder="Popište rozměry, počet kusů a možnosti předání..."></textarea>
-                        </div>
-
-                        <div class="form-full top-upsell-box">
+                        <div class="top-upsell-box">
                             <input type="checkbox" id="new-top" style="width: 18px; height: 18px; margin-top: 2px; accent-color: var(--gold);">
                             <label for="new-top" style="font-size: 0.84rem; cursor: pointer;">
-                                <strong style="color: var(--gold-hover);">Zvýraznit inzerát jako TOP na 14 dní (49 Kč)</strong><br>
-                                <span style="color: var(--text-secondary); font-size: 0.78rem;">Váš inzerát se zobrazí na prvních pozicích ve vašem okrese a získá zlatý odznak.</span>
+                                <strong style="color: var(--gold-hover);">TOP zvýraznění v okrese na 14 dní (49 Kč)</strong><br>
+                                <span style="color: var(--text-secondary); font-size: 0.78rem;">Inzerát se zobrazí na prvních místech ve vašem okolí se zlatým štítkem. Základní vložení je zdarma.</span>
                             </label>
                         </div>
                     </div>
@@ -1720,85 +2416,67 @@
     </div>
 
     <!-- =====================================================================
-         MODÁL 4: KONTAKTNÍ FORMULÁŘ PRO SVATEBNÍ MÍSTO (USPOŘÁDÁNÍ VÝPRODEJE)
+         MODÁL 5: AKTIVACE TOP ZVÝRAZNĚNÍ – QR PLATBA (SPD FORMÁT 49 KČ)
          ===================================================================== -->
-    <div id="venue-modal" class="modal-backdrop" onclick="if(event.target === this) closeModal('venue-modal')">
-        <div class="modal-dialog" style="max-width: 660px;" role="dialog" aria-modal="true" aria-labelledby="venue-modal-title">
+    <div id="qr-top-modal" class="modal-backdrop" onclick="if(event.target === this) closeModal('qr-top-modal')">
+        <div class="modal-dialog" style="max-width: 620px;" role="dialog" aria-modal="true" aria-labelledby="qr-modal-title">
             <div class="modal-header">
-                <h2 id="venue-modal-title" class="modal-title">Uspořádat Svatební garážový výprodej</h2>
-                <button type="button" class="modal-close" onclick="closeModal('venue-modal')" aria-label="Zavřít">✕</button>
+                <h2 id="qr-modal-title" class="modal-title">Aktivace TOP zvýraznění – QR platba</h2>
+                <button type="button" class="modal-close" onclick="closeModal('qr-top-modal')" aria-label="Zavřít">✕</button>
             </div>
             <div class="modal-body">
-                <!-- Formulářová část -->
-                <div id="venue-form-container">
-                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 18px;">
-                        Vyplňte základní údaje o vašem svatebním místě. Obratem vám i nám přijde e-mail s kompletním souhrnem a ozveme se s návrhem termínu a organizace.
-                    </p>
-
-                    <form id="venue-host-form" onsubmit="submitVenueProposal(event)">
-                        <div class="form-grid">
-                            <div class="field-group">
-                                <label class="field-label" for="venue-organizer">Jméno organizátora *</label>
-                                <input required type="text" id="venue-organizer" class="form-input" placeholder="Např. Jana Dvořáková">
-                            </div>
-
-                            <div class="field-group">
-                                <label class="field-label" for="venue-phone">Telefon <span style="font-weight: 400; text-transform: none;">(nepovinné)</span></label>
-                                <input type="tel" id="venue-phone" class="form-input" placeholder="+420 777 123 456">
-                            </div>
-
-                            <div class="field-group form-full">
-                                <label class="field-label" for="venue-email">Email *</label>
-                                <input required type="email" id="venue-email" class="form-input" placeholder="jana@svatebnistodola.cz">
-                            </div>
-
-                            <div class="field-group form-full">
-                                <label class="field-label" for="venue-place">Místo výprodeje (název objektu, adresa) *</label>
-                                <input required type="text" id="venue-place" class="form-input" placeholder="Např. Stodola U Dubu, Horní Rožínka 42, 592 51">
-                            </div>
-
-                            <div class="field-group form-full">
-                                <label class="field-label" for="venue-vendors" style="text-transform: none; letter-spacing: 0; font-size: 0.82rem; line-height: 1.4;">
-                                    Máte nějaké dodavatele profíky, kteří by se chtěli prezentovat (prosecovan, sladký bar, catering, další) formou doprovodného programu?
-                                </label>
-                                <textarea id="venue-vendors" rows="3" class="form-textarea" placeholder="Např. Spolupracujeme s lokální kavárnou (pojízdný kávovar), cukrářkou na sladký bar a floristkou..."></textarea>
-                            </div>
-
-                            <div class="field-group form-full">
-                                <label class="field-label" for="venue-message" style="text-transform: none; letter-spacing: 0; font-size: 0.82rem; line-height: 1.4;">
-                                    Vaše zpráva (jak si akci představujete, máte nějaké požadavky, podmínky?)
-                                </label>
-                                <textarea id="venue-message" rows="3" class="form-textarea" placeholder="Např. Preferujeme nedělní dopoledne v březnu nebo dubnu, k dispozici máme vytápěný sál pro cca 20 stolů a parkoviště..."></textarea>
-                            </div>
-                        </div>
-
-                        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
-                            <button type="button" class="btn-outline-gold" onclick="closeModal('venue-modal')">Zrušit</button>
-                            <button type="submit" class="btn-gold">Odeslat poptávku výprodeje</button>
-                        </div>
-                    </form>
+                <div style="margin-bottom: 16px;">
+                    <div style="font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-hover); margin-bottom: 4px;">
+                        ★ Zvýraznění na prvních místech v okrese na 14 dní
+                    </div>
+                    <h3 id="qr-listing-title" style="font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--text-primary); line-height: 1.25;"></h3>
                 </div>
 
-                <!-- Potvrzení a kompletní rekapitulace obou e-mailů po odeslání -->
-                <div id="venue-confirmation-container" style="display: none;">
-                    <div style="background: var(--sage-badge); border: 1px solid rgba(59, 87, 70, 0.25); color: var(--sage-text); border-radius: var(--radius-md); padding: 14px 16px; margin-bottom: 18px;">
-                        <strong style="display: block; font-size: 0.95rem; margin-bottom: 3px;">✓ Poptávka uspořádání výprodeje byla úspěšně zpracována</strong>
-                        <span style="font-size: 0.83rem;">Níže vidíte kompletní rekapitulaci obou vygenerovaných e-mailů – jak pro tým <strong>Moderní nevěsta</strong>, tak potvrzovací kopii pro organizátora.</span>
+                <div class="qr-payment-layout">
+                    <div class="qr-frame">
+                        <div id="qr-code-container" aria-label="QR kód pro platbu 49 Kč"></div>
+                        <span class="qr-caption">Naskenujte v mobilním bankovnictví</span>
                     </div>
 
-                    <div id="venue-emails-summary"></div>
-
-                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border-light);">
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <a id="venue-mailto-link" href="#" class="btn-outline-gold" style="text-decoration: none;">
-                                ✉ Otevřít v e-mailovém klientovi
-                            </a>
-                            <button type="button" class="btn-outline-gold" onclick="copyVenueSummary()">
-                                📋 Zkopírovat výpis údajů
-                            </button>
+                    <div class="bank-details-list">
+                        <div class="bank-detail-row">
+                            <span class="bank-detail-label">Číslo účtu</span>
+                            <span class="bank-detail-val">
+                                <span id="qr-bank-account">2000145399/0800</span>
+                                <button type="button" class="copy-mini-btn" onclick="copyBankField('2000145399/0800', 'Číslo účtu')">Kopírovat</button>
+                            </span>
                         </div>
-                        <button type="button" class="btn-gold" onclick="closeModal('venue-modal')">Hotovo</button>
+                        <div class="bank-detail-row">
+                            <span class="bank-detail-label">Částka</span>
+                            <span class="bank-detail-val" style="color: var(--gold-hover); font-size: 1rem;">49 Kč</span>
+                        </div>
+                        <div class="bank-detail-row">
+                            <span class="bank-detail-label">Variabilní symbol</span>
+                            <span class="bank-detail-val">
+                                <span id="qr-vs-value">20260001</span>
+                                <button type="button" class="copy-mini-btn" onclick="copyBankField(document.getElementById('qr-vs-value').textContent, 'Variabilní symbol')">Kopírovat</button>
+                            </span>
+                        </div>
+                        <div class="bank-detail-row">
+                            <span class="bank-detail-label">Zpráva pro příjemce</span>
+                            <span class="bank-detail-val" style="font-size: 0.78rem;">
+                                <span id="qr-msg-value">TOP SVATBA Z OKOLI</span>
+                            </span>
+                        </div>
                     </div>
+                </div>
+
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 18px;">
+                    Po naskenování QR kódu v bankovní aplikaci se vám předvyplní všechny údaje včetně variabilního symbolu. Poté klikněte na tlačítko níže a inzerát se zařadí na první místa se zlatým štítkem <strong>TOP</strong>.
+                </p>
+
+                <div style="display: flex; flex-direction: column; gap: 10px; align-items: stretch;">
+                    <button type="button" class="btn-gold" style="padding: 13px 22px; font-size: 0.92rem;" onclick="confirmTopPayment()">
+                        ★ Platbu jsem odeslal(a) – Topovat inzerát
+                    </button>
+                    <button type="button" class="reset-link" style="text-align: center; padding: 6px; font-size: 0.82rem; color: var(--text-secondary);" onclick="keepStandardListing()">
+                        Zatím nechat jako běžný inzerát zdarma
+                    </button>
                 </div>
             </div>
         </div>
@@ -1812,43 +2490,65 @@
 
     <script>
         /* =====================================================================
-           1. DEFINICE TAGŮ A BAREV ZNAČKY MODERNÍ NEVĚSTA
+           1. JEDEN CENTRÁLNÍ ZDROJ TAGŮ (SINGLE SOURCE OF TRUTH)
+              Cokoliv zde upravíte, propíše se automaticky do levého filtru
+              i do formuláře pro vkládání inzerátů.
            ===================================================================== */
         const TAG_CONFIG = {
             colors: [
-                { label: 'Bílá & slonovinová', hex: '#FAF7F0' },
-                { label: 'Sage green / šalvějová', hex: '#7C9482' },
-                { label: 'Terakota & rezavá', hex: '#C67A5E' },
-                { label: 'Zlatá & champagne', hex: '#B98732' },
-                { label: 'Pudrově růžová', hex: '#E3B4B4' },
-                { label: 'Eukalyptus & zelená', hex: '#4F6F5B' },
-                { label: 'Přírodní béžová', hex: '#D2C1A8' }
+                { label: 'Sage green', hex: '#7C9482', light: false },
+                { label: 'Terakota', hex: '#C67A5E', light: false },
+                { label: 'Zlatá / mosaz', hex: '#B98732', light: false },
+                { label: 'Bílá & krémová', hex: '#FAF7F0', light: true },
+                { label: 'Starorůžová', hex: '#DFA9A9', light: true },
+                { label: 'Bordó / vínová', hex: '#7D2E3B', light: false },
+                { label: 'Přírodní dřevo', hex: '#B8956A', light: false },
+                { label: 'Eukalyptus / lesní zelená', hex: '#3A5745', light: false },
+                { label: 'Pudrová / broskvová', hex: '#F2C6B4', light: true },
+                { label: 'Půlnoční modrá', hex: '#263859', light: false },
+                { label: 'Černá', hex: '#26221E', light: false },
+                { label: 'Šampaň / béžová', hex: '#E6D5B8', light: true },
+                { label: 'Modrá', hex: '#2563EB', light: false },
+                { label: 'Žlutá', hex: '#EAB308', light: true },
+                { label: 'Červená', hex: '#DC2626', light: false },
+                { label: 'Trávově zelená', hex: '#16A34A', light: false },
+                { label: 'Oranžová', hex: '#EA580C', light: false }
             ],
             styles: [
-                'přírodní',
-                'boho',
-                'jednoduchá - decentní výzdoba',
-                'univerzální',
-                'moderní',
-                'rustikální',
-                'romantická'
+                'Přírodní',
+                'Boho',
+                'Jednoduchá – decentní',
+                'Univerzální',
+                'Moderní',
+                'Rustikální',
+                'Zámecká / romantická',
+                'Vintage / retro',
+                'Netradiční',
+                'Jiná'
             ],
             materials: [
-                'sklo',
-                'dřevo',
-                'kov',
-                'textilie',
-                'sušené květiny',
-                'keramika',
-                'papír'
+                'Sklo',
+                'Dřevo',
+                'Kov',
+                'Textilie',
+                'Sušené květiny',
+                'Papír & karton',
+                'Krajka & juta',
+                'Keramika & porcelán',
+                'Akryl / plexisklo',
+                'Světla & LED',
+                'Proutí & ratan'
             ],
-            uses: [
-                'na obřad',
-                'na hostinu',
-                'na stoly',
-                'do fotokoutku',
-                'uvítací koutek',
-                'venkovní zóna'
+            usage: [
+                'Na obřad',
+                'Na hostinu',
+                'Na stoly',
+                'Do fotokoutku',
+                'Sweet bar & dort',
+                'Vítání hostů & navigace',
+                'Chill-out zóna',
+                'Pro nevěstu a ženicha',
+                'Pro děti'
             ]
         };
 
@@ -1907,7 +2607,6 @@
             if (!query || !query.trim()) return null;
             const raw = query.trim();
 
-            // 1. Kontrola 5místného PSČ (např. "593 01" nebo "59301")
             const zipMatch = raw.match(/(\d{3})\s*(\d{2})/);
             if (zipMatch) {
                 const digits = `${zipMatch[1]}${zipMatch[2]}`;
@@ -1924,7 +2623,6 @@
                 }
             }
 
-            // 2. Kontrola názvu města
             const clean = stripAccents(raw.replace(/\(.*?\)/g, ''));
             if (!clean) return null;
 
@@ -1948,15 +2646,18 @@
         }
 
         /* =====================================================================
-           3. VIZUÁLNÍ SVG ILUSTRACE PRODUKTŮ (NIKDY SE NEROZBIJÍ)
+           3. VIZUÁLNÍ ILUSTRACE NEBO NAHRANÉ KOMPRIMOVANÉ FOTKY
            ===================================================================== */
-        function getProductArtwork(motif, bgGradient) {
+        function getVisualHtml(item) {
+            if (item.photos && item.photos.length > 0) {
+                return `<div class="card-visual"><img class="card-photo" src="${item.photos[0].dataUrl}" alt="${escapeHtml(item.title)}"></div>`;
+            }
             const icons = {
                 vases: `
                     <svg class="card-visual-svg" viewBox="0 0 120 120" fill="none">
                         <path d="M42 48 C42 40 46 36 46 28 L54 28 C54 36 58 40 58 48 L58 88 C58 92 54 94 50 94 C46 94 42 92 42 88 Z" fill="#FFFFFF" fill-opacity="0.88" stroke="#B98732" stroke-width="2"/>
                         <path d="M66 56 C66 50 70 46 70 38 L78 38 C78 46 82 50 82 56 L82 88 C82 92 78 94 74 94 C70 94 66 92 66 88 Z" fill="#FFFFFF" fill-opacity="0.78" stroke="#B98732" stroke-width="2"/>
-                        <path d="M50 28 C46 18 39 14 35 12 M50 28 C53 17 59 13 63 10" stroke="#4F6F5B" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M50 28 C46 18 39 14 35 12 M50 28 C53 17 59 13 63 10" stroke="#3A5745" stroke-width="2" stroke-linecap="round"/>
                         <circle cx="35" cy="12" r="3" fill="#7C9482"/>
                         <circle cx="63" cy="10" r="3" fill="#7C9482"/>
                         <line x1="26" y1="95" x2="94" y2="95" stroke="#B98732" stroke-width="2" stroke-linecap="round"/>
@@ -1964,20 +2665,20 @@
                 arch: `
                     <svg class="card-visual-svg" viewBox="0 0 120 120" fill="none">
                         <polygon points="60,16 94,36 94,76 60,96 26,76 26,36" stroke="#B98732" stroke-width="3.2" fill="#FFFFFF" fill-opacity="0.65"/>
-                        <path d="M38 30 Q60 54 82 30" stroke="#D2C1A8" stroke-width="2.5" fill="none"/>
-                        <line x1="48" y1="39" x2="48" y2="62" stroke="#D2C1A8" stroke-width="2"/>
-                        <line x1="60" y1="42" x2="60" y2="70" stroke="#D2C1A8" stroke-width="2"/>
-                        <line x1="72" y1="39" x2="72" y2="62" stroke="#D2C1A8" stroke-width="2"/>
-                        <circle cx="30" cy="35" r="7" fill="#E3B4B4"/>
+                        <path d="M38 30 Q60 54 82 30" stroke="#B8956A" stroke-width="2.5" fill="none"/>
+                        <line x1="48" y1="39" x2="48" y2="62" stroke="#B8956A" stroke-width="2"/>
+                        <line x1="60" y1="42" x2="60" y2="70" stroke="#B8956A" stroke-width="2"/>
+                        <line x1="72" y1="39" x2="72" y2="62" stroke="#B8956A" stroke-width="2"/>
+                        <circle cx="30" cy="35" r="7" fill="#DFA9A9"/>
                         <circle cx="90" cy="35" r="7" fill="#7C9482"/>
                         <line x1="20" y1="97" x2="100" y2="97" stroke="#B98732" stroke-width="2" stroke-linecap="round"/>
                     </svg>`,
                 bundle: `
                     <svg class="card-visual-svg" viewBox="0 0 120 120" fill="none">
                         <rect x="28" y="48" width="64" height="44" rx="8" fill="#FFFFFF" stroke="#B98732" stroke-width="2.4"/>
-                        <path d="M24 48 L34 32 L86 32 L96 48 Z" fill="#FBF6EE" stroke="#B98732" stroke-width="2.4" stroke-linejoin="round"/>
+                        <path d="M24 48 L34 32 L86 32 L96 48 Z" fill="#F6EFE2" stroke="#B98732" stroke-width="2.4" stroke-linejoin="round"/>
                         <line x1="60" y1="32" x2="60" y2="92" stroke="#B98732" stroke-width="3"/>
-                        <path d="M60 32 C48 20 42 28 60 32 C78 20 72 28 60 32" stroke="#B98732" stroke-width="2.4" fill="#FBF6EE"/>
+                        <path d="M60 32 C48 20 42 28 60 32 C78 20 72 28 60 32" stroke="#B98732" stroke-width="2.4" fill="#F6EFE2"/>
                         <circle cx="44" cy="24" r="5" fill="#7C9482"/>
                         <circle cx="76" cy="24" r="5" fill="#C67A5E"/>
                     </svg>`,
@@ -1985,25 +2686,25 @@
                     <svg class="card-visual-svg" viewBox="0 0 120 120" fill="none">
                         <circle cx="60" cy="54" r="32" stroke="#B98732" stroke-width="3" fill="#FFFFFF" fill-opacity="0.5"/>
                         <rect x="40" y="86" width="40" height="7" rx="3.5" fill="#B98732"/>
-                        <rect x="56" y="54" width="8" height="32" rx="2" fill="#FAF7F0" stroke="#B98732" stroke-width="1.5"/>
+                        <rect x="56" y="54" width="8" height="32" rx="2" fill="#FAF8F5" stroke="#B98732" stroke-width="1.5"/>
                         <path d="M60 42 C63 47 63 51 60 53 C57 51 57 47 60 42 Z" fill="#C67A5E"/>
-                        <path d="M32 66 Q45 78 60 76 Q75 78 88 66" stroke="#4F6F5B" stroke-width="2.5" fill="none"/>
+                        <path d="M32 66 Q45 78 60 76 Q75 78 88 66" stroke="#3A5745" stroke-width="2.5" fill="none"/>
                     </svg>`,
                 sign: `
                     <svg class="card-visual-svg" viewBox="0 0 120 120" fill="none">
-                        <line x1="42" y1="24" x2="32" y2="96" stroke="#9E7125" stroke-width="3" stroke-linecap="round"/>
-                        <line x1="78" y1="24" x2="88" y2="96" stroke="#9E7125" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="42" y1="24" x2="32" y2="96" stroke="#9F7124" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="78" y1="24" x2="88" y2="96" stroke="#9F7124" stroke-width="3" stroke-linecap="round"/>
                         <rect x="34" y="30" width="52" height="44" rx="6" fill="#FFFFFF" stroke="#B98732" stroke-width="2.4"/>
                         <line x1="44" y1="45" x2="76" y2="45" stroke="#B98732" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="48" y1="54" x2="72" y2="54" stroke="#968C80" stroke-width="1.8" stroke-linecap="round"/>
-                        <line x1="52" y1="62" x2="68" y2="62" stroke="#968C80" stroke-width="1.8" stroke-linecap="round"/>
+                        <line x1="48" y1="54" x2="72" y2="54" stroke="#968D84" stroke-width="1.8" stroke-linecap="round"/>
+                        <line x1="52" y1="62" x2="68" y2="62" stroke="#968D84" stroke-width="1.8" stroke-linecap="round"/>
                     </svg>`
             };
-            return `<div class="card-visual" style="background: ${bgGradient};">${icons[motif] || icons.vases}</div>`;
+            return `<div class="card-visual" style="background: ${item.bg};">${icons[item.motif] || icons.vases}</div>`;
         }
 
         /* =====================================================================
-           4. DATA INZERÁTŮ & GARÁŽOVÝCH VÝPRODEJŮ
+           4. DATA INZERÁTŮ (VČETNĚ VELIKOSTI SVATBY, DOVOZU A REZERVACÍ 2027)
            ===================================================================== */
         let listings = [
             {
@@ -2011,18 +2712,23 @@
                 title: 'Sada 24 čirých skleněných váziček a zlatých svícnů',
                 type: 'Prodej',
                 price: 890,
+                pcsCount: '1 sada (24 váz + 12 svícnů)',
+                condition: 'Jako nové (1× použité na svatbě)',
+                weddingSize: '30–60 hostů',
                 city: 'Bystřice nad Pernštejnem',
                 zip: '593 01',
                 lat: 49.5231,
                 lon: 16.2615,
+                deliveryOptions: ['Osobní odběr v místě', 'Mohu dovézt v okolí'],
+                deliveryKm: 25,
                 seller: 'Veronika M.',
                 isTop: true,
                 motif: 'vases',
-                bg: 'linear-gradient(135deg, #FBF6EE 0%, #EFE6D5 100%)',
-                colors: ['Bílá & slonovinová', 'Zlatá & champagne'],
-                styles: ['jednoduchá - decentní výzdoba', 'univerzální', 'přírodní'],
-                materials: ['sklo', 'kov'],
-                uses: ['na stoly', 'na hostinu'],
+                bg: 'linear-gradient(135deg, #F6EFE2 0%, #EFE6D5 100%)',
+                colors: ['Bílá & krémová', 'Zlatá / mosaz'],
+                styles: ['Jednoduchá – decentní', 'Univerzální', 'Přírodní'],
+                materials: ['Sklo', 'Kov'],
+                uses: ['Na stoly', 'Na hostinu'],
                 description: 'Různé tvary čirých skleněných váziček na jednotlivé květy a 12 ks svícnů na čajové svíčky. Vše pečlivě vyčištěné v přepravce.'
             },
             {
@@ -2030,6 +2736,9 @@
                 title: 'Kompletní svatba v krabici – Šalvějová & zlatá (65 hostů)',
                 type: 'Kompletní svatba',
                 price: 4900,
+                originalPrice: 9200,
+                splitOption: 'Pouze jako kompletní celek',
+                weddingSize: '60–100 hostů',
                 bundleItems: [
                     '10× šifonový běhoun v barvě sage green (délka 3,2 m)',
                     '24× zlatý kovový svícen na vysoké svíčky',
@@ -2040,14 +2749,16 @@
                 zip: '602 00',
                 lat: 49.1951,
                 lon: 16.6068,
+                deliveryOptions: ['Osobní odběr v místě', 'Mohu dovézt v okolí'],
+                deliveryKm: 30,
                 seller: 'Kateřina S.',
                 isTop: true,
                 motif: 'bundle',
-                bg: 'linear-gradient(135deg, #EEF3EF 0%, #FBF6EE 100%)',
-                colors: ['Sage green / šalvějová', 'Zlatá & champagne', 'Bílá & slonovinová'],
-                styles: ['jednoduchá - decentní výzdoba', 'přírodní', 'moderní'],
-                materials: ['textilie', 'sklo', 'kov', 'dřevo'],
-                uses: ['na stoly', 'na hostinu', 'na obřad', 'uvítací koutek'],
+                bg: 'linear-gradient(135deg, #EDF3EE 0%, #F6EFE2 100%)',
+                colors: ['Sage green', 'Zlatá / mosaz', 'Bílá & krémová'],
+                styles: ['Jednoduchá – decentní', 'Přírodní', 'Moderní'],
+                materials: ['Textilie', 'Sklo', 'Kov', 'Dřevo'],
+                uses: ['Na stoly', 'Na hostinu', 'Na obřad'],
                 description: 'Kompletní sladěná výzdoba z naší letní svatby v jedné přepravce. Ideální pro nevěstu, která chce mít vše bez starostí.'
             },
             {
@@ -2055,19 +2766,24 @@
                 title: 'Dřevěná hexagonální slavobrána + bavlněné makramé',
                 type: 'Půjčení',
                 price: 1200,
-                priceUnit: '/ víkend',
+                priceUnit: '/ víkend (čt–po)',
+                deposit: 1500,
+                weddingSize: '60–100 hostů',
+                bookedDates: ['2027-06-11', '2027-06-12', '2027-06-13', '2027-07-16', '2027-07-17', '2027-07-18'],
                 city: 'Žďár nad Sázavou',
                 zip: '591 01',
                 lat: 49.5626,
                 lon: 15.9392,
+                deliveryOptions: ['Osobní odběr v místě', 'Mohu dovézt v okolí'],
+                deliveryKm: 35,
                 seller: 'Půjčovna Stodola Vysočina',
                 isTop: true,
                 motif: 'arch',
                 bg: 'linear-gradient(135deg, #F7EFE5 0%, #EADBC7 100%)',
-                colors: ['Přírodní béžová', 'Bílá & slonovinová'],
-                styles: ['boho', 'přírodní', 'rustikální'],
-                materials: ['dřevo', 'textilie'],
-                uses: ['na obřad', 'do fotokoutku', 'venkovní zóna'],
+                colors: ['Přírodní dřevo', 'Bílá & krémová'],
+                styles: ['Boho', 'Přírodní', 'Rustikální'],
+                materials: ['Dřevo', 'Textilie'],
+                uses: ['Na obřad', 'Do fotokoutku'],
                 description: 'Masivní smrková slavobrána rozložitelná na 6 dílů (vejde se do běžného kombíku). V ceně půjčovného je i ručně drhané makramé.'
             },
             {
@@ -2075,6 +2791,9 @@
                 title: 'Kompletní svatba – Boho terakota & sušené květiny (50 hostů)',
                 type: 'Kompletní svatba',
                 price: 4200,
+                originalPrice: 7800,
+                splitOption: 'Lze se domluvit i na jednotlivých kusech',
+                weddingSize: '30–60 hostů',
                 bundleItems: [
                     '8× mačkaný lněný běhoun v odstínu terakota',
                     '16× keramická vázička se sušeným eukalyptem a lagurusem',
@@ -2085,14 +2804,16 @@
                 zip: '779 00',
                 lat: 49.5938,
                 lon: 17.2509,
+                deliveryOptions: ['Osobní odběr v místě', 'Lze poslat přes Zásilkovnu / Balíkovnu'],
+                deliveryKm: 0,
                 seller: 'Barbora K.',
                 isTop: false,
                 motif: 'bundle',
-                bg: 'linear-gradient(135deg, #F9EDE9 0%, #F5E6D8 100%)',
-                colors: ['Terakota & rezavá', 'Přírodní béžová', 'Eukalyptus & zelená'],
-                styles: ['boho', 'přírodní', 'rustikální'],
-                materials: ['textilie', 'keramika', 'sušené květiny', 'dřevo'],
-                uses: ['na stoly', 'na hostinu', 'uvítací koutek'],
+                bg: 'linear-gradient(135deg, #F9ECE8 0%, #F5E6D8 100%)',
+                colors: ['Terakota', 'Přírodní dřevo', 'Bílá & krémová'],
+                styles: ['Boho', 'Přírodní', 'Rustikální'],
+                materials: ['Textilie', 'Sušené květiny', 'Keramika & porcelán', 'Dřevo'],
+                uses: ['Na stoly', 'Na hostinu', 'Vítání hostů & navigace'],
                 description: 'Kompletní boho výzdoba. Stabilizované sušené vazby drží perfektní tvar a jsou připraveny k okamžitému položení na stoly.'
             },
             {
@@ -2100,18 +2821,23 @@
                 title: 'Zlaté kovové kruhy na stoly (10 ks) se sušeným eukalyptem',
                 type: 'Prodej',
                 price: 1350,
+                pcsCount: '10 ks kruhů',
+                condition: 'Jako nové (1× použité na svatbě)',
+                weddingSize: '30–60 hostů',
                 city: 'Nové Město na Moravě',
                 zip: '592 31',
                 lat: 49.5614,
                 lon: 16.0742,
+                deliveryOptions: ['Osobní odběr v místě', 'Mohu dovézt v okolí', 'Lze poslat přes Zásilkovnu / Balíkovnu'],
+                deliveryKm: 20,
                 seller: 'Petra N.',
                 isTop: false,
                 motif: 'candles',
-                bg: 'linear-gradient(135deg, #FBF6EE 0%, #E8EFEA 100%)',
-                colors: ['Zlatá & champagne', 'Eukalyptus & zelená'],
-                styles: ['moderní', 'jednoduchá - decentní výzdoba', 'boho'],
-                materials: ['kov', 'dřevo', 'sušené květiny'],
-                uses: ['na stoly', 'na hostinu'],
+                bg: 'linear-gradient(135deg, #F6EFE2 0%, #E8EFEA 100%)',
+                colors: ['Zlatá / mosaz', 'Eukalyptus / lesní zelená'],
+                styles: ['Moderní', 'Jednoduchá – decentní', 'Boho'],
+                materials: ['Kov', 'Dřevo', 'Sušené květiny'],
+                uses: ['Na stoly', 'Na hostinu'],
                 description: 'Průměr kruhů 30 cm na masivním dubovém podstavci. Naaranžováno stabilizovaným eukalyptem a bílým lagurusem.'
             },
             {
@@ -2119,28 +2845,36 @@
                 title: 'Dřevěný stojan s uvítací tabulí a směrovkami na obřad',
                 type: 'Půjčení',
                 price: 550,
-                priceUnit: '/ víkend',
+                priceUnit: '/ víkend (čt–po)',
+                deposit: 500,
+                weddingSize: 'do 30 hostů',
+                bookedDates: ['2027-06-25', '2027-06-26', '2027-06-27'],
                 city: 'Jihlava',
                 zip: '586 01',
                 lat: 49.3961,
                 lon: 15.5912,
+                deliveryOptions: ['Osobní odběr v místě'],
+                deliveryKm: 0,
                 seller: 'Klára T.',
                 isTop: false,
                 motif: 'sign',
-                bg: 'linear-gradient(135deg, #F4EFE8 0%, #E8DFD1 100%)',
-                colors: ['Přírodní béžová', 'Bílá & slonovinová'],
-                styles: ['přírodní', 'rustikální', 'univerzální'],
-                materials: ['dřevo', 'papír'],
-                uses: ['na obřad', 'uvítací koutek', 'venkovní zóna'],
+                bg: 'linear-gradient(135deg, #F3EDE4 0%, #E8DFD1 100%)',
+                colors: ['Přírodní dřevo', 'Bílá & krémová'],
+                styles: ['Přírodní', 'Rustikální', 'Univerzální'],
+                materials: ['Dřevo', 'Papír & karton'],
+                uses: ['Vítání hostů & navigace', 'Na obřad'],
                 description: 'Mořené dřevo s bílou kaligrafií (Obřad, Hostina, Fotokoutek, Bar) + skládací malířský stojan na uvítací ceduli.'
             },
             {
                 id: 7,
-                title: 'Kompletní svatba – Romantická pudrová & zlatá (75 hostů)',
+                title: 'Kompletní svatba – Starorůžová & zlatá (75 hostů)',
                 type: 'Kompletní svatba',
                 price: 5400,
+                originalPrice: 9800,
+                splitOption: 'Pouze jako kompletní celek',
+                weddingSize: '60–100 hostů',
                 bundleItems: [
-                    '12× pudrově růžový šifonový běhoun na stoly',
+                    '12× starorůžový šifonový běhoun na stoly',
                     '18× zlatý svícen + skleněné cylindry proti větru',
                     '24× broušená vázička na kulaté stoly',
                     '1× zlatý rám na zasedací pořádek'
@@ -2149,73 +2883,42 @@
                 zip: '110 00',
                 lat: 50.0755,
                 lon: 14.4378,
+                deliveryOptions: ['Osobní odběr v místě', 'Mohu dovézt v okolí'],
+                deliveryKm: 15,
                 seller: 'Tereza V.',
                 isTop: false,
                 motif: 'bundle',
-                bg: 'linear-gradient(135deg, #FBEFEF 0%, #FBF6EE 100%)',
-                colors: ['Pudrově růžová', 'Zlatá & champagne', 'Bílá & slonovinová'],
-                styles: ['romantická', 'moderní', 'jednoduchá - decentní výzdoba'],
-                materials: ['textilie', 'kov', 'sklo'],
-                uses: ['na stoly', 'na hostinu', 'uvítací koutek'],
+                bg: 'linear-gradient(135deg, #FBEFEF 0%, #F6EFE2 100%)',
+                colors: ['Starorůžová', 'Zlatá / mosaz', 'Bílá & krémová'],
+                styles: ['Zámecká / romantická', 'Moderní', 'Jednoduchá – decentní'],
+                materials: ['Textilie', 'Kov', 'Sklo'],
+                uses: ['Na stoly', 'Na hostinu', 'Sweet bar & dort'],
                 description: 'Jemná, vzdušná výzdoba vhodná do zámeckých prostor i moderní restaurace. Vše profesionálně vyčištěno.'
             },
             {
                 id: 8,
-                title: 'Keramické vázy a svícny v přírodní béžové (16 ks)',
-                type: 'Prodej',
-                price: 1100,
-                city: 'Hradec Králové',
-                zip: '500 02',
-                lat: 50.2104,
-                lon: 15.8252,
-                seller: 'Lucie R.',
-                isTop: false,
-                motif: 'vases',
-                bg: 'linear-gradient(135deg, #F5F0E8 0%, #E7DDD0 100%)',
-                colors: ['Přírodní béžová', 'Bílá & slonovinová'],
-                styles: ['moderní', 'přírodní', 'jednoduchá - decentní výzdoba'],
-                materials: ['keramika'],
-                uses: ['na stoly', 'na hostinu'],
-                description: 'Matná ručně vyráběná kamenina v teplém pískovém odstínu. Krásně vynikne se živými i sušenými květinami.'
-            },
-            {
-                id: 9,
                 title: 'Fotokoutek – Dřevěný fotorám, světelné řetězy a rekvizity',
                 type: 'Půjčení',
                 price: 850,
-                priceUnit: '/ víkend',
+                priceUnit: '/ víkend (čt–po)',
+                deposit: 1000,
+                weddingSize: '100+ hostů',
+                bookedDates: ['2027-06-04', '2027-06-05', '2027-06-06', '2027-08-13', '2027-08-14', '2027-08-15'],
                 city: 'Plzeň',
                 zip: '301 00',
                 lat: 49.7384,
                 lon: 13.3736,
+                deliveryOptions: ['Osobní odběr v místě', 'Mohu dovézt v okolí'],
+                deliveryKm: 20,
                 seller: 'Svatba s lehkostí Plzeň',
                 isTop: false,
                 motif: 'sign',
-                bg: 'linear-gradient(135deg, #FBF6EE 0%, #EFE8DC 100%)',
-                colors: ['Přírodní béžová', 'Zlatá & champagne'],
-                styles: ['univerzální', 'rustikální', 'boho'],
-                materials: ['dřevo', 'papír', 'textilie'],
-                uses: ['do fotokoutku', 'venkovní zóna'],
+                bg: 'linear-gradient(135deg, #F6EFE2 0%, #EFE8DC 100%)',
+                colors: ['Přírodní dřevo', 'Zlatá / mosaz'],
+                styles: ['Univerzální', 'Rustikální', 'Boho'],
+                materials: ['Dřevo', 'Světla & LED', 'Papír & karton'],
+                uses: ['Do fotokoutku', 'Chill-out zóna'],
                 description: 'Velký závěsný dřevěný rám, 20 m teplých světelných řetězů, dřevěná cedule Fotokoutek a sada vtipných rekvizit.'
-            },
-            {
-                id: 10,
-                title: 'Lněné běhouny s eukalyptovými kroužky na ubrousky (50 ks)',
-                type: 'Prodej',
-                price: 980,
-                city: 'České Budějovice',
-                zip: '370 01',
-                lat: 48.9745,
-                lon: 14.4743,
-                seller: 'Markéta H.',
-                isTop: false,
-                motif: 'candles',
-                bg: 'linear-gradient(135deg, #EEF3EF 0%, #F4EFE8 100%)',
-                colors: ['Eukalyptus & zelená', 'Přírodní béžová'],
-                styles: ['přírodní', 'rustikální', 'univerzální'],
-                materials: ['textilie', 'dřevo'],
-                uses: ['na stoly', 'na hostinu'],
-                description: '6× přírodní lněný běhoun 35×300 cm + 50 ks dřevěných kroužků na ubrousky s větvičkou eukalyptu.'
             }
         ];
 
@@ -2256,7 +2959,7 @@
         ];
 
         /* =====================================================================
-           5. STAV APLIKACE A FILTRACE
+           5. STAV APLIKACE
            ===================================================================== */
         const state = {
             locationQuery: '',
@@ -2269,11 +2972,30 @@
             uses: []
         };
 
+        // Stav formuláře pro vložení inzerátu
+        const addFormState = {
+            type: 'Prodej',
+            selectedColors: [],
+            photos: [],          // { dataUrl, origSize, compSize, width, height }
+            calYear: 2027,
+            calMonth: 5,         // 0-indexed (5 = Červen 2027)
+            blockedDates: []     // ['2027-06-12', ...]
+        };
+
+        // Stav kalendáře v detailu pronájmu
+        const detailCalState = {
+            listingId: null,
+            year: 2027,
+            month: 5,            // Červen 2027
+            selectedDates: []
+        };
+
         let bookingEventId = null;
 
         function initApp() {
             renderSidebarFilters();
-            renderModalCheckboxes();
+            renderModalTagCheckboxes();
+            resetBundleRows();
             renderCatalog();
             renderGarageEvents();
         }
@@ -2298,37 +3020,91 @@
         }
 
         /* =====================================================================
-           6. VYKRESLENÍ MULTI-CHOICE TAGŮ V LEVÉM PANELU
+           6. VYKRESLENÍ TAGŮ ZE SDÍLENÉHO TAG_CONFIG (SIDEBAR I MODÁL)
            ===================================================================== */
+        function renderColorSwatchesHtml(selectedList, mode) {
+            return TAG_CONFIG.colors.map(c => {
+                const isSelected = selectedList.includes(c.label);
+                const strokeColor = c.light ? '#26221E' : '#FFFFFF';
+                const clickHandler = mode === 'filter'
+                    ? `toggleFilterTag('colors', '${c.label}')`
+                    : `toggleFormColorSwatch('${c.label}')`;
+                return `
+                    <button type="button"
+                            class="swatch-btn ${isSelected ? 'selected' : ''}"
+                            style="background-color: ${c.hex};"
+                            data-tooltip="${escapeHtml(c.label)}"
+                            aria-label="${escapeHtml(c.label)}"
+                            aria-pressed="${isSelected}"
+                            onclick="${clickHandler}">
+                        <svg class="swatch-check" viewBox="0 0 24 24" fill="none" stroke="${strokeColor}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </button>
+                `;
+            }).join('');
+        }
+
         function renderSidebarFilters() {
-            // Barvy
-            document.getElementById('filter-colors').innerHTML = TAG_CONFIG.colors.map(c => `
-                <button type="button" class="tag-pill" data-group="colors" data-value="${c.label}" onclick="toggleFilterTag('colors', '${c.label}')">
-                    <span class="color-swatch" style="background-color: ${c.hex};"></span>
-                    <span>${c.label}</span>
-                </button>
-            `).join('');
+            document.getElementById('filter-colors').innerHTML = renderColorSwatchesHtml(state.colors, 'filter');
 
-            // Styl svatby
             document.getElementById('filter-styles').innerHTML = TAG_CONFIG.styles.map(s => `
-                <button type="button" class="tag-pill" data-group="styles" data-value="${s}" onclick="toggleFilterTag('styles', '${s}')">
-                    <span>${s}</span>
+                <button type="button" class="tag-pill" data-group="styles" data-value="${escapeHtml(s)}" onclick="toggleFilterTag('styles', '${escapeHtml(s)}')">
+                    <span>${escapeHtml(s)}</span>
                 </button>
             `).join('');
 
-            // Materiál
             document.getElementById('filter-materials').innerHTML = TAG_CONFIG.materials.map(m => `
-                <button type="button" class="tag-pill" data-group="materials" data-value="${m}" onclick="toggleFilterTag('materials', '${m}')">
-                    <span>${m}</span>
+                <button type="button" class="tag-pill" data-group="materials" data-value="${escapeHtml(m)}" onclick="toggleFilterTag('materials', '${escapeHtml(m)}')">
+                    <span>${escapeHtml(m)}</span>
                 </button>
             `).join('');
 
-            // Využití
-            document.getElementById('filter-uses').innerHTML = TAG_CONFIG.uses.map(u => `
-                <button type="button" class="tag-pill" data-group="uses" data-value="${u}" onclick="toggleFilterTag('uses', '${u}')">
-                    <span>${u}</span>
+            document.getElementById('filter-uses').innerHTML = TAG_CONFIG.usage.map(u => `
+                <button type="button" class="tag-pill" data-group="uses" data-value="${escapeHtml(u)}" onclick="toggleFilterTag('uses', '${escapeHtml(u)}')">
+                    <span>${escapeHtml(u)}</span>
                 </button>
             `).join('');
+        }
+
+        function renderModalTagCheckboxes() {
+            document.getElementById('form-colors').innerHTML = renderColorSwatchesHtml(addFormState.selectedColors, 'form');
+
+            document.getElementById('form-styles').innerHTML = TAG_CONFIG.styles.map(s => `
+                <label class="check-pill-label">
+                    <input type="checkbox" name="f-style" value="${escapeHtml(s)}" ${s === 'Jiná' ? 'onchange="toggleCustomStyleInput(this.checked)"' : ''}>
+                    <span>${escapeHtml(s)}</span>
+                </label>
+            `).join('');
+
+            document.getElementById('form-materials').innerHTML = TAG_CONFIG.materials.map(m => `
+                <label class="check-pill-label"><input type="checkbox" name="f-material" value="${escapeHtml(m)}"><span>${escapeHtml(m)}</span></label>
+            `).join('');
+
+            document.getElementById('form-uses').innerHTML = TAG_CONFIG.usage.map(u => `
+                <label class="check-pill-label"><input type="checkbox" name="f-use" value="${escapeHtml(u)}"><span>${escapeHtml(u)}</span></label>
+            `).join('');
+        }
+
+        function toggleFormColorSwatch(colorLabel) {
+            const idx = addFormState.selectedColors.indexOf(colorLabel);
+            if (idx > -1) {
+                addFormState.selectedColors.splice(idx, 1);
+            } else {
+                addFormState.selectedColors.push(colorLabel);
+            }
+            document.getElementById('form-colors').innerHTML = renderColorSwatchesHtml(addFormState.selectedColors, 'form');
+        }
+
+        function toggleCustomStyleInput(isChecked) {
+            const box = document.getElementById('custom-style-box');
+            const input = document.getElementById('new-custom-style');
+            box.classList.toggle('visible', isChecked);
+            if (isChecked) {
+                input.focus();
+            } else {
+                input.value = '';
+            }
         }
 
         function toggleFilterTag(group, value) {
@@ -2344,6 +3120,8 @@
         }
 
         function syncFilterPillsUI() {
+            document.getElementById('filter-colors').innerHTML = renderColorSwatchesHtml(state.colors, 'filter');
+
             document.querySelectorAll('.tag-pill').forEach(pill => {
                 const group = pill.dataset.group;
                 const val = pill.dataset.value;
@@ -2357,11 +3135,7 @@
             const totalActive = state.colors.length + state.styles.length + state.materials.length + state.uses.length;
             const badge = document.getElementById('active-filter-count');
             badge.textContent = totalActive;
-            if (totalActive > 0) {
-                badge.classList.add('visible');
-            } else {
-                badge.classList.remove('visible');
-            }
+            badge.classList.toggle('visible', totalActive > 0);
         }
 
         /* =====================================================================
@@ -2375,11 +3149,7 @@
             const clearBtn = document.getElementById('clear-loc-btn');
             const statusEl = document.getElementById('location-status');
 
-            if (val.trim()) {
-                clearBtn.classList.add('visible');
-            } else {
-                clearBtn.classList.remove('visible');
-            }
+            clearBtn.classList.toggle('visible', Boolean(val.trim()));
 
             if (state.resolvedLoc) {
                 statusEl.textContent = state.resolvedLoc.label;
@@ -2389,7 +3159,6 @@
                 statusEl.textContent = 'Celá ČR';
             }
 
-            // Zvýraznění aktivního rychlého čipu
             document.querySelectorAll('.city-chip').forEach(chip => {
                 if (val && chip.textContent.toLowerCase().includes(stripAccents(val.split('(')[0]))) {
                     chip.classList.add('active');
@@ -2404,9 +3173,7 @@
         function setQuickLocation(preset) {
             document.getElementById('location-input').value = preset;
             handleLocationChange();
-            if (preset) {
-                showToast(`Výchozí lokalita: ${preset}`);
-            }
+            if (preset) showToast(`Výchozí lokalita: ${preset}`);
         }
 
         function handleDistanceChange() {
@@ -2419,11 +3186,7 @@
         function setOfferFilter(offerType) {
             state.offerType = offerType;
             document.querySelectorAll('.seg-btn').forEach(btn => {
-                if (btn.dataset.offer === offerType) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+                btn.classList.toggle('active', btn.dataset.offer === offerType);
             });
             renderCatalog();
         }
@@ -2464,7 +3227,6 @@
             const sortBy = document.getElementById('sort-select').value;
 
             const filtered = listings.filter(item => {
-                // Lokalita & vzdálenost
                 if (state.resolvedLoc) {
                     const dist = getDistanceForItem(item);
                     if (dist !== null && dist > state.maxDistance) return false;
@@ -2476,16 +3238,13 @@
                     if (!itemCity.includes(q) && !itemZip.startsWith(qDigits)) return false;
                 }
 
-                // Typ nabídky
                 if (state.offerType !== 'all' && item.type !== state.offerType) return false;
 
-                // Fulltext
                 if (searchQuery) {
                     const blob = stripAccents(`${item.title} ${item.description} ${item.city} ${item.zip} ${item.styles.join(' ')} ${item.materials.join(' ')}`);
                     if (!blob.includes(searchQuery)) return false;
                 }
 
-                // Multi-choice tagy (OR uvnitř skupiny, AND mezi skupinami)
                 if (state.colors.length > 0 && !state.colors.some(c => item.colors.includes(c))) return false;
                 if (state.styles.length > 0 && !state.styles.some(s => item.styles.includes(s))) return false;
                 if (state.materials.length > 0 && !state.materials.some(m => item.materials.includes(m))) return false;
@@ -2494,7 +3253,6 @@
                 return true;
             });
 
-            // Řazení
             filtered.sort((a, b) => {
                 if (sortBy === 'price-asc') return a.price - b.price;
                 if (sortBy === 'price-desc') return b.price - a.price;
@@ -2504,12 +3262,10 @@
                 return (b.isTop ? 1 : 0) - (a.isTop ? 1 : 0);
             });
 
-            // Aktualizace počítadel
             document.getElementById('header-count').textContent = listings.length;
             const countLabel = filtered.length === 1 ? '1 položka' : filtered.length < 5 ? `${filtered.length} položky` : `${filtered.length} položek`;
             document.getElementById('results-count').textContent = `(${countLabel})`;
 
-            // Lišta aktivních tagů
             renderActiveTagsStrip();
 
             const grid = document.getElementById('cards-grid');
@@ -2527,19 +3283,30 @@
                 const dist = getDistanceForItem(item);
                 const typeClass = item.type === 'Půjčení' ? 'type-pujceni' : item.type === 'Kompletní svatba' ? 'type-kompletni' : 'type-prodej';
 
+                const discountPct = (item.type === 'Kompletní svatba' && item.originalPrice && item.originalPrice > item.price)
+                    ? Math.round((1 - item.price / item.originalPrice) * 100)
+                    : 0;
+
                 const bundleHtml = (item.type === 'Kompletní svatba' && item.bundleItems && item.bundleItems.length) ? `
                     <div class="bundle-preview">
-                        <div class="bundle-preview-head">✦ Svatba v krabici obsahuje:</div>
+                        <div class="bundle-preview-head">
+                            <span>✦ Svatba v krabici obsahuje:</span>
+                            ${discountPct > 0 ? `<span class="discount-pill">Ušetříte ${discountPct} %</span>` : ''}
+                        </div>
                         <ul class="bundle-preview-list">
-                            ${item.bundleItems.slice(0, 3).map(bi => `<li>${bi}</li>`).join('')}
+                            ${item.bundleItems.slice(0, 3).map(bi => `<li>${escapeHtml(bi)}</li>`).join('')}
                         </ul>
                     </div>
                 ` : '';
 
+                const deliveryChip = (item.deliveryOptions && item.deliveryOptions.includes('Mohu dovézt v okolí') && item.deliveryKm > 0)
+                    ? ` • 🚗 dovoz do ${item.deliveryKm} km`
+                    : '';
+
                 return `
                 <article class="listing-card ${item.isTop ? 'is-top' : ''}" onclick="openDetailModal(${item.id})">
                     <div style="position: relative;">
-                        ${getProductArtwork(item.motif, item.bg)}
+                        ${getVisualHtml(item)}
                         <div class="card-badges-top">
                             <span class="type-badge ${typeClass}">${item.type}</span>
                             ${item.isTop ? '<span class="top-badge">★ TOP</span>' : ''}
@@ -2547,27 +3314,30 @@
                         <div class="card-location-pill">
                             <span class="location-tag">
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#B98732" stroke-width="2.4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                <span>${item.city} (${item.zip})</span>
+                                <span>${escapeHtml(item.city)} (${escapeHtml(item.zip)})</span>
                                 ${dist !== null ? `<span class="location-dist">• ${dist === 0 ? 'v místě' : dist + ' km'}</span>` : ''}
                             </span>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        <h3 class="card-title">${item.title}</h3>
+                        <div class="card-meta-line">
+                            <span>👰 Svatba: ${escapeHtml(item.weddingSize || '30–60 hostů')}${deliveryChip}</span>
+                        </div>
+                        <h3 class="card-title">${escapeHtml(item.title)}</h3>
                         ${bundleHtml}
                         <div class="card-tags">
-                            ${item.styles.slice(0, 2).map(s => `<span class="mini-tag">${s}</span>`).join('')}
-                            ${item.materials.slice(0, 2).map(m => `<span class="mini-tag">${m}</span>`).join('')}
-                            ${item.uses.slice(0, 1).map(u => `<span class="mini-tag">${u}</span>`).join('')}
+                            ${item.styles.slice(0, 2).map(s => `<span class="mini-tag">${escapeHtml(s)}</span>`).join('')}
+                            ${item.materials.slice(0, 2).map(m => `<span class="mini-tag">${escapeHtml(m)}</span>`).join('')}
+                            ${item.uses.slice(0, 1).map(u => `<span class="mini-tag">${escapeHtml(u)}</span>`).join('')}
                         </div>
-                        <p class="card-excerpt">${item.description}</p>
+                        <p class="card-excerpt">${escapeHtml(item.description)}</p>
                         <div class="card-footer">
                             <div class="price-block">
                                 <span class="price-value">${item.price.toLocaleString('cs-CZ')} Kč</span>
-                                ${item.priceUnit ? `<span class="price-unit">${item.priceUnit}</span>` : ''}
+                                ${item.priceUnit ? `<span class="price-unit">${escapeHtml(item.priceUnit)}</span>` : ''}
                             </div>
-                            <span class="card-cta">Detail &amp; kontakt →</span>
+                            <span class="card-cta">${item.type === 'Půjčení' ? 'Kalendář & rezervace →' : 'Detail & kontakt →'}</span>
                         </div>
                     </div>
                 </article>
@@ -2591,80 +3361,224 @@
 
             strip.innerHTML = selected.map(t => `
                 <span class="active-chip">
-                    <span>${t.v}</span>
-                    <button type="button" onclick="toggleFilterTag('${t.g}', '${t.v}')" aria-label="Odebrat filtr ${t.v}">×</button>
+                    <span>${escapeHtml(t.v)}</span>
+                    <button type="button" onclick="toggleFilterTag('${t.g}', '${t.v}')" aria-label="Odebrat filtr ${escapeHtml(t.v)}">×</button>
                 </span>
             `).join('');
         }
 
         /* =====================================================================
-           9. DETAIL INZERÁTU A KONTAKT NA NEVĚSTU
+           9. INTERAKTIVNÍ KALENDÁŘ DOSTUPNOSTI (SDÍLENÝ PRO VKLÁDÁNÍ I DETAIL)
+           ===================================================================== */
+        const MONTH_NAMES_CS = [
+            'Leden', 'Unor', 'Březen', 'Duben', 'Květen', 'Červen',
+            'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'
+        ];
+        MONTH_NAMES_CS[1] = 'Únor';
+
+        function pad2(n) {
+            return n < 10 ? `0${n}` : `${n}`;
+        }
+
+        function buildCalendarHtml({ year, month, bookedDates = [], selectedDates = [], mode = 'detail' }) {
+            const firstDay = new Date(year, month, 1);
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            // Pondělí = 0 ... Neděle = 6
+            const startOffset = (firstDay.getDay() + 6) % 7;
+
+            let cells = '';
+            for (let i = 0; i < startOffset; i++) {
+                cells += `<div class="cal-day empty"></div>`;
+            }
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const iso = `${year}-${pad2(month + 1)}-${pad2(d)}`;
+                const weekday = (startOffset + d - 1) % 7;
+                const isWeekend = weekday >= 4; // Pá, So, Ne
+                const isBooked = bookedDates.includes(iso);
+                const isSelected = selectedDates.includes(iso);
+
+                let cls = 'cal-day';
+                if (isWeekend) cls += ' weekend';
+
+                if (mode === 'owner') {
+                    // Majitelka při vkládání klikáním označuje obsazené dny
+                    cls += isBooked ? ' booked' : ' free';
+                    cells += `<button type="button" class="${cls}" onclick="toggleOwnerBlockedDate('${iso}')" title="${isBooked ? 'Obsazeno (kliknutím uvolníte)' : 'Volné (kliknutím označíte jako obsazené)'}">${d}</button>`;
+                } else {
+                    // Zájemkyně v detailu vybírá volné dny pro rezervaci
+                    if (isBooked) {
+                        cls += ' booked locked';
+                        cells += `<button type="button" class="${cls}" disabled title="Tento termín je již rezervován">${d}</button>`;
+                    } else {
+                        cls += isSelected ? ' selected' : ' free';
+                        cells += `<button type="button" class="${cls}" onclick="toggleDetailSelectDate('${iso}')" title="Kliknutím vyberete termín">${d}</button>`;
+                    }
+                }
+            }
+
+            const navFn = mode === 'owner' ? 'changeOwnerCalMonth' : 'changeDetailCalMonth';
+
+            return `
+                <div class="cal-header">
+                    <button type="button" class="cal-nav-btn" onclick="${navFn}(-1)" aria-label="Předchozí měsíc">‹</button>
+                    <span class="cal-month-title">${MONTH_NAMES_CS[month]} ${year}</span>
+                    <button type="button" class="cal-nav-btn" onclick="${navFn}(1)" aria-label="Další měsíc">›</button>
+                </div>
+                <div class="cal-weekdays">
+                    <div>Po</div><div>Út</div><div>St</div><div>Čt</div><div>Pá</div><div>So</div><div>Ne</div>
+                </div>
+                <div class="cal-days-grid">${cells}</div>
+                <div class="cal-legend">
+                    <span><i class="legend-dot" style="background: var(--sage-badge); border: 1px solid rgba(58,87,69,0.3);"></i>Volný termín</span>
+                    <span><i class="legend-dot" style="background: var(--danger-bg);"></i>Již obsazeno</span>
+                    ${mode === 'detail' ? '<span><i class="legend-dot" style="background: var(--gold);"></i>Váš vybraný termín</span>' : ''}
+                </div>
+            `;
+        }
+
+        function renderAddRentalCalendar() {
+            const el = document.getElementById('add-rental-calendar');
+            if (!el) return;
+            el.innerHTML = buildCalendarHtml({
+                year: addFormState.calYear,
+                month: addFormState.calMonth,
+                bookedDates: addFormState.blockedDates,
+                mode: 'owner'
+            });
+        }
+
+        function changeOwnerCalMonth(delta) {
+            let m = addFormState.calMonth + delta;
+            let y = addFormState.calYear;
+            if (m < 0) { m = 11; y -= 1; }
+            if (m > 11) { m = 0; y += 1; }
+            addFormState.calMonth = m;
+            addFormState.calYear = y;
+            renderAddRentalCalendar();
+        }
+
+        function toggleOwnerBlockedDate(iso) {
+            const idx = addFormState.blockedDates.indexOf(iso);
+            if (idx > -1) {
+                addFormState.blockedDates.splice(idx, 1);
+            } else {
+                addFormState.blockedDates.push(iso);
+            }
+            renderAddRentalCalendar();
+        }
+
+        /* =====================================================================
+           10. DETAIL INZERÁTU + DYNAMICKÁ REZERVACE TERMÍNU U PRONÁJMU
            ===================================================================== */
         function openDetailModal(id) {
             const item = listings.find(l => l.id === id);
             if (!item) return;
 
+            detailCalState.listingId = id;
+            detailCalState.year = 2027;
+            detailCalState.month = 5;
+            detailCalState.selectedDates = [];
+
             const dist = getDistanceForItem(item);
             const distText = dist !== null ? ` • ${dist === 0 ? 'přímo ve vašem městě' : dist + ' km od vás'}` : '';
 
+            // Galerie fotek (pokud jsou nahrané) nebo SVG ilustrace
+            let galleryHtml = '';
+            if (item.photos && item.photos.length > 0) {
+                galleryHtml = `
+                    <div style="margin-bottom: 18px;">
+                        <div style="border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-light); height: 270px;">
+                            <img id="detail-main-photo" src="${item.photos[0].dataUrl}" alt="${escapeHtml(item.title)}" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        ${item.photos.length > 1 ? `
+                            <div class="detail-gallery-thumbs">
+                                ${item.photos.map((p, idx) => `
+                                    <img src="${p.dataUrl}" class="detail-thumb ${idx === 0 ? 'active' : ''}" onclick="switchDetailPhoto(this, '${p.dataUrl}')" alt="Náhled ${idx + 1}">
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            } else {
+                galleryHtml = `
+                    <div style="border-radius: var(--radius-md); overflow: hidden; margin-bottom: 18px; border: 1px solid var(--border-light);">
+                        ${getVisualHtml(item)}
+                    </div>
+                `;
+            }
+
+            // Způsoby předání
+            const deliveryList = (item.deliveryOptions || ['Osobní odběr v místě']).map(opt => {
+                if (opt === 'Mohu dovézt v okolí' && item.deliveryKm > 0) {
+                    return `🚗 Mohu dovézt v okolí (do ${item.deliveryKm} km)`;
+                }
+                if (opt === 'Lze poslat přes Zásilkovnu / Balíkovnu') {
+                    return '📦 Lze poslat přes Zásilkovnu / Balíkovnu';
+                }
+                return '🤝 Osobní odběr v místě';
+            }).join(' &nbsp;•&nbsp; ');
+
+            // Specifické bloky podle typu nabídky
+            const discountPct = (item.type === 'Kompletní svatba' && item.originalPrice && item.originalPrice > item.price)
+                ? Math.round((1 - item.price / item.originalPrice) * 100)
+                : 0;
+
             const bundleSection = (item.type === 'Kompletní svatba' && item.bundleItems && item.bundleItems.length) ? `
                 <div class="bundle-preview" style="margin: 14px 0; padding: 14px 16px;">
-                    <div class="bundle-preview-head" style="font-size: 0.82rem; margin-bottom: 6px;">✦ Kompletní obsah svatebního balíčku:</div>
+                    <div class="bundle-preview-head" style="font-size: 0.84rem; margin-bottom: 6px;">
+                        <span>✦ Kompletní obsah svatebního balíčku (${escapeHtml(item.splitOption || 'Pouze jako celek')}):</span>
+                        ${discountPct > 0 ? `<span class="discount-pill">Ušetříte ${discountPct} % oproti nákupu</span>` : ''}
+                    </div>
                     <ul class="bundle-preview-list" style="font-size: 0.84rem;">
-                        ${item.bundleItems.map(bi => `<li style="margin-bottom: 3px;">${bi}</li>`).join('')}
+                        ${item.bundleItems.map(bi => `<li style="margin-bottom: 3px;">${escapeHtml(bi)}</li>`).join('')}
                     </ul>
                 </div>
             ` : '';
 
-            document.getElementById('detail-modal-body').innerHTML = `
-                <div style="border-radius: var(--radius-md); overflow: hidden; margin-bottom: 18px; border: 1px solid var(--border-light);">
-                    ${getProductArtwork(item.motif, item.bg)}
+            const saleMetaSection = (item.type === 'Prodej' && (item.pcsCount || item.condition)) ? `
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; font-size: 0.82rem;">
+                    ${item.pcsCount ? `<span class="benefit-pill">📦 Počet kusů: ${escapeHtml(item.pcsCount)}</span>` : ''}
+                    ${item.condition ? `<span class="benefit-pill">✨ Stav: ${escapeHtml(item.condition)}</span>` : ''}
                 </div>
+            ` : '';
 
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 12px;">
-                    <div>
-                        <div style="font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 4px;">
-                            ${item.type} • Nabízí ${item.seller}
+            // Dynamický rezervační kalendář u PŮJČENÍ
+            const rentalBookingSection = (item.type === 'Půjčení') ? `
+                <div class="form-section-card" style="margin-top: 16px; background: var(--gold-tint); border-color: var(--gold-border);">
+                    <div class="form-section-heading">
+                        <span>📅 Rezervační kalendář dostupnosti</span>
+                        ${item.deposit ? `<span style="font-family: var(--font-sans); font-size: 0.76rem; font-weight: 600; color: var(--text-secondary);">Vratná kauce: ${item.deposit.toLocaleString('cs-CZ')} Kč</span>` : ''}
+                    </div>
+                    <p style="font-size: 0.83rem; color: var(--text-secondary); margin-bottom: 12px;">
+                        Klikněte v kalendáři na volné dny vašeho svatebního víkendu. Po odeslání rezervace se termín okamžitě uzamkne pro ostatní zájemkyně.
+                    </p>
+
+                    <div id="detail-rental-calendar" class="calendar-widget"></div>
+
+                    <div id="selected-dates-bar" style="margin-top: 12px; font-size: 0.84rem; font-weight: 600; color: var(--gold-hover);">
+                        Vybraný termín: zatím nevybráno (klikněte na volné dny v kalendáři)
+                    </div>
+
+                    <form onsubmit="submitRentalBooking(event, ${item.id})" style="margin-top: 12px;">
+                        <div class="form-grid" style="margin-bottom: 10px;">
+                            <input required type="text" id="rent-guest-name" class="form-input" placeholder="Vaše jméno a příjmení *">
+                            <input required type="email" id="rent-guest-email" class="form-input" placeholder="Váš e-mail pro potvrzení *">
+                            <textarea rows="2" id="rent-guest-note" class="form-textarea form-full" placeholder="Poznámka pro majitelku (např. čas vyzvednutí ve čtvrtek odpoledne)..."></textarea>
                         </div>
-                        <h3 style="font-family: var(--font-serif); font-size: 1.65rem; font-weight: 700; line-height: 1.2;">${item.title}</h3>
-                    </div>
-                    <div style="text-align: right;">
-                        <div style="font-size: 1.45rem; font-weight: 700; color: var(--gold-hover);">${item.price.toLocaleString('cs-CZ')} Kč</div>
-                        ${item.priceUnit ? `<div style="font-size: 0.78rem; color: var(--text-muted);">${item.priceUnit}</div>` : ''}
-                    </div>
-                </div>
-
-                <div style="background: var(--bg-page); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 0.85rem; font-weight: 600; margin-bottom: 14px;">
-                    📍 Osobní předání: ${item.city} (${item.zip})${distText}
-                </div>
-
-                <p style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.6; margin-bottom: 14px;">
-                    ${item.description}
-                </p>
-
-                ${bundleSection}
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 16px 0 20px;">
-                    <div style="background: var(--bg-page); padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
-                        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px;">Styl &amp; barvy</div>
-                        <div class="card-tags" style="margin: 0;">
-                            ${[...item.styles, ...item.colors].map(t => `<span class="mini-tag">${t}</span>`).join('')}
+                        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="button" class="btn-outline-gold" onclick="closeModal('detail-modal')">Zavřít</button>
+                            <button type="submit" id="btn-confirm-rental" class="btn-gold" disabled>Rezervovat vybraný termín</button>
                         </div>
-                    </div>
-                    <div style="background: var(--bg-page); padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
-                        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px;">Materiál &amp; využití</div>
-                        <div class="card-tags" style="margin: 0;">
-                            ${[...item.materials, ...item.uses].map(t => `<span class="mini-tag">${t}</span>`).join('')}
-                        </div>
-                    </div>
+                    </form>
                 </div>
-
-                <form onsubmit="sendMessageToSeller(event, '${item.seller}')" style="border-top: 1px solid var(--border-light); padding-top: 18px;">
-                    <h4 style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; margin-bottom: 10px;">Napsat zprávu (${item.seller})</h4>
+            ` : `
+                <form onsubmit="sendMessageToSeller(event, '${escapeHtml(item.seller)}')" style="border-top: 1px solid var(--border-light); padding-top: 18px;">
+                    <h4 style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; margin-bottom: 10px;">Napsat zprávu (${escapeHtml(item.seller)})</h4>
                     <div class="form-grid" style="margin-bottom: 10px;">
                         <input required type="text" class="form-input" placeholder="Vaše jméno">
                         <input required type="text" class="form-input" placeholder="Váš e-mail nebo telefon">
-                        <textarea required rows="2" class="form-textarea form-full">Dobrý den, mám zájem o „${item.title}“. Kdy by bylo možné osobní vyzvednutí v lokalitě ${item.city} (${item.zip})?</textarea>
+                        <textarea required rows="2" class="form-textarea form-full">Dobrý den, mám zájem o „${escapeHtml(item.title)}“. Kdy by bylo možné předání v lokalitě ${escapeHtml(item.city)} (${escapeHtml(item.zip)})?</textarea>
                     </div>
                     <div style="display: flex; justify-content: flex-end; gap: 10px;">
                         <button type="button" class="btn-outline-gold" onclick="closeModal('detail-modal')">Zavřít</button>
@@ -2673,7 +3587,146 @@
                 </form>
             `;
 
+            document.getElementById('detail-modal-body').innerHTML = `
+                ${galleryHtml}
+
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 12px;">
+                    <div>
+                        <div style="font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-hover); margin-bottom: 4px;">
+                            ${escapeHtml(item.type)} • Nabízí ${escapeHtml(item.seller)} • Svatba: ${escapeHtml(item.weddingSize || '30–60 hostů')}
+                        </div>
+                        <h3 style="font-family: var(--font-serif); font-size: 1.65rem; font-weight: 700; line-height: 1.2;">${escapeHtml(item.title)}</h3>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 1.45rem; font-weight: 700; color: var(--gold-hover);">${item.price.toLocaleString('cs-CZ')} Kč</div>
+                        ${item.priceUnit ? `<div style="font-size: 0.78rem; color: var(--text-muted);">${escapeHtml(item.priceUnit)}</div>` : ''}
+                        ${item.originalPrice ? `<div style="font-size: 0.75rem; color: var(--text-muted); text-decoration: line-through;">Původně ${item.originalPrice.toLocaleString('cs-CZ')} Kč</div>` : ''}
+                    </div>
+                </div>
+
+                <div style="background: var(--bg-page); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 11px 14px; font-size: 0.84rem; margin-bottom: 14px; display: flex; flex-direction: column; gap: 4px;">
+                    <div><strong>📍 Lokalita:</strong> ${escapeHtml(item.city)} (${escapeHtml(item.zip)})${distText}</div>
+                    <div><strong>🚚 Předání:</strong> ${deliveryList}</div>
+                    ${item.phone ? `<div><strong>📞 Telefon:</strong> ${escapeHtml(item.phone)}</div>` : ''}
+                </div>
+
+                ${saleMetaSection}
+
+                <p style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.6; margin-bottom: 14px;">
+                    ${escapeHtml(item.description)}
+                </p>
+
+                ${bundleSection}
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 16px 0 18px;">
+                    <div style="background: var(--bg-page); padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px;">Styl &amp; barvy</div>
+                        <div class="card-tags" style="margin: 0;">
+                            ${[...item.styles, ...item.colors].map(t => `<span class="mini-tag">${escapeHtml(t)}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div style="background: var(--bg-page); padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px;">Materiál &amp; využití</div>
+                        <div class="card-tags" style="margin: 0;">
+                            ${[...item.materials, ...item.uses].map(t => `<span class="mini-tag">${escapeHtml(t)}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                ${!item.isTop ? `
+                    <div class="detail-top-promo">
+                        <div>
+                            <div style="font-size: 0.84rem; font-weight: 700; color: var(--gold-hover);">★ Chcete tento inzerát prodat ještě rychleji?</div>
+                            <div style="font-size: 0.78rem; color: var(--text-secondary);">Zvýrazněte ho na 14 dní na prvních místech v okrese pomocí rychlé QR platby.</div>
+                        </div>
+                        <button type="button" class="btn-outline-gold" onclick="closeModal('detail-modal'); openQrTopModal(${item.id});">
+                            Chci tento inzerát zvýraznit jako TOP (49 Kč)
+                        </button>
+                    </div>
+                ` : ''}
+
+                ${rentalBookingSection}
+            `;
+
+            if (item.type === 'Půjčení') {
+                renderDetailRentalCalendar();
+            }
+
             openModal('detail-modal');
+        }
+
+        function switchDetailPhoto(thumbEl, src) {
+            const mainImg = document.getElementById('detail-main-photo');
+            if (mainImg) mainImg.src = src;
+            document.querySelectorAll('.detail-thumb').forEach(t => t.classList.remove('active'));
+            thumbEl.classList.add('active');
+        }
+
+        function renderDetailRentalCalendar() {
+            const item = listings.find(l => l.id === detailCalState.listingId);
+            const el = document.getElementById('detail-rental-calendar');
+            if (!item || !el) return;
+
+            el.innerHTML = buildCalendarHtml({
+                year: detailCalState.year,
+                month: detailCalState.month,
+                bookedDates: item.bookedDates || [],
+                selectedDates: detailCalState.selectedDates,
+                mode: 'detail'
+            });
+
+            const bar = document.getElementById('selected-dates-bar');
+            const btn = document.getElementById('btn-confirm-rental');
+            if (detailCalState.selectedDates.length === 0) {
+                bar.textContent = 'Vybraný termín: zatím nevybráno (klikněte na volné dny v kalendáři)';
+                if (btn) btn.disabled = true;
+            } else {
+                const sorted = [...detailCalState.selectedDates].sort();
+                const formatted = sorted.map(iso => {
+                    const [y, m, d] = iso.split('-');
+                    return `${parseInt(d, 10)}. ${parseInt(m, 10)}. ${y}`;
+                }).join(', ');
+                bar.textContent = `✓ Vybraný termín (${sorted.length} ${sorted.length === 1 ? 'den' : sorted.length < 5 ? 'dny' : 'dní'}): ${formatted}`;
+                if (btn) btn.disabled = false;
+            }
+        }
+
+        function changeDetailCalMonth(delta) {
+            let m = detailCalState.month + delta;
+            let y = detailCalState.year;
+            if (m < 0) { m = 11; y -= 1; }
+            if (m > 11) { m = 0; y += 1; }
+            detailCalState.month = m;
+            detailCalState.year = y;
+            renderDetailRentalCalendar();
+        }
+
+        function toggleDetailSelectDate(iso) {
+            const idx = detailCalState.selectedDates.indexOf(iso);
+            if (idx > -1) {
+                detailCalState.selectedDates.splice(idx, 1);
+            } else {
+                detailCalState.selectedDates.push(iso);
+            }
+            renderDetailRentalCalendar();
+        }
+
+        function submitRentalBooking(e, listingId) {
+            e.preventDefault();
+            const item = listings.find(l => l.id === listingId);
+            if (!item || detailCalState.selectedDates.length === 0) return;
+
+            const guestName = document.getElementById('rent-guest-name').value.trim();
+            if (!item.bookedDates) item.bookedDates = [];
+
+            // Okamžitě uložíme vybrané dny jako OBSADĚNÉ v datech inzerátu
+            detailCalState.selectedDates.forEach(d => {
+                if (!item.bookedDates.includes(d)) item.bookedDates.push(d);
+            });
+
+            detailCalState.selectedDates = [];
+            renderDetailRentalCalendar();
+            showToast(`Rezervace pro ${guestName} potvrzena! Termín byl v kalendáři uzamčen.`);
         }
 
         function sendMessageToSeller(e, seller) {
@@ -2683,91 +3736,458 @@
         }
 
         /* =====================================================================
-           10. PŘIDÁNÍ NOVÉHO INZERÁTU
+           11. CHYTRÝ FORMULÁŘ VLOŽENÍ INZERÁTU + CLIENT-SIDE KOMPRESE FOTEK
            ===================================================================== */
-        function renderModalCheckboxes() {
-            document.getElementById('form-colors').innerHTML = TAG_CONFIG.colors.map(c => `
-                <label class="check-pill-label"><input type="checkbox" name="f-color" value="${c.label}"><span>${c.label}</span></label>
-            `).join('');
-
-            document.getElementById('form-styles').innerHTML = TAG_CONFIG.styles.map(s => `
-                <label class="check-pill-label"><input type="checkbox" name="f-style" value="${s}"><span>${s}</span></label>
-            `).join('');
-
-            document.getElementById('form-materials').innerHTML = TAG_CONFIG.materials.map(m => `
-                <label class="check-pill-label"><input type="checkbox" name="f-material" value="${m}"><span>${m}</span></label>
-            `).join('');
-
-            document.getElementById('form-uses').innerHTML = TAG_CONFIG.uses.map(u => `
-                <label class="check-pill-label"><input type="checkbox" name="f-use" value="${u}"><span>${u}</span></label>
-            `).join('');
-        }
-
-        function toggleNewBundleField() {
-            const type = document.getElementById('new-type').value;
-            document.getElementById('new-bundle-wrap').style.display = type === 'Kompletní svatba' ? 'flex' : 'none';
-        }
-
         function openAddModal() {
+            setAddModalType('Prodej');
+            addFormState.selectedColors = [];
+            addFormState.photos = [];
+            addFormState.blockedDates = [];
+            document.getElementById('custom-style-box').classList.remove('visible');
+            renderModalTagCheckboxes();
+            renderPhotoPreviews();
+            resetBundleRows();
             openModal('add-modal');
+        }
+
+        function setAddModalType(type) {
+            addFormState.type = type;
+
+            document.querySelectorAll('.modal-type-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.addType === type);
+            });
+
+            const titleMap = {
+                'Prodej': '2. Parametry prodeje',
+                'Půjčení': '2. Parametry pronájmu a kalendář obsazenosti',
+                'Kompletní svatba': '2. Parametry balíčku Svatba v krabici'
+            };
+            document.getElementById('dynamic-section-title').textContent = titleMap[type] || '2. Parametry nabídky';
+
+            document.getElementById('dyn-prodej').style.display = type === 'Prodej' ? 'grid' : 'none';
+            document.getElementById('dyn-pujceni').style.display = type === 'Půjčení' ? 'block' : 'none';
+            document.getElementById('dyn-kompletni').style.display = type === 'Kompletní svatba' ? 'block' : 'none';
+
+            if (type === 'Půjčení') {
+                renderAddRentalCalendar();
+            }
+        }
+
+        function toggleDeliveryDistanceInput() {
+            const checked = document.getElementById('deliv-bring').checked;
+            document.getElementById('delivery-distance-box').classList.toggle('visible', checked);
+        }
+
+        /* Automatické zmenšení a komprese fotek přes HTML5 Canvas (max 1200 px) */
+        function formatBytes(bytes) {
+            if (bytes < 1024) return `${bytes} B`;
+            if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} kB`;
+            return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+        }
+
+        function compressImageFile(file, maxSide = 1200, quality = 0.8) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = ev => {
+                    const img = new Image();
+                    img.onload = () => {
+                        let w = img.width;
+                        let h = img.height;
+                        if (w > maxSide || h > maxSide) {
+                            if (w >= h) {
+                                h = Math.round((h * maxSide) / w);
+                                w = maxSide;
+                            } else {
+                                w = Math.round((w * maxSide) / h);
+                                h = maxSide;
+                            }
+                        }
+
+                        const canvas = document.createElement('canvas');
+                        canvas.width = w;
+                        canvas.height = h;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, w, h);
+
+                        const dataUrl = canvas.toDataURL('image/jpeg', quality);
+                        const compSize = Math.round((dataUrl.length * 3) / 4);
+
+                        resolve({
+                            dataUrl,
+                            origSize: file.size,
+                            compSize,
+                            width: w,
+                            height: h
+                        });
+                    };
+                    img.onerror = reject;
+                    img.src = ev.target.result;
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        async function handlePhotoFiles(fileList) {
+            const files = Array.from(fileList || []).filter(f => f.type.startsWith('image/'));
+            if (!files.length) return;
+
+            const remainingSlots = 6 - addFormState.photos.length;
+            if (remainingSlots <= 0) {
+                showToast('Lze nahrát maximálně 6 fotografií.');
+                return;
+            }
+
+            const toProcess = files.slice(0, remainingSlots);
+            for (const file of toProcess) {
+                try {
+                    const compressed = await compressImageFile(file, 1200, 0.8);
+                    addFormState.photos.push(compressed);
+                } catch (err) {
+                    console.error('Chyba komprese fotky:', err);
+                }
+            }
+            renderPhotoPreviews();
+        }
+
+        function handlePhotoDragOver(e) {
+            e.preventDefault();
+            document.getElementById('photo-dropzone').classList.add('dragover');
+        }
+
+        function handlePhotoDragLeave(e) {
+            e.preventDefault();
+            document.getElementById('photo-dropzone').classList.remove('dragover');
+        }
+
+        function handlePhotoDrop(e) {
+            e.preventDefault();
+            document.getElementById('photo-dropzone').classList.remove('dragover');
+            if (e.dataTransfer && e.dataTransfer.files) {
+                handlePhotoFiles(e.dataTransfer.files);
+            }
+        }
+
+        function removeUploadedPhoto(idx) {
+            addFormState.photos.splice(idx, 1);
+            renderPhotoPreviews();
+        }
+
+        function renderPhotoPreviews() {
+            const container = document.getElementById('photo-previews-grid');
+            if (!addFormState.photos.length) {
+                container.innerHTML = '';
+                return;
+            }
+            container.innerHTML = addFormState.photos.map((p, idx) => `
+                <div class="photo-thumb-card">
+                    ${idx === 0 ? '<span class="photo-main-tag">Hlavní</span>' : ''}
+                    <button type="button" class="photo-remove-btn" onclick="removeUploadedPhoto(${idx})" title="Smazat fotku">✕</button>
+                    <img src="${p.dataUrl}" alt="Náhled ${idx + 1}">
+                    <div class="photo-savings-badge">
+                        ${formatBytes(p.origSize)} → ${formatBytes(p.compSize)}<br>
+                        ${p.width}×${p.height} px
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* Repeater položek u Svatby v krabici */
+        function resetBundleRows() {
+            const container = document.getElementById('bundle-items-container');
+            container.innerHTML = '';
+            addBundleRow('10×', 'Šifonový běhoun na stůl');
+            addBundleRow('24×', 'Skleněná vázička a svícen');
+        }
+
+        function addBundleRow(defaultQty = '1×', defaultName = '') {
+            const container = document.getElementById('bundle-items-container');
+            const row = document.createElement('div');
+            row.className = 'bundle-row';
+            row.innerHTML = `
+                <input type="text" class="form-input b-qty" value="${escapeHtml(defaultQty)}" placeholder="10×" aria-label="Počet kusů">
+                <input type="text" class="form-input b-name" value="${escapeHtml(defaultName)}" placeholder="Název položky (např. zlatý svícen)" aria-label="Název položky">
+                <button type="button" class="modal-close" onclick="this.parentElement.remove()" title="Odebrat položku">✕</button>
+            `;
+            container.appendChild(row);
+        }
+
+        function updateBundleDiscountPreview() {
+            const price = parseFloat(document.getElementById('new-price-bundle').value) || 0;
+            const orig = parseFloat(document.getElementById('new-orig-price').value) || 0;
+            const badge = document.getElementById('bundle-discount-live');
+            if (price > 0 && orig > price) {
+                const pct = Math.round((1 - price / orig) * 100);
+                badge.textContent = `Sleva ${pct} % pro kupující`;
+            } else {
+                badge.textContent = '';
+            }
         }
 
         function submitNewListing(e) {
             e.preventDefault();
 
+            const type = addFormState.type;
             const title = document.getElementById('new-title').value.trim();
-            const type = document.getElementById('new-type').value;
-            const price = parseInt(document.getElementById('new-price').value, 10) || 0;
+            const desc = document.getElementById('new-desc').value.trim() || 'Krásná svatební výzdoba připravená k osobnímu předání.';
+            const weddingSize = document.getElementById('new-wedding-size').value;
+
+            let price = 0;
+            let priceUnit = '';
+            let pcsCount = '';
+            let condition = '';
+            let deposit = 0;
+            let originalPrice = 0;
+            let splitOption = '';
+            let bundleItems = [];
+
+            if (type === 'Prodej') {
+                price = parseInt(document.getElementById('new-price-sale').value, 10) || 0;
+                pcsCount = document.getElementById('new-pcs-count').value.trim();
+                condition = document.getElementById('new-condition').value;
+            } else if (type === 'Půjčení') {
+                price = parseInt(document.getElementById('new-price-rent').value, 10) || 0;
+                priceUnit = document.getElementById('new-rent-period').value;
+                deposit = parseInt(document.getElementById('new-deposit').value, 10) || 0;
+            } else if (type === 'Kompletní svatba') {
+                price = parseInt(document.getElementById('new-price-bundle').value, 10) || 0;
+                originalPrice = parseInt(document.getElementById('new-orig-price').value, 10) || 0;
+                splitOption = document.getElementById('new-split-option').value;
+
+                document.querySelectorAll('#bundle-items-container .bundle-row').forEach(row => {
+                    const q = row.querySelector('.b-qty').value.trim();
+                    const n = row.querySelector('.b-name').value.trim();
+                    if (n) bundleItems.push(`${q ? q + ' ' : ''}${n}`);
+                });
+                if (!bundleItems.length) {
+                    bundleItems = ['Kompletní sada dekorací pro celou svatbu'];
+                }
+            }
+
+            if (price <= 0) {
+                showToast('Zadejte prosím platnou cenu v Kč.');
+                return;
+            }
+
             const city = document.getElementById('new-city').value.trim();
             const zipRaw = document.getElementById('new-zip').value.trim();
-            const seller = document.getElementById('new-seller').value.trim() || 'Nevěsta z okolí';
-            const desc = document.getElementById('new-desc').value.trim() || 'Krásná svatební výzdoba připravená k osobnímu předání.';
-            const isTop = document.getElementById('new-top').checked;
-
-            const bundleRaw = document.getElementById('new-bundle-items').value.trim();
-            const bundleItems = (type === 'Kompletní svatba' && bundleRaw)
-                ? bundleRaw.split(',').map(s => s.trim()).filter(Boolean)
-                : (type === 'Kompletní svatba' ? ['Kompletní sada dekorací pro celou svatbu'] : []);
-
             const resolved = resolveLocation(zipRaw) || resolveLocation(city) || { lat: 49.5231, lon: 16.2615 };
 
-            const colors = Array.from(document.querySelectorAll('input[name="f-color"]:checked')).map(i => i.value);
-            const styles = Array.from(document.querySelectorAll('input[name="f-style"]:checked')).map(i => i.value);
+            const deliveryOptions = [];
+            if (document.getElementById('deliv-personal').checked) deliveryOptions.push('Osobní odběr v místě');
+            if (document.getElementById('deliv-bring').checked) deliveryOptions.push('Mohu dovézt v okolí');
+            if (document.getElementById('deliv-parcel').checked) deliveryOptions.push('Lze poslat přes Zásilkovnu / Balíkovnu');
+            const deliveryKm = document.getElementById('deliv-bring').checked
+                ? (parseInt(document.getElementById('deliv-km').value, 10) || 20)
+                : 0;
+
+            const seller = document.getElementById('new-seller').value.trim();
+            const phone = document.getElementById('new-phone').value.trim();
+            const isTop = document.getElementById('new-top').checked;
+
+            const colors = [...addFormState.selectedColors];
+            let styles = Array.from(document.querySelectorAll('input[name="f-style"]:checked')).map(i => i.value);
+            const customStyleRaw = document.getElementById('new-custom-style').value.trim();
+
+            if (styles.includes('Jiná') && customStyleRaw) {
+                // Nahradíme obecný štítek "Jiná" konkrétním vlastním tagem od uživatelky a přidáme ho i do levého filtru
+                styles = styles.filter(s => s !== 'Jiná');
+                if (!styles.includes(customStyleRaw)) {
+                    styles.push(customStyleRaw);
+                }
+                if (!TAG_CONFIG.styles.includes(customStyleRaw)) {
+                    const jinaIdx = TAG_CONFIG.styles.indexOf('Jiná');
+                    if (jinaIdx > -1) {
+                        TAG_CONFIG.styles.splice(jinaIdx, 0, customStyleRaw);
+                    } else {
+                        TAG_CONFIG.styles.push(customStyleRaw);
+                    }
+                    renderSidebarFilters();
+                    syncFilterPillsUI();
+                }
+            }
+
             const materials = Array.from(document.querySelectorAll('input[name="f-material"]:checked')).map(i => i.value);
             const uses = Array.from(document.querySelectorAll('input[name="f-use"]:checked')).map(i => i.value);
 
+            const newListingId = Date.now();
+            const vsCode = isTop ? generateVariableSymbol() : '';
+
             listings.unshift({
-                id: Date.now(),
+                id: newListingId,
                 title,
                 type,
                 price,
-                priceUnit: type === 'Půjčení' ? '/ víkend' : '',
+                priceUnit,
+                pcsCount,
+                condition,
+                deposit,
+                originalPrice,
+                splitOption,
                 bundleItems,
+                weddingSize,
+                bookedDates: type === 'Půjčení' ? [...addFormState.blockedDates] : [],
+                photos: [...addFormState.photos],
                 city,
                 zip: formatZip(zipRaw),
                 lat: resolved.lat,
                 lon: resolved.lon,
+                deliveryOptions: deliveryOptions.length ? deliveryOptions : ['Osobní odběr v místě'],
+                deliveryKm,
                 seller,
-                isTop,
-                motif: type === 'Kompletní svatba' ? 'bundle' : 'vases',
-                bg: 'linear-gradient(135deg, #FBF6EE 0%, #EFE6D5 100%)',
-                colors: colors.length ? colors : ['Bílá & slonovinová'],
-                styles: styles.length ? styles : ['univerzální'],
-                materials: materials.length ? materials : ['sklo'],
-                uses: uses.length ? uses : ['na hostinu'],
+                phone,
+                isTop: false,
+                pendingTop: isTop,
+                variableSymbol: vsCode,
+                motif: type === 'Kompletní svatba' ? 'bundle' : type === 'Půjčení' ? 'arch' : 'vases',
+                bg: 'linear-gradient(135deg, #F6EFE2 0%, #EFE6D5 100%)',
+                colors: colors.length ? colors : ['Bílá & krémová'],
+                styles: styles.length ? styles : ['Univerzální'],
+                materials: materials.length ? materials : ['Sklo'],
+                uses: uses.length ? uses : ['Na hostinu'],
                 description: desc
             });
 
             document.getElementById('add-listing-form').reset();
-            toggleNewBundleField();
+            addFormState.selectedColors = [];
+            document.getElementById('custom-style-box').classList.remove('visible');
+            document.getElementById('delivery-distance-box').classList.remove('visible');
             closeModal('add-modal');
             switchView('bazar');
             renderCatalog();
-            showToast(isTop ? 'Inzerát byl zveřejněn a zvýrazněn jako TOP!' : 'Váš inzerát byl úspěšně přidán do katalogu!');
+
+            if (isTop) {
+                openQrTopModal(newListingId);
+            } else {
+                showToast('Váš inzerát byl úspěšně přidán do katalogu!');
+            }
         }
 
         /* =====================================================================
-           11. GARÁŽOVÉ VÝPRODEJE NAŽIVO
+           11B. QR PLATBA ZA TOP ZVÝRAZNĚNÍ (SPD ČESKÝ BANKOVNÍ STANDARD)
+           ===================================================================== */
+        // Ukázkový účet v IBAN formátu pro SPD QR platbu (snadno nahraďte svým reálným účtem)
+        const TOP_PAYMENT_IBAN = 'CZ6508000000192000145399';
+        const TOP_PAYMENT_ACCOUNT_CZ = '2000145399/0800';
+        const TOP_PAYMENT_AMOUNT = '49.00';
+
+        let activeQrListingId = null;
+
+        function generateVariableSymbol() {
+            const randomFour = Math.floor(1000 + Math.random() * 9000);
+            return `2026${randomFour}`;
+        }
+
+        function openQrTopModal(listingId) {
+            const item = listings.find(l => l.id === listingId);
+            if (!item) return;
+
+            activeQrListingId = listingId;
+            if (!item.variableSymbol) {
+                item.variableSymbol = generateVariableSymbol();
+            }
+            item.pendingTop = true;
+
+            const vs = item.variableSymbol;
+            const msg = `TOP SVATBA Z OKOLI ${vs}`;
+            const spdPayload = `SPD*1.0*ACC:${TOP_PAYMENT_IBAN}*AM:${TOP_PAYMENT_AMOUNT}*CC:CZK*X-VS:${vs}*MSG:${msg}`;
+
+            document.getElementById('qr-listing-title').textContent = item.title;
+            document.getElementById('qr-bank-account').textContent = TOP_PAYMENT_ACCOUNT_CZ;
+            document.getElementById('qr-vs-value').textContent = vs;
+            document.getElementById('qr-msg-value').textContent = msg;
+
+            const qrContainer = document.getElementById('qr-code-container');
+            qrContainer.innerHTML = '';
+
+            if (typeof QRCode !== 'undefined') {
+                new QRCode(qrContainer, {
+                    text: spdPayload,
+                    width: 176,
+                    height: 176,
+                    colorDark: '#26221E',
+                    colorLight: '#FFFFFF',
+                    correctLevel: QRCode.CorrectLevel.M
+                });
+            } else {
+                // Záložní SVG mřížka pro případ offline režimu bez přístupu k CDN
+                qrContainer.innerHTML = renderFallbackSpdSvg(spdPayload);
+            }
+
+            openModal('qr-top-modal');
+        }
+
+        function renderFallbackSpdSvg(seedText) {
+            let hash = 0;
+            for (let i = 0; i < seedText.length; i++) {
+                hash = ((hash << 5) - hash) + seedText.charCodeAt(i);
+                hash |= 0;
+            }
+            const size = 21;
+            const cell = 8;
+            let rects = '';
+            for (let r = 0; r < size; r++) {
+                for (let c = 0; c < size; c++) {
+                    const inFinder = (r < 7 && c < 7) || (r < 7 && c >= size - 7) || (r >= size - 7 && c < 7);
+                    let filled = false;
+                    if (inFinder) {
+                        const lr = r >= size - 7 ? r - (size - 7) : r;
+                        const lc = c >= size - 7 ? c - (size - 7) : c;
+                        filled = lr === 0 || lr === 6 || lc === 0 || lc === 6 || (lr >= 2 && lr <= 4 && lc >= 2 && lc <= 4);
+                    } else {
+                        filled = (((hash >> ((r * 3 + c) % 24)) ^ (r * 7 + c * 13)) & 1) === 1;
+                    }
+                    if (filled) {
+                        rects += `<rect x="${c * cell}" y="${r * cell}" width="${cell}" height="${cell}" fill="#26221E"/>`;
+                    }
+                }
+            }
+            return `<svg viewBox="0 0 ${size * cell} ${size * cell}" width="176" height="176" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#FFFFFF"/>${rects}</svg>`;
+        }
+
+        function confirmTopPayment() {
+            const idx = listings.findIndex(l => l.id === activeQrListingId);
+            if (idx > -1) {
+                const item = listings[idx];
+                item.isTop = true;
+                delete item.pendingTop;
+
+                // Přesuneme čerstvě topovaný inzerát na úplný začátek seznamu
+                listings.splice(idx, 1);
+                listings.unshift(item);
+            }
+
+            activeQrListingId = null;
+            closeModal('qr-top-modal');
+            renderCatalog();
+            showToast('★ Platba přijata! Váš inzerát je nyní TOP na 14 dní.');
+        }
+
+        function keepStandardListing() {
+            activeQrListingId = null;
+            closeModal('qr-top-modal');
+            renderCatalog();
+            showToast('Inzerát zůstává v katalogu jako běžný zdarma.');
+        }
+
+        function copyBankField(value, label) {
+            const tempArea = document.createElement('textarea');
+            tempArea.value = value;
+            tempArea.style.position = 'fixed';
+            tempArea.style.opacity = '0';
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            try {
+                document.execCommand('copy');
+                showToast(`${label} (${value}) zkopírován do schránky.`);
+            } catch (err) {
+                showToast('Nepodařilo se zkopírovat údaj.');
+            }
+            document.body.removeChild(tempArea);
+        }
+
+        /* =====================================================================
+           12. GARÁŽOVÉ VÝPRODEJE NAŽIVO & FORMULÁŘ PRO SVATEBNÍ MÍSTA
            ===================================================================== */
         function renderGarageEvents() {
             document.getElementById('garage-grid').innerHTML = garageEvents.map(ev => {
@@ -2827,9 +4247,6 @@
             showToast('Prodejní stůl rezervován! Potvrzení jsme odeslali na e-mail.');
         }
 
-        /* =====================================================================
-           11B. POPTÁVKA SVATEBNÍHO MÍSTA NA USPOŘÁDÁNÍ GARÁŽOVÉHO VÝPRODEJE
-           ===================================================================== */
         const PLATFORM_OWNER_EMAIL = 'stodoly@moderninevesta.cz';
         let lastVenueSummaryText = '';
 
@@ -2875,37 +4292,9 @@
             const organizerSubject = `Potvrzení poptávky: Svatební garážový výprodej – ${place}`;
             const organizerBody = `Dobrý den, ${organizer},\n\nděkujeme za váš zájem uspořádat Svatební garážový výprodej ve vašem prostoru! Níže posíláme kompletní rekapitulaci vaší poptávky. Brzy se vám ozveme s návrhem termínu a dalšími kroky.\n\n${fullSummary}\n\nS pozdravem,\nTým Moderní nevěsta`;
 
-            /* =================================================================
-               MÍSTO PRO OSTRÉ NAPOJENÍ NA E-MAILOVOU SLUŽBU / WEBHOOK
-               (např. Formspree, EmailJS, Resend nebo vlastní backend API):
-               -----------------------------------------------------------------
-               try {
-                   await fetch('https://formspree.io/f/VASE_FORM_ID', {
-                       method: 'POST',
-                       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                       body: JSON.stringify({
-                           to_owner: PLATFORM_OWNER_EMAIL,
-                           reply_to: email,
-                           organizer,
-                           phone,
-                           email,
-                           place,
-                           vendors,
-                           message,
-                           owner_email_text: ownerBody,
-                           organizer_copy_text: organizerBody
-                       })
-                   });
-               } catch (err) {
-                   console.error('Chyba při odesílání na e-mailový webhook:', err);
-               }
-               ================================================================= */
-
-            // Nastavení mailto: odkazu pro přímé odeslání s kopií (CC) organizátorovi
             const mailtoHref = `mailto:${encodeURIComponent(PLATFORM_OWNER_EMAIL)}?cc=${encodeURIComponent(email)}&subject=${encodeURIComponent(ownerSubject)}&body=${encodeURIComponent(ownerBody)}`;
             document.getElementById('venue-mailto-link').href = mailtoHref;
 
-            // Vykreslení náhledu obou e-mailů v modálním okně
             document.getElementById('venue-emails-summary').innerHTML = `
                 <div class="email-preview-card">
                     <div style="font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold-hover); margin-bottom: 6px;">
@@ -2955,7 +4344,7 @@
         }
 
         /* =====================================================================
-           12. POMOCNÉ FUNKCE PRO MODÁLY A TOAST
+           13. POMOCNÉ FUNKCE PRO MODÁLY A TOAST
            ===================================================================== */
         function openModal(id) {
             document.getElementById(id).classList.add('open');
@@ -2971,7 +4360,7 @@
             document.getElementById('toast-message').textContent = msg;
             toast.classList.add('show');
             clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => toast.classList.remove('show'), 3400);
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 3600);
         }
 
         window.addEventListener('DOMContentLoaded', initApp);
