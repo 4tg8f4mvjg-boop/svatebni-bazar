@@ -2443,12 +2443,20 @@
                             <span class="bank-detail-label">Číslo účtu</span>
                             <span class="bank-detail-val">
                                 <span id="qr-bank-account">2000145399/0800</span>
-                                <button type="button" class="copy-mini-btn" onclick="copyBankField('2000145399/0800', 'Číslo účtu')">Kopírovat</button>
+                                <button type="button" id="qr-copy-account-btn" class="copy-mini-btn" onclick="copyBankField(PAYMENT_CONFIG.accountCz, 'Číslo účtu')">Kopírovat</button>
+                            </span>
+                        </div>
+                        <div class="bank-detail-row">
+                            <span class="bank-detail-label">Příjemce</span>
+                            <span class="bank-detail-val">
+                                <span id="qr-recipient-value">Moderní nevěsta</span>
                             </span>
                         </div>
                         <div class="bank-detail-row">
                             <span class="bank-detail-label">Částka</span>
-                            <span class="bank-detail-val" style="color: var(--gold-hover); font-size: 1rem;">49 Kč</span>
+                            <span class="bank-detail-val" style="color: var(--gold-hover); font-size: 1rem;">
+                                <span id="qr-amount-value">49 Kč</span>
+                            </span>
                         </div>
                         <div class="bank-detail-row">
                             <span class="bank-detail-label">Variabilní symbol</span>
@@ -2460,23 +2468,86 @@
                         <div class="bank-detail-row">
                             <span class="bank-detail-label">Zpráva pro příjemce</span>
                             <span class="bank-detail-val" style="font-size: 0.78rem;">
-                                <span id="qr-msg-value">TOP SVATBA Z OKOLI</span>
+                                <span id="qr-msg-value">TOP inzerat</span>
+                                <button type="button" class="copy-mini-btn" onclick="copyBankField(document.getElementById('qr-msg-value').textContent, 'Zpráva pro příjemce')">Kopírovat</button>
                             </span>
                         </div>
                     </div>
                 </div>
 
                 <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 18px;">
-                    Po naskenování QR kódu v bankovní aplikaci se vám předvyplní všechny údaje včetně variabilního symbolu. Poté klikněte na tlačítko níže a inzerát se zařadí na první místa se zlatým štítkem <strong>TOP</strong>.
+                    Po naskenování QR kódu v bankovní aplikaci se vám předvyplní všechny údaje včetně variabilního symbolu. Poté klikněte na tlačítko níže a inzerát se zařadí na první místa se zlatým štítkem <strong>TOP</strong> na 14 dní.
                 </p>
 
                 <div style="display: flex; flex-direction: column; gap: 10px; align-items: stretch;">
                     <button type="button" class="btn-gold" style="padding: 13px 22px; font-size: 0.92rem;" onclick="confirmTopPayment()">
-                        ★ Platbu jsem odeslal(a) – Topovat inzerát
+                        ★ Platbu jsem odeslal(a) – Aktivovat TOP
                     </button>
                     <button type="button" class="reset-link" style="text-align: center; padding: 6px; font-size: 0.82rem; color: var(--text-secondary);" onclick="keepStandardListing()">
                         Zatím nechat jako běžný inzerát zdarma
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         MODÁL 6: POPTÁVKOVÝ FORMULÁŘ PRO SVATEBNÍ MÍSTA (GARÁŽOVÝ VÝPRODEJ)
+         ===================================================================== -->
+    <div id="venue-modal" class="modal-backdrop" onclick="if(event.target === this) closeModal('venue-modal')">
+        <div class="modal-dialog" style="max-width: 660px;" role="dialog" aria-modal="true" aria-labelledby="venue-modal-title">
+            <div class="modal-header">
+                <h2 id="venue-modal-title" class="modal-title">Uspořádat garážový výprodej</h2>
+                <button type="button" class="modal-close" onclick="closeModal('venue-modal')" aria-label="Zavřít">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="venue-form-container">
+                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 16px;">
+                        Vyplňte údaje o vašem svatebním místě. Kompletní výpis okamžitě odešleme organizátorům platformy Moderní nevěsta i vám jako potvrzovací kopii na e-mail.
+                    </p>
+                    <form id="venue-host-form" onsubmit="submitVenueProposal(event)">
+                        <div class="form-grid">
+                            <div class="field-group">
+                                <label class="field-label" for="venue-organizer">Jméno organizátora *</label>
+                                <input required type="text" id="venue-organizer" class="form-input" placeholder="Např. Jana Dvořáková">
+                            </div>
+                            <div class="field-group">
+                                <label class="field-label" for="venue-phone">Telefon (nepovinné)</label>
+                                <input type="tel" id="venue-phone" class="form-input" placeholder="+420 777 123 456">
+                            </div>
+                            <div class="field-group form-full">
+                                <label class="field-label" for="venue-email">Email *</label>
+                                <input required type="email" id="venue-email" class="form-input" placeholder="jana@stodola-vysocina.cz">
+                            </div>
+                            <div class="field-group form-full">
+                                <label class="field-label" for="venue-place">Místo výprodeje (název objektu, adresa) *</label>
+                                <input required type="text" id="venue-place" class="form-input" placeholder="Např. Stodola U Lípy, Rožná 42, 592 52">
+                            </div>
+                            <div class="field-group form-full">
+                                <label class="field-label" for="venue-vendors">Máte nějaké dodavatele profíky, kteří by se chtěli prezentovat (proseccovan, sladký bar, catering, další) formou doprovodného programu?</label>
+                                <textarea id="venue-vendors" rows="2" class="form-textarea" placeholder="Např. Ano, máme domluvený lokální prosecco van a cukrářku se sweet barem..."></textarea>
+                            </div>
+                            <div class="field-group form-full">
+                                <label class="field-label" for="venue-message">Vaše zpráva (jak si akci představujete, máte nějaké požadavky, podmínky?)</label>
+                                <textarea id="venue-message" rows="3" class="form-textarea" placeholder="Např. Preferujeme neděli dopoledne v březnu/dubnu, kapacita cca 20 stolů pod střechou, parkování pro 40 aut..."></textarea>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px;">
+                            <button type="button" class="btn-outline-gold" onclick="closeModal('venue-modal')">Zrušit</button>
+                            <button type="submit" class="btn-gold">Odeslat poptávku akce</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="venue-confirmation-container" style="display: none;">
+                    <div style="background: var(--sage-badge); color: var(--sage-text); border: 1px solid rgba(58,87,69,0.25); border-radius: var(--radius-md); padding: 14px 16px; margin-bottom: 16px; font-size: 0.86rem;">
+                        <strong>✓ Poptávka byla zpracována!</strong> Níže vidíte kompletní rekapitulaci e-mailu pro platformu Moderní nevěsta i potvrzovací kopie pro vás.
+                    </div>
+                    <div id="venue-emails-summary"></div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; margin-top: 18px;">
+                        <button type="button" class="btn-outline-gold" onclick="copyVenueSummary()">Zkopírovat výpis údajů</button>
+                        <a id="venue-mailto-link" href="#" class="btn-gold" style="text-decoration: none;">Odeslat přes e-mailového klienta →</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2489,6 +2560,18 @@
     </div>
 
     <script>
+        /* =====================================================================
+           0. PLATEBNÍ KONFIGURACE (JEDNO MÍSTO PRO NASTAVENÍ OSTRÉHO ÚČTU)
+           ===================================================================== */
+        const PAYMENT_CONFIG = {
+            iban: 'CZ6508000000192000145399',
+            accountCz: '2000145399/0800',
+            recipientName: 'Moderní nevěsta',
+            currency: 'CZK',
+            topPriceCzk: 49,
+            topDurationDays: 14
+        };
+
         /* =====================================================================
            1. JEDEN CENTRÁLNÍ ZDROJ TAGŮ (SINGLE SOURCE OF TRUTH)
               Cokoliv zde upravíte, propíše se automaticky do levého filtru
@@ -3286,12 +3369,12 @@
                 const discountPct = (item.type === 'Kompletní svatba' && item.originalPrice && item.originalPrice > item.price)
                     ? Math.round((1 - item.price / item.originalPrice) * 100)
                     : 0;
-
-                const bundleHtml = (item.type === 'Kompletní svatba' && item.bundleItems && item.bundleItems.length) ? `
-                    <div class="bundle-preview">
-                        <div class="bundle-preview-head">
-                            <span>✦ Svatba v krabici obsahuje:</span>
-                            ${discountPct > 0 ? `<span class="discount-pill">Ušetříte ${discountPct} %</span>` : ''}
+                        <div class="top-upsell-box">
+                            <input type="checkbox" id="new-top" style="width: 18px; height: 18px; margin-top: 2px; accent-color: var(--gold);">
+                            <label for="new-top" style="font-size: 0.84rem; cursor: pointer;">
+                                <strong style="color: var(--gold-hover);">TOP zvýraznění v okrese na ${PAYMENT_CONFIG.topDurationDays} dní (${PAYMENT_CONFIG.topPriceCzk} Kč)</strong><br>
+                                <span style="color: var(--text-secondary); font-size: 0.78rem;">Inzerát se zobrazí na prvních místech ve vašem okolí se zlatým štítkem po uhrazení QR platby. Základní vložení je zdarma.</span>
+                            </label>
                         </div>
                         <ul class="bundle-preview-list">
                             ${item.bundleItems.slice(0, 3).map(bi => `<li>${escapeHtml(bi)}</li>`).join('')}
@@ -3637,10 +3720,10 @@
                     <div class="detail-top-promo">
                         <div>
                             <div style="font-size: 0.84rem; font-weight: 700; color: var(--gold-hover);">★ Chcete tento inzerát prodat ještě rychleji?</div>
-                            <div style="font-size: 0.78rem; color: var(--text-secondary);">Zvýrazněte ho na 14 dní na prvních místech v okrese pomocí rychlé QR platby.</div>
+                            <div style="font-size: 0.78rem; color: var(--text-secondary);">Zvýrazněte ho na ${PAYMENT_CONFIG.topDurationDays} dní na prvních místech v okrese pomocí rychlé QR platby.</div>
                         </div>
                         <button type="button" class="btn-outline-gold" onclick="closeModal('detail-modal'); openQrTopModal(${item.id});">
-                            Chci tento inzerát zvýraznit jako TOP (49 Kč)
+                            Topovat inzerát (${PAYMENT_CONFIG.topPriceCzk} Kč)
                         </button>
                     </div>
                 ` : ''}
@@ -4066,11 +4149,6 @@
         /* =====================================================================
            11B. QR PLATBA ZA TOP ZVÝRAZNĚNÍ (SPD ČESKÝ BANKOVNÍ STANDARD)
            ===================================================================== */
-        // Ukázkový účet v IBAN formátu pro SPD QR platbu (snadno nahraďte svým reálným účtem)
-        const TOP_PAYMENT_IBAN = 'CZ6508000000192000145399';
-        const TOP_PAYMENT_ACCOUNT_CZ = '2000145399/0800';
-        const TOP_PAYMENT_AMOUNT = '49.00';
-
         let activeQrListingId = null;
 
         function generateVariableSymbol() {
@@ -4089,11 +4167,14 @@
             item.pendingTop = true;
 
             const vs = item.variableSymbol;
-            const msg = `TOP SVATBA Z OKOLI ${vs}`;
-            const spdPayload = `SPD*1.0*ACC:${TOP_PAYMENT_IBAN}*AM:${TOP_PAYMENT_AMOUNT}*CC:CZK*X-VS:${vs}*MSG:${msg}`;
+            const amountFormatted = PAYMENT_CONFIG.topPriceCzk.toFixed(2);
+            const msg = `TOP inzerat ${item.id}`;
+            const spdPayload = `SPD*1.0*ACC:${PAYMENT_CONFIG.iban}*AM:${amountFormatted}*CC:${PAYMENT_CONFIG.currency}*X-VS:${vs}*MSG:${msg}`;
 
             document.getElementById('qr-listing-title').textContent = item.title;
-            document.getElementById('qr-bank-account').textContent = TOP_PAYMENT_ACCOUNT_CZ;
+            document.getElementById('qr-bank-account').textContent = PAYMENT_CONFIG.accountCz;
+            document.getElementById('qr-recipient-value').textContent = PAYMENT_CONFIG.recipientName;
+            document.getElementById('qr-amount-value').textContent = `${PAYMENT_CONFIG.topPriceCzk} Kč`;
             document.getElementById('qr-vs-value').textContent = vs;
             document.getElementById('qr-msg-value').textContent = msg;
 
@@ -4150,7 +4231,7 @@
             if (idx > -1) {
                 const item = listings[idx];
                 item.isTop = true;
-                delete item.pendingTop;
+                item.pendingTop = false;
 
                 // Přesuneme čerstvě topovaný inzerát na úplný začátek seznamu
                 listings.splice(idx, 1);
@@ -4160,10 +4241,14 @@
             activeQrListingId = null;
             closeModal('qr-top-modal');
             renderCatalog();
-            showToast('★ Platba přijata! Váš inzerát je nyní TOP na 14 dní.');
+            showToast(`★ Platba přijata! Váš inzerát je nyní TOP na ${PAYMENT_CONFIG.topDurationDays} dní.`);
         }
 
         function keepStandardListing() {
+            const idx = listings.findIndex(l => l.id === activeQrListingId);
+            if (idx > -1) {
+                listings[idx].pendingTop = false;
+            }
             activeQrListingId = null;
             closeModal('qr-top-modal');
             renderCatalog();
