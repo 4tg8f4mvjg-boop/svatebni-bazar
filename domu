@@ -1189,6 +1189,82 @@
             transition: width 0.3s ease;
         }
 
+        .vendor-promo-box {
+            background: var(--gold-tint);
+            border: 1px solid var(--gold-border);
+            border-radius: var(--radius-md);
+            padding: 13px 14px;
+            margin-top: 12px;
+        }
+
+        .vendor-promo-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--gold-hover);
+            margin-bottom: 4px;
+        }
+
+        .vendor-promo-text {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            margin-bottom: 10px;
+        }
+
+        .event-vendors-box {
+            background: var(--bg-page);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 12px 14px;
+            margin-top: 10px;
+        }
+
+        .event-vendors-title {
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .event-vendor-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            font-size: 0.79rem;
+        }
+
+        .event-vendor-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .vendor-cat-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .vendor-cat-badge {
+            font-size: 0.67rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: var(--radius-pill);
+            background: var(--sage-badge);
+            color: var(--sage-text);
+        }
+
         .venue-partner-banner {
             background: linear-gradient(135deg, var(--gold-tint) 0%, #FFFFFF 100%);
             border: 1.5px solid var(--gold-border);
@@ -2060,6 +2136,9 @@
                     <p style="color: var(--text-secondary); font-size: 0.92rem;">
                         Pronajměte si prodejní stůl za <strong>290 Kč</strong> a prodejte celou svatební výzdobu během jediného nedělního dopoledne bez balení krabic. Budoucí nevěsty si vše prohlédnou naživo u výběrové kávy.
                     </p>
+                    <p style="color: var(--gold-hover); font-size: 0.86rem; font-weight: 600; margin-top: 8px;">
+                        ✦ Pořádáme výprodej svatebních věcí ve vaší lokalitě – chcete nevěstám ukázat svoje služby? Rezervujte si prezentační místo pro lokální dodavatele za 500 Kč (kávové vozíky, zmrzlina, sweetbar, tiskoviny, květiny či drobné služby).
+                    </p>
                 </div>
                 <button type="button" class="btn-gold" onclick="openVenueModal()">
                     Chci uspořádat výprodej
@@ -2094,12 +2173,12 @@
     </main>
 
     <!-- =====================================================================
-         MODÁL 1: DETAIL INZERÁTU + REZERVAČNÍ KALENDÁŘ PRONÁJMU
+         MODÁL 1: DETAIL INZERÁTU A REZERVAČNÍ KALENDÁŘ PRONÁJMU
          ===================================================================== -->
     <div id="detail-modal" class="modal-backdrop" onclick="if(event.target === this) closeModal('detail-modal')">
         <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="detail-modal-title">
             <div class="modal-header">
-                <h2 id="detail-modal-title" class="modal-title">Detail svatební výzdoby</h2>
+                <h2 id="detail-modal-title" class="modal-title">Detail nabídky</h2>
                 <button type="button" class="modal-close" onclick="closeModal('detail-modal')" aria-label="Zavřít">✕</button>
             </div>
             <div id="detail-modal-body" class="modal-body"></div>
@@ -2107,7 +2186,7 @@
     </div>
 
     <!-- =====================================================================
-         MODÁL 2: CHYTRÉ VLOŽENÍ INZERÁTU (PRODEJ / PŮJČENÍ / SVATBA V KRABICI)
+         MODÁL 2: PŘIDÁNÍ NOVÉ VÝZDOBY DO BAZARU / PŮJČOVNY
          ===================================================================== -->
     <div id="add-modal" class="modal-backdrop" onclick="if(event.target === this) closeModal('add-modal')">
         <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="add-modal-title">
@@ -2117,259 +2196,203 @@
             </div>
             <div class="modal-body">
                 <form id="add-listing-form" onsubmit="submitNewListing(event)">
-                    <!-- Krok 1: Chytrý přepínač typu nabídky -->
-                    <div class="modal-type-tabs" role="group" aria-label="Typ nabídky">
+                    <div class="modal-type-tabs" role="group" aria-label="Typ inzerátu">
                         <button type="button" class="modal-type-btn active" data-add-type="Prodej" onclick="setAddModalType('Prodej')">
                             <strong>Prodej</strong>
-                            <span>Jednotlivé kusy nebo sada</span>
+                            <span>Jednorázový prodej</span>
                         </button>
                         <button type="button" class="modal-type-btn" data-add-type="Půjčení" onclick="setAddModalType('Půjčení')">
                             <strong>Půjčení</strong>
-                            <span>Pronájem na víkend s kalendářem</span>
+                            <span>Pronájem s kalendářem</span>
                         </button>
                         <button type="button" class="modal-type-btn" data-add-type="Kompletní svatba" onclick="setAddModalType('Kompletní svatba')">
                             <strong>Kompletní svatba</strong>
-                            <span>Celá svatba v krabici</span>
+                            <span>Balíček v krabici</span>
                         </button>
                     </div>
 
-                    <!-- Krok 2: Základní údaje & Fotografie s automatickou kompresí -->
                     <div class="form-section-card">
-                        <div class="form-section-heading">
-                            <span>1. Základní údaje a fotografie</span>
-                            <span style="font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600; color: var(--sage-text); background: var(--sage-badge); padding: 3px 10px; border-radius: 999px;">Auto-optimalizace max 1200 px</span>
-                        </div>
-
+                        <div class="form-section-heading"><span>1. Základní popis &amp; fotografie</span></div>
                         <div class="form-grid">
                             <div class="field-group form-full">
-                                <label class="field-label" for="new-title">Název inzerátu *</label>
-                                <input required type="text" id="new-title" class="form-input" placeholder="Např. Sada 20 skleněných váz a zlatých svícnů">
+                                <label class="field-label" for="new-title">Název nabídky *</label>
+                                <input required type="text" id="new-title" class="form-input" placeholder="Např. Sada 20 skleněných váziček a zlatých svícnů">
                             </div>
-
+                            <div class="field-group">
+                                <label class="field-label" for="new-wedding-size">Velikost svatby *</label>
+                                <select id="new-wedding-size" class="form-select">
+                                    <option value="do 30 hostů">do 30 hostů</option>
+                                    <option value="30–60 hostů" selected>30–60 hostů</option>
+                                    <option value="60–100 hostů">60–100 hostů</option>
+                                    <option value="100+ hostů">100+ hostů</option>
+                                </select>
+                            </div>
                             <div class="field-group form-full">
-                                <label class="field-label">Fotografie výzdoby (max. 6 fotek • automaticky zmenšíme pro rychlé načítání)</label>
-                                <div id="photo-dropzone" class="photo-dropzone" onclick="document.getElementById('photo-file-input').click()" ondragover="handlePhotoDragOver(event)" ondragleave="handlePhotoDragLeave(event)" ondrop="handlePhotoDrop(event)">
-                                    <div style="font-size: 1.4rem; margin-bottom: 4px;">📸</div>
-                                    <div style="font-size: 0.86rem; font-weight: 600; color: var(--text-primary);">Klikněte nebo přetáhněte fotky z mobilu či počítače</div>
-                                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;">Tip: Fotka přímo ze svatby prodává 3× rychleji. Velké soubory samy zkomprimujeme na max. 1200 px.</div>
+                                <label class="field-label" for="new-desc">Popis stavu a rozměrů</label>
+                                <textarea id="new-desc" rows="2" class="form-textarea" placeholder="Popište rozměry, stav po svatbě, počet kusů..."></textarea>
+                            </div>
+                            <div class="field-group form-full">
+                                <span class="field-label">Fotografie (automatická optimalizace na max. 1200 px)</span>
+                                <div id="photo-dropzone" class="photo-dropzone"
+                                     onclick="document.getElementById('photo-file-input').click()"
+                                     ondragover="handlePhotoDragOver(event)"
+                                     ondragleave="handlePhotoDragLeave(event)"
+                                     ondrop="handlePhotoDrop(event)">
+                                    <div style="font-size: 0.86rem; font-weight: 600; color: var(--gold-hover);">📷 Klikněte pro výběr fotek nebo je sem přetáhněte</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;">Max. 6 fotografií • Zmenší se automaticky v prohlížeči</div>
                                 </div>
                                 <input type="file" id="photo-file-input" accept="image/*" multiple style="display: none;" onchange="handlePhotoFiles(this.files)">
                                 <div id="photo-previews-grid" class="photo-previews-grid"></div>
                             </div>
-
-                            <div class="field-group form-full">
-                                <label class="field-label" for="new-desc">Podrobný popis, rozměry a stav</label>
-                                <textarea id="new-desc" rows="2" class="form-textarea" placeholder="Popište stav věcí, rozměry a případné detaily..."></textarea>
-                            </div>
                         </div>
                     </div>
 
-                    <!-- Krok 3: Dynamická sekce podle typu nabídky + Velikost svatby -->
                     <div class="form-section-card">
                         <div class="form-section-heading">
                             <span id="dynamic-section-title">2. Parametry prodeje</span>
+                            <span id="bundle-discount-live" class="field-label-accent"></span>
                         </div>
 
-                        <!-- Společné pole pro všechny 3 varianty: Velikost svatby -->
-                        <div class="form-grid" style="margin-bottom: 14px;">
-                            <div class="field-group form-full">
-                                <label class="field-label" for="new-wedding-size">Z jak velké svatby / pro kolik hostů výzdoba je? *</label>
-                                <select id="new-wedding-size" class="form-select" required>
-                                    <option value="do 30 hostů">Komorní svatba (do 30 hostů)</option>
-                                    <option value="30–60 hostů" selected>Střední svatba (30–60 hostů)</option>
-                                    <option value="60–100 hostů">Větší svatba (60–100 hostů)</option>
-                                    <option value="100+ hostů">Velká svatba (100+ hostů)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Varianta A: PRODEJ -->
                         <div id="dyn-prodej" class="form-grid">
                             <div class="field-group">
-                                <label class="field-label" for="new-price-sale">Cena celkem (Kč) *</label>
-                                <input type="number" min="0" step="10" id="new-price-sale" class="form-input" placeholder="890">
+                                <label class="field-label" for="new-price-sale">Prodejní cena (Kč) *</label>
+                                <input type="number" id="new-price-sale" class="form-input" min="1" placeholder="890">
                             </div>
                             <div class="field-group">
-                                <label class="field-label" for="new-pcs-count">Počet kusů v sadě</label>
-                                <input type="text" id="new-pcs-count" class="form-input" placeholder="Např. 1 sada / 24 ks">
+                                <label class="field-label" for="new-pcs-count">Počet kusů / sad</label>
+                                <input type="text" id="new-pcs-count" class="form-input" placeholder="Např. 1 sada (24 ks)">
                             </div>
                             <div class="field-group form-full">
                                 <label class="field-label" for="new-condition">Stav výzdoby</label>
                                 <select id="new-condition" class="form-select">
                                     <option value="Jako nové (1× použité na svatbě)">Jako nové (1× použité na svatbě)</option>
-                                    <option value="Nové (nepoužité)">Nové (nepoužité)</option>
-                                    <option value="Drobné známky použití">Nese drobné známky použití</option>
+                                    <option value="Nové, nepoužité">Nové, nepoužité</option>
+                                    <option value="Drobné známky použití">Drobné známky použití</option>
                                 </select>
                             </div>
                         </div>
 
-                        <!-- Varianta B: PŮJČENÍ + INTERAKTIVNÍ KALENDÁŘ OBSADITELNOSTI -->
                         <div id="dyn-pujceni" style="display: none;">
-                            <div class="form-grid" style="margin-bottom: 14px;">
+                            <div class="form-grid" style="margin-bottom: 12px;">
                                 <div class="field-group">
-                                    <label class="field-label" for="new-price-rent">Cena za pronájem (Kč) *</label>
-                                    <input type="number" min="0" step="10" id="new-price-rent" class="form-input" placeholder="1200">
+                                    <label class="field-label" for="new-price-rent">Cena pronájmu (Kč) *</label>
+                                    <input type="number" id="new-price-rent" class="form-input" min="1" placeholder="1200">
                                 </div>
                                 <div class="field-group">
                                     <label class="field-label" for="new-rent-period">Období pronájmu</label>
                                     <select id="new-rent-period" class="form-select">
-                                        <option value="/ víkend (čt–po)">za víkend (čt–po)</option>
-                                        <option value="/ 1 den">za 1 den</option>
+                                        <option value="/ víkend (čt–po)">/ víkend (čt–po)</option>
+                                        <option value="/ den">/ den</option>
+                                        <option value="/ svatbu">/ svatbu</option>
                                     </select>
                                 </div>
                                 <div class="field-group form-full">
-                                    <label class="field-label" for="new-deposit">Vratná kauce (Kč – nepovinné)</label>
-                                    <input type="number" min="0" step="100" id="new-deposit" class="form-input" placeholder="Např. 1000">
+                                    <label class="field-label" for="new-deposit">Vratná kauce (Kč)</label>
+                                    <input type="number" id="new-deposit" class="form-input" min="0" placeholder="1000">
                                 </div>
                             </div>
-
                             <div class="field-group">
-                                <label class="field-label">Kalendář dostupnosti 2027 – kliknutím označte už obsazené dny</label>
+                                <span class="field-label">Kliknutím označte již obsazené dny v kalendáři:</span>
                                 <div id="add-rental-calendar" class="calendar-widget"></div>
                             </div>
                         </div>
 
-                        <!-- Varianta C: KOMPLETNÍ SVATBA V KRABICI -->
                         <div id="dyn-kompletni" style="display: none;">
-                            <div class="form-grid" style="margin-bottom: 14px;">
+                            <div class="form-grid" style="margin-bottom: 12px;">
                                 <div class="field-group">
                                     <label class="field-label" for="new-price-bundle">Cena za celý balíček (Kč) *</label>
-                                    <input type="number" min="0" step="10" id="new-price-bundle" class="form-input" placeholder="4900" oninput="updateBundleDiscountPreview()">
+                                    <input type="number" id="new-price-bundle" class="form-input" min="1" placeholder="4500" oninput="updateBundleDiscountPreview()">
                                 </div>
                                 <div class="field-group">
-                                    <label class="field-label" for="new-orig-price">
-                                        <span>Původní pořizovací cena (Kč)</span>
-                                        <span id="bundle-discount-live" class="field-label-accent"></span>
-                                    </label>
-                                    <input type="number" min="0" step="10" id="new-orig-price" class="form-input" placeholder="9200" oninput="updateBundleDiscountPreview()">
+                                    <label class="field-label" for="new-orig-price">Původní pořizovací cena (Kč)</label>
+                                    <input type="number" id="new-orig-price" class="form-input" min="1" placeholder="8500" oninput="updateBundleDiscountPreview()">
+                                </div>
+                                <div class="field-group form-full">
+                                    <label class="field-label" for="new-split-option">Možnost prodeje po částech</label>
+                                    <select id="new-split-option" class="form-select">
+                                        <option value="Pouze jako kompletní celek">Pouze jako kompletní celek</option>
+                                        <option value="Lze se domluvit i na jednotlivých kusech">Lze se domluvit i na jednotlivých kusech</option>
+                                    </select>
                                 </div>
                             </div>
-
-                            <div class="field-group" style="margin-bottom: 12px;">
-                                <label class="field-label">Co všechno krabice obsahuje?</label>
+                            <div class="field-group">
+                                <span class="field-label">Položky v krabici:</span>
                                 <div id="bundle-items-container"></div>
-                                <button type="button" class="btn-outline-gold" style="align-self: flex-start; margin-top: 4px;" onclick="addBundleRow()">
-                                    + Přidat další položku do krabice
-                                </button>
-                            </div>
-
-                            <div class="field-group">
-                                <label class="field-label" for="new-split-option">Možnost prodeje po částech</label>
-                                <select id="new-split-option" class="form-select">
-                                    <option value="Pouze jako kompletní celek">Pouze jako kompletní celek</option>
-                                    <option value="Lze se domluvit i na jednotlivých kusech">Lze se domluvit i na jednotlivých kusech</option>
-                                </select>
+                                <button type="button" class="btn-outline-gold" style="align-self: flex-start; margin-top: 4px;" onclick="addBundleRow()">+ Přidat další položku</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Krok 4: Tagy ze sdíleného TAG_CONFIG -->
                     <div class="form-section-card">
-                        <div class="form-section-heading">
-                            <span>3. Tagy pro snadné nalezení nevěstami</span>
+                        <div class="form-section-heading"><span>3. Barvy, styl, materiál &amp; využití</span></div>
+                        <div class="field-group" style="margin-bottom: 12px;">
+                            <span class="field-label">Barevná paleta</span>
+                            <div id="form-colors" class="swatch-grid"></div>
                         </div>
-                        <div class="form-grid">
-                            <div class="field-group form-full">
-                                <span class="field-label">Barevná paleta (vyberte odstíny kliknutím na čtverečky)</span>
-                                <div id="form-colors" class="swatch-grid"></div>
+                        <div class="field-group" style="margin-bottom: 12px;">
+                            <span class="field-label">Styl svatby</span>
+                            <div id="form-styles" class="checkbox-pills"></div>
+                            <div id="custom-style-box" class="custom-style-box">
+                                <label class="field-label" for="new-custom-style">Vlastní název stylu:</label>
+                                <input type="text" id="new-custom-style" class="form-input" placeholder="Např. Lesní víla / Vintage 20. léta">
                             </div>
-                            <div class="field-group form-full">
-                                <span class="field-label">Styl svatby</span>
-                                <div id="form-styles" class="checkbox-pills"></div>
-                                <div id="custom-style-box" class="custom-style-box">
-                                    <label class="field-label" for="new-custom-style" style="color: var(--gold-hover); text-transform: none; letter-spacing: 0; font-size: 0.8rem;">
-                                        Doplňte si vlastní styl (1 tag):
-                                    </label>
-                                    <input type="text" id="new-custom-style" class="form-input" maxlength="32" placeholder="např. Lesní víla, Industriální, Harry Potter...">
-                                </div>
-                            </div>
-                            <div class="field-group form-full">
-                                <span class="field-label">Materiál</span>
-                                <div id="form-materials" class="checkbox-pills"></div>
-                            </div>
-                            <div class="field-group form-full">
-                                <span class="field-label">Využití na svatbě</span>
-                                <div id="form-uses" class="checkbox-pills"></div>
-                            </div>
+                        </div>
+                        <div class="field-group" style="margin-bottom: 12px;">
+                            <span class="field-label">Materiál</span>
+                            <div id="form-materials" class="checkbox-pills"></div>
+                        </div>
+                        <div class="field-group">
+                            <span class="field-label">Využití na svatbě</span>
+                            <div id="form-uses" class="checkbox-pills"></div>
                         </div>
                     </div>
 
-                    <!-- Krok 5: Lokalita a způsob předání (včetně vlastní km vzdálenosti dovozu) -->
                     <div class="form-section-card">
-                        <div class="form-section-heading">
-                            <span>4. Lokalita a způsob předání</span>
-                        </div>
-                        <div class="form-grid">
+                        <div class="form-section-heading"><span>4. Lokalita, předání &amp; kontakt</span></div>
+                        <div class="form-grid" style="margin-bottom: 12px;">
                             <div class="field-group">
-                                <label class="field-label" for="new-city">Město / obec vyzvednutí *</label>
+                                <label class="field-label" for="new-city">Město / Obec *</label>
                                 <input required type="text" id="new-city" class="form-input" placeholder="Např. Bystřice nad Pernštejnem">
                             </div>
                             <div class="field-group">
                                 <label class="field-label" for="new-zip">PSČ *</label>
-                                <input required type="text" id="new-zip" class="form-input" placeholder="Např. 593 01">
+                                <input required type="text" id="new-zip" class="form-input" placeholder="593 01">
                             </div>
-
-                            <div class="field-group form-full">
-                                <span class="field-label">Možnosti předání (můžete vybrat více)</span>
-                                <div class="checkbox-pills">
-                                    <label class="check-pill-label">
-                                        <input type="checkbox" id="deliv-personal" checked>
-                                        <span>Osobní odběr v místě</span>
-                                    </label>
-                                    <label class="check-pill-label">
-                                        <input type="checkbox" id="deliv-bring" onchange="toggleDeliveryDistanceInput()">
-                                        <span>Mohu dovézt v okolí</span>
-                                    </label>
-                                    <label class="check-pill-label">
-                                        <input type="checkbox" id="deliv-parcel">
-                                        <span>Lze poslat přes Zásilkovnu / Balíkovnu</span>
-                                    </label>
-                                </div>
-
-                                <div id="delivery-distance-box" class="delivery-distance-box">
-                                    <label for="deliv-km" style="font-size: 0.82rem; font-weight: 600; color: var(--gold-hover);">Do jaké vzdálenosti od bydliště zvládnete výzdobu dovézt?</label>
-                                    <div style="display: inline-flex; align-items: center; gap: 6px;">
-                                        <span>do</span>
-                                        <input type="number" id="deliv-km" min="1" max="200" value="25" class="form-input" style="width: 84px; padding: 6px 10px; text-align: center; font-weight: 700;">
-                                        <strong>km</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Krok 6: Kontakt & Zviditelnění -->
-                    <div class="form-section-card" style="margin-bottom: 0;">
-                        <div class="form-section-heading">
-                            <span>5. Kontakt a zveřejnění</span>
-                        </div>
-                        <div class="form-grid" style="margin-bottom: 14px;">
                             <div class="field-group">
                                 <label class="field-label" for="new-seller">Vaše jméno / přezdívka *</label>
-                                <input required type="text" id="new-seller" class="form-input" placeholder="Např. Tereza K.">
+                                <input required type="text" id="new-seller" class="form-input" placeholder="Např. Veronika M.">
                             </div>
                             <div class="field-group">
-                                <label class="field-label" for="new-email">E-mail (pro správu inzerátu) *</label>
-                                <input required type="email" id="new-email" class="form-input" placeholder="tereza@email.cz">
-                            </div>
-                            <div class="field-group form-full">
-                                <label class="field-label" for="new-phone">Telefon <span style="font-weight: 400; text-transform: none;">(nepovinné – zobrazí se zájemkyním)</span></label>
+                                <label class="field-label" for="new-phone">Telefon (nepovinné)</label>
                                 <input type="tel" id="new-phone" class="form-input" placeholder="+420 777 123 456">
+                            </div>
+                        </div>
+
+                        <div class="field-group" style="margin-bottom: 14px;">
+                            <span class="field-label">Způsob předání</span>
+                            <div class="checkbox-pills">
+                                <label class="check-pill-label"><input type="checkbox" id="deliv-personal" checked><span>Osobní odběr v místě</span></label>
+                                <label class="check-pill-label"><input type="checkbox" id="deliv-bring" onchange="toggleDeliveryDistanceInput()"><span>Mohu dovézt v okolí</span></label>
+                                <label class="check-pill-label"><input type="checkbox" id="deliv-parcel"><span>Lze poslat přes Zásilkovnu / Balíkovnu</span></label>
+                            </div>
+                            <div id="delivery-distance-box" class="delivery-distance-box">
+                                <label for="deliv-km" style="font-size: 0.82rem; font-weight: 600;">Maximální dojezdová vzdálenost pro dovoz (km):</label>
+                                <input type="number" id="deliv-km" class="form-input" style="width: 100px;" value="25" min="1" max="200">
                             </div>
                         </div>
 
                         <div class="top-upsell-box">
                             <input type="checkbox" id="new-top" style="width: 18px; height: 18px; margin-top: 2px; accent-color: var(--gold);">
                             <label for="new-top" style="font-size: 0.84rem; cursor: pointer;">
-                                <strong style="color: var(--gold-hover);">TOP zvýraznění v okrese na 14 dní (49 Kč)</strong><br>
-                                <span style="color: var(--text-secondary); font-size: 0.78rem;">Inzerát se zobrazí na prvních místech ve vašem okolí se zlatým štítkem. Základní vložení je zdarma.</span>
+                                <strong style="color: var(--gold-hover);">★ TOP zvýraznění v okrese na 14 dní (49 Kč)</strong><br>
+                                <span style="color: var(--text-secondary); font-size: 0.78rem;">Inzerát se zobrazí na prvních místech ve vašem okolí se zlatým štítkem po uhrazení QR platby. Základní vložení je zdarma.</span>
                             </label>
                         </div>
                     </div>
 
-                    <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+                    <div style="display: flex; justify-content: flex-end; gap: 10px;">
                         <button type="button" class="btn-outline-gold" onclick="closeModal('add-modal')">Zrušit</button>
-                        <button type="submit" class="btn-gold">Zveřejnit inzerát</button>
+                        <button type="submit" class="btn-gold">Vložit inzerát do katalogu</button>
                     </div>
                 </form>
             </div>
@@ -2377,40 +2400,194 @@
     </div>
 
     <!-- =====================================================================
-         MODÁL 3: REZERVACE PRODEJNÍHO STOLU NA GARÁŽOVÉM VÝPRODEJI
+         MODÁL 3: REZERVACE MÍSTA NA GARÁŽOVÉM VÝPRODEJI (NEVĚSTA / DODAVATEL)
          ===================================================================== -->
     <div id="booking-modal" class="modal-backdrop" onclick="if(event.target === this) closeModal('booking-modal')">
-        <div class="modal-dialog" style="max-width: 500px;" role="dialog" aria-modal="true">
+        <div class="modal-dialog" style="max-width: 620px;" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
             <div class="modal-header">
-                <h2 class="modal-title">Rezervace prodejního stolu</h2>
+                <h2 id="booking-modal-title" class="modal-title">Rezervace prodejního stolu</h2>
                 <button type="button" class="modal-close" onclick="closeModal('booking-modal')" aria-label="Zavřít">✕</button>
             </div>
             <div class="modal-body">
-                <p id="booking-event-summary" style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 16px;"></p>
-                <form onsubmit="confirmTableBooking(event)">
-                    <div class="form-grid">
-                        <div class="field-group form-full">
-                            <label class="field-label" for="book-name">Jméno a příjmení *</label>
-                            <input required type="text" id="book-name" class="form-input" placeholder="Např. Veronika Nováková">
+                <p id="booking-event-summary" style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 14px;"></p>
+
+                <!-- Přepínač typu účasti na akci -->
+                <div class="modal-type-tabs" style="grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 16px;" role="group" aria-label="Typ rezervace na akci">
+                    <button type="button" id="book-tab-bride" class="modal-type-btn active" onclick="setBookingRole('bride')">
+                        <strong>Prodejní stůl (nevěsty)</strong>
+                        <span>Výprodej výzdoby • 290 Kč</span>
+                    </button>
+                    <button type="button" id="book-tab-vendor" class="modal-type-btn" onclick="setBookingRole('vendor')">
+                        <strong>Lokální dodavatel (prezentace)</strong>
+                        <span>Ukázka služeb &amp; produktů • 500 Kč</span>
+                    </button>
+                </div>
+
+                <!-- VARIANTA A: REZERVACE PRODEJNÍHO STOLU PRO NEVĚSTY (290 Kč) -->
+                <div id="booking-bride-pane">
+                    <form id="bride-booking-form" onsubmit="confirmTableBooking(event)">
+                        <div class="form-grid">
+                            <div class="field-group form-full">
+                                <label class="field-label" for="book-name">Jméno a příjmení *</label>
+                                <input required type="text" id="book-name" class="form-input" placeholder="Např. Veronika Nováková">
+                            </div>
+                            <div class="field-group form-full">
+                                <label class="field-label" for="book-email">E-mail pro potvrzení *</label>
+                                <input required type="email" id="book-email" class="form-input" placeholder="veronika@email.cz">
+                            </div>
+                            <div class="field-group form-full">
+                                <label class="field-label" for="book-note">Co budete hlavně prodávat?</label>
+                                <input type="text" id="book-note" class="form-input" placeholder="Např. 2 krabice váz, běhouny, světýlka a šaty vel. 38">
+                            </div>
                         </div>
-                        <div class="field-group form-full">
-                            <label class="field-label" for="book-email">E-mail pro potvrzení *</label>
-                            <input required type="email" id="book-email" class="form-input" placeholder="veronika@email.cz">
+                        <div style="background: var(--gold-tint); border: 1px solid var(--gold-border); border-radius: var(--radius-md); padding: 12px 14px; margin-top: 16px; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.84rem; font-weight: 600;">Pronájem stolu (160 × 80 cm)</span>
+                            <span style="font-size: 1.05rem; font-weight: 700; color: var(--gold-hover);">290 Kč</span>
                         </div>
-                        <div class="field-group form-full">
-                            <label class="field-label" for="book-note">Co budete hlavně prodávat?</label>
-                            <input type="text" id="book-note" class="form-input" placeholder="Např. 2 krabice váz, běhouny, světýlka a šaty vel. 38">
+                        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px;">
+                            <button type="button" class="btn-outline-gold" onclick="closeModal('booking-modal')">Zavřít</button>
+                            <button type="submit" class="btn-gold">Potvrdit rezervaci stolu</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- VARIANTA B: REZERVACE PREZENTAČNÍHO MÍSTA PRO LOKÁLNÍ DODAVATELE (500 Kč) -->
+                <div id="booking-vendor-pane" style="display: none;">
+                    <!-- Krok 1: Formulář lokálního dodavatele -->
+                    <div id="vendor-step-form">
+                        <div style="background: var(--gold-tint); border: 1px solid var(--gold-border); border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 14px; font-size: 0.82rem; color: var(--text-primary); line-height: 1.48;">
+                            Pořádáme výprodej svatebních věcí ve vaší lokalitě – chcete nevěstám ukázat svoje služby? Vhodné pro <strong>catering, kávové vozíky, zmrzlinu na akce, sweetbar, květiny, tiskoviny či drobné služby</strong>, které si nevěsty vybírají po zajištění hlavních bloků svatby.
+                        </div>
+
+                        <form id="vendor-booking-form" onsubmit="proceedVendorToQr(event)">
+                            <div class="form-grid">
+                                <div class="field-group">
+                                    <label class="field-label" for="vendor-name">Jméno / Název značky *</label>
+                                    <input required type="text" id="vendor-name" class="form-input" placeholder="Např. Kávový vozík Kafe na kolech">
+                                </div>
+                                <div class="field-group">
+                                    <label class="field-label" for="vendor-phone">Telefon <span style="font-weight: 400; text-transform: none;">(nepovinný)</span></label>
+                                    <input type="tel" id="vendor-phone" class="form-input" placeholder="+420 777 123 456">
+                                </div>
+                                <div class="field-group form-full">
+                                    <label class="field-label" for="vendor-email">E-mail *</label>
+                                    <input required type="email" id="vendor-email" class="form-input" placeholder="info@kafenakolech.cz">
+                                </div>
+
+                                <div class="field-group form-full">
+                                    <span class="field-label">Typ služby * (vyberte jednu či více kategorií)</span>
+                                    <div id="vendor-categories-box" class="checkbox-pills">
+                                        <label class="check-pill-label"><input type="checkbox" name="v-cat" value="Občerstvení"><span>Občerstvení</span></label>
+                                        <label class="check-pill-label"><input type="checkbox" name="v-cat" value="Dekorace"><span>Dekorace</span></label>
+                                        <label class="check-pill-label"><input type="checkbox" name="v-cat" value="Tiskoviny"><span>Tiskoviny</span></label>
+                                        <label class="check-pill-label"><input type="checkbox" name="v-cat" value="Květiny"><span>Květiny</span></label>
+                                        <label class="check-pill-label"><input type="checkbox" name="v-cat" value="Služby"><span>Služby</span></label>
+                                    </div>
+                                </div>
+
+                                <div class="field-group form-full">
+                                    <label class="field-label" for="vendor-offer-desc">Popište konkrétně, co nevěstám nabízíte *</label>
+                                    <textarea required id="vendor-offer-desc" rows="2" class="form-textarea" placeholder="Např. Výběrová káva z pojízdného Piaggio vozíku, řemeslná zmrzlina, makronkový sweetbar nebo svatební oznámení na míru..."></textarea>
+                                </div>
+
+                                <div class="field-group form-full">
+                                    <div class="top-upsell-box" style="padding: 11px 14px;">
+                                        <input type="checkbox" id="vendor-electricity" style="width: 18px; height: 18px; margin-top: 2px; accent-color: var(--gold);">
+                                        <label for="vendor-electricity" style="font-size: 0.84rem; cursor: pointer;">
+                                            <strong style="color: var(--text-primary);">Potřebujete elektřinu? (přístup k zásuvce 230 V)</strong><br>
+                                            <span style="color: var(--text-secondary); font-size: 0.77rem;">Zaškrtněte, pokud pro kávovar, chladicí vitrínu nebo osvětlení potřebujete přípojku elektřiny.</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="field-group form-full">
+                                    <label class="field-label" for="vendor-message">Prostor pro zprávu</label>
+                                    <textarea id="vendor-message" rows="2" class="form-textarea" placeholder="Požadavky na prostor, rozměry stánku/vozíku, příjezd apod."></textarea>
+                                </div>
+                            </div>
+
+                            <div style="background: var(--gold-tint); border: 1px solid var(--gold-border); border-radius: var(--radius-md); padding: 12px 14px; margin-top: 16px; display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 0.84rem; font-weight: 600;">Cena za prezentaci lokálního dodavatele</span>
+                                <span style="font-size: 1.08rem; font-weight: 700; color: var(--gold-hover);">500 Kč</span>
+                            </div>
+
+                            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px;">
+                                <button type="button" class="btn-outline-gold" onclick="closeModal('booking-modal')">Zavřít</button>
+                                <button type="submit" class="btn-gold">Pokračovat k QR platbě (500 Kč) →</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Krok 2: SPD QR platba 500 Kč pro dodavatele -->
+                    <div id="vendor-step-qr" style="display: none;">
+                        <div style="margin-bottom: 12px;">
+                            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-hover); margin-bottom: 3px;">
+                                Úhrada prezentačního místa • 500 Kč
+                            </div>
+                            <h3 id="vendor-qr-brand-title" style="font-family: var(--font-serif); font-size: 1.35rem; font-weight: 700; color: var(--text-primary);"></h3>
+                        </div>
+
+                        <div class="qr-payment-layout">
+                            <div class="qr-frame">
+                                <div id="vendor-qr-container" aria-label="QR kód pro platbu 500 Kč"></div>
+                                <span class="qr-caption">Naskenujte v mobilním bankovnictví</span>
+                            </div>
+
+                            <div class="bank-details-list">
+                                <div class="bank-detail-row">
+                                    <span class="bank-detail-label">Číslo účtu</span>
+                                    <span class="bank-detail-val">
+                                        <span id="vqr-bank-account">2000145399/0800</span>
+                                        <button type="button" class="copy-mini-btn" onclick="copyBankField(PAYMENT_CONFIG.accountCz, 'Číslo účtu')">Kopírovat</button>
+                                    </span>
+                                </div>
+                                <div class="bank-detail-row">
+                                    <span class="bank-detail-label">Příjemce</span>
+                                    <span class="bank-detail-val" id="vqr-recipient">Moderní nevěsta</span>
+                                </div>
+                                <div class="bank-detail-row">
+                                    <span class="bank-detail-label">Částka</span>
+                                    <span class="bank-detail-val" style="color: var(--gold-hover); font-size: 1rem;">500 Kč</span>
+                                </div>
+                                <div class="bank-detail-row">
+                                    <span class="bank-detail-label">Variabilní symbol</span>
+                                    <span class="bank-detail-val">
+                                        <span id="vqr-vs-value">20260500</span>
+                                        <button type="button" class="copy-mini-btn" onclick="copyBankField(document.getElementById('vqr-vs-value').textContent, 'Variabilní symbol')">Kopírovat</button>
+                                    </span>
+                                </div>
+                                <div class="bank-detail-row">
+                                    <span class="bank-detail-label">Zpráva pro příjemce</span>
+                                    <span class="bank-detail-val" style="font-size: 0.77rem;">
+                                        <span id="vqr-msg-value">Dodavatel garazak</span>
+                                        <button type="button" class="copy-mini-btn" onclick="copyBankField(document.getElementById('vqr-msg-value').textContent, 'Zpráva pro příjemce')">Kopírovat</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 16px;">
+                            Po naskenování QR kódu v mobilním bankovnictví se předvyplní platba <strong>500 Kč</strong> včetně variabilního symbolu. Poté klikněte na potvrzení níže – vaše prezentace se ihned zobrazí u akce.
+                        </p>
+
+                        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px;">
+                            <button type="button" class="btn-outline-gold" onclick="backToVendorForm()">← Upravit údaje</button>
+                            <button type="button" class="btn-gold" onclick="confirmVendorPayment()">Potvrdit odeslání platby – dokončit rezervaci</button>
                         </div>
                     </div>
-                    <div style="background: var(--gold-tint); border: 1px solid var(--gold-border); border-radius: var(--radius-md); padding: 12px 14px; margin-top: 16px; display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 0.84rem; font-weight: 600;">Pronájem stolu (160 × 80 cm)</span>
-                        <span style="font-size: 1.05rem; font-weight: 700; color: var(--gold-hover);">290 Kč</span>
+
+                    <!-- Krok 3: Potvrzení rezervace a rekapitulace e-mailu -->
+                    <div id="vendor-step-done" style="display: none;">
+                        <div style="background: var(--sage-badge); color: var(--sage-text); border: 1px solid rgba(58,87,69,0.25); border-radius: var(--radius-md); padding: 14px 16px; margin-bottom: 14px; font-size: 0.86rem;">
+                            <strong>✓ Prezentační místo je rezervováno!</strong> Vaši nabídku jsme zařadili do sekce <em>Doprovodný program &amp; lokální dodavatelé na místě</em> přímo na kartě akce a níže je připravena rekapitulace pro váš e-mail.
+                        </div>
+                        <div id="vendor-email-recap"></div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; margin-top: 16px;">
+                            <button type="button" class="btn-outline-gold" onclick="copyVendorRecap()">Zkopírovat rekapitulaci</button>
+                            <a id="vendor-mailto-link" href="#" class="btn-gold" style="text-decoration: none;">Odeslat rekapitulaci na e-mail →</a>
+                        </div>
                     </div>
-                    <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px;">
-                        <button type="button" class="btn-outline-gold" onclick="closeModal('booking-modal')">Zavřít</button>
-                        <button type="submit" class="btn-gold">Potvrdit rezervaci stolu</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -2524,6 +2701,17 @@
                                 <input required type="text" id="venue-place" class="form-input" placeholder="Např. Stodola U Lípy, Rožná 42, 592 52">
                             </div>
                             <div class="field-group form-full">
+                                <label class="field-label" for="venue-capacity" style="text-transform: none; letter-spacing: 0; font-size: 0.8rem;">
+                                    <span><strong>POČET MÍST PRO VYSTAVOVATELE *</strong> <span style="font-weight: 500; color: var(--text-secondary);">(75 % těchto stolů je vyhrazeno pro prodejní stoly nevěst a max. 25 % může být nabídnuto prezentaci lokálním dodavatelům)</span></span>
+                                </label>
+                                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                                    <input required type="number" id="venue-capacity" class="form-input" style="max-width: 150px;" min="4" max="200" value="20" oninput="updateVenueCapacityBreakdown()">
+                                    <div id="venue-capacity-breakdown" style="font-size: 0.82rem; font-weight: 600; color: var(--gold-hover); background: var(--gold-tint); border: 1px solid var(--gold-border); padding: 8px 14px; border-radius: var(--radius-sm);">
+                                        Rozdělení: 15 prodejních stolů pro nevěsty (75 %) + max. 5 míst pro lokální dodavatele (25 %)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-group form-full">
                                 <label class="field-label" for="venue-vendors">Máte nějaké dodavatele profíky, kteří by se chtěli prezentovat (proseccovan, sladký bar, catering, další) formou doprovodného programu?</label>
                                 <textarea id="venue-vendors" rows="2" class="form-textarea" placeholder="Např. Ano, máme domluvený lokální prosecco van a cukrářku se sweet barem..."></textarea>
                             </div>
@@ -2569,33 +2757,33 @@
             recipientName: 'Moderní nevěsta',
             currency: 'CZK',
             topPriceCzk: 49,
-            topDurationDays: 14
+            topDurationDays: 14,
+            tablePriceCzk: 290
         };
 
-        /* =====================================================================
-           1. JEDEN CENTRÁLNÍ ZDROJ TAGŮ (SINGLE SOURCE OF TRUTH)
-              Cokoliv zde upravíte, propíše se automaticky do levého filtru
-              i do formuláře pro vkládání inzerátů.
-           ===================================================================== */
+        const GARAGE_GOODS_CATEGORIES = [
+            'Vázy a svícny',
+            'Slavobrána a velké kusy',
+            'Textilie a běhouny',
+            'Světýlka a cedule',
+            'Svatební šaty a doplňky',
+            'Kompletní výzdoba v krabici'
+        ];
+
         const TAG_CONFIG = {
             colors: [
-                { label: 'Sage green', hex: '#7C9482', light: false },
-                { label: 'Terakota', hex: '#C67A5E', light: false },
-                { label: 'Zlatá / mosaz', hex: '#B98732', light: false },
-                { label: 'Bílá & krémová', hex: '#FAF7F0', light: true },
-                { label: 'Starorůžová', hex: '#DFA9A9', light: true },
-                { label: 'Bordó / vínová', hex: '#7D2E3B', light: false },
-                { label: 'Přírodní dřevo', hex: '#B8956A', light: false },
-                { label: 'Eukalyptus / lesní zelená', hex: '#3A5745', light: false },
-                { label: 'Pudrová / broskvová', hex: '#F2C6B4', light: true },
-                { label: 'Půlnoční modrá', hex: '#263859', light: false },
-                { label: 'Černá', hex: '#26221E', light: false },
-                { label: 'Šampaň / béžová', hex: '#E6D5B8', light: true },
-                { label: 'Modrá', hex: '#2563EB', light: false },
-                { label: 'Žlutá', hex: '#EAB308', light: true },
-                { label: 'Červená', hex: '#DC2626', light: false },
-                { label: 'Trávově zelená', hex: '#16A34A', light: false },
-                { label: 'Oranžová', hex: '#EA580C', light: false }
+                { label: 'Bílá & krémová', hex: '#FAF8F5', light: true },
+                { label: 'Zlatá / mosaz', hex: '#C99B42', light: false },
+                { label: 'Sage green', hex: '#8FA695', light: false },
+                { label: 'Eukalyptus / lesní zelená', hex: '#3F634D', light: false },
+                { label: 'Terakota', hex: '#C67458', light: false },
+                { label: 'Starorůžová', hex: '#DFA9A9', light: false },
+                { label: 'Přírodní dřevo', hex: '#B58E65', light: false },
+                { label: 'Modrá', hex: '#3B6EA5', light: false },
+                { label: 'Žlutá', hex: '#E6B83A', light: true },
+                { label: 'Červená', hex: '#B83B3B', light: false },
+                { label: 'Trávově zelená', hex: '#589C48', light: false },
+                { label: 'Oranžová', hex: '#D97B29', light: false }
             ],
             styles: [
                 'Přírodní',
@@ -2605,7 +2793,6 @@
                 'Moderní',
                 'Rustikální',
                 'Zámecká / romantická',
-                'Vintage / retro',
                 'Netradiční',
                 'Jiná'
             ],
@@ -2615,9 +2802,8 @@
                 'Kov',
                 'Textilie',
                 'Sušené květiny',
-                'Papír & karton',
-                'Krajka & juta',
                 'Keramika & porcelán',
+                'Papír & karton',
                 'Akryl / plexisklo',
                 'Světla & LED',
                 'Proutí & ratan'
@@ -2627,34 +2813,28 @@
                 'Na hostinu',
                 'Na stoly',
                 'Do fotokoutku',
-                'Sweet bar & dort',
                 'Vítání hostů & navigace',
+                'Sweet bar & dort',
                 'Chill-out zóna',
-                'Pro nevěstu a ženicha',
                 'Pro děti'
             ]
         };
 
-        /* =====================================================================
-           2. ČESKÁ MĚSTA & PSČ S GPS SOUŘADNICEMI PRO HAVERSINE VÝPOČET
-           ===================================================================== */
         const CZ_LOCATIONS = [
-            { name: 'Bystřice nad Pernštejnem', aliases: ['bystrice', 'bystrice nad pernstejnem', 'bystrice n. p.'], zip: '59301', lat: 49.5231, lon: 16.2615 },
-            { name: 'Žďár nad Sázavou', aliases: ['zdar', 'zdar nad sazavou', 'zdar n. s.'], zip: '59101', lat: 49.5626, lon: 15.9392 },
-            { name: 'Nové Město na Moravě', aliases: ['nove mesto', 'nove mesto na morave'], zip: '59231', lat: 49.5614, lon: 16.0742 },
-            { name: 'Velké Meziříčí', aliases: ['velke mezirici'], zip: '59401', lat: 49.3551, lon: 16.0122 },
-            { name: 'Tišnov', aliases: ['tisnov'], zip: '66601', lat: 49.3489, lon: 16.4228 },
-            { name: 'Jihlava', aliases: ['jihlava'], zip: '58601', lat: 49.3961, lon: 15.5912 },
-            { name: 'Brno', aliases: ['brno'], zip: '60200', lat: 49.1951, lon: 16.6068 },
-            { name: 'Praha', aliases: ['praha', 'prague'], zip: '11000', lat: 50.0755, lon: 14.4378 },
-            { name: 'Olomouc', aliases: ['olomouc'], zip: '77900', lat: 49.5938, lon: 17.2509 },
-            { name: 'Hradec Králové', aliases: ['hradec kralove', 'hradec'], zip: '50002', lat: 50.2104, lon: 15.8252 },
-            { name: 'České Budějovice', aliases: ['ceske budejovice', 'budejovice'], zip: '37001', lat: 48.9745, lon: 14.4743 },
-            { name: 'Plzeň', aliases: ['plzen'], zip: '30100', lat: 49.7384, lon: 13.3736 },
-            { name: 'Pardubice', aliases: ['pardubice'], zip: '53002', lat: 50.0343, lon: 15.7812 },
-            { name: 'Zlín', aliases: ['zlin'], zip: '76001', lat: 49.2244, lon: 17.6627 },
-            { name: 'Liberec', aliases: ['liberec'], zip: '46001', lat: 50.7663, lon: 15.0543 },
-            { name: 'Ostrava', aliases: ['ostrava'], zip: '70200', lat: 49.8209, lon: 18.2625 }
+            { name: 'Bystřice nad Pernštejnem', zip: '59301', lat: 49.5231, lon: 16.2615, aliases: ['bystrice', 'bystrice n p', 'bystrice nad pernstejnem'] },
+            { name: 'Žďár nad Sázavou', zip: '59101', lat: 49.5626, lon: 15.9392, aliases: ['zdar', 'zdar n s', 'zdar nad sazavou'] },
+            { name: 'Nové Město na Moravě', zip: '59231', lat: 49.5614, lon: 16.0742, aliases: ['nove mesto', 'nmnm'] },
+            { name: 'Jihlava', zip: '58601', lat: 49.3961, lon: 15.5912, aliases: ['jihlava'] },
+            { name: 'Brno', zip: '60200', lat: 49.1951, lon: 16.6068, aliases: ['brno'] },
+            { name: 'Praha', zip: '11000', lat: 50.0755, lon: 14.4378, aliases: ['praha', 'holesovice'] },
+            { name: 'Olomouc', zip: '77900', lat: 49.5938, lon: 17.2509, aliases: ['olomouc'] },
+            { name: 'Plzeň', zip: '30100', lat: 49.7384, lon: 13.3736, aliases: ['plzen'] },
+            { name: 'Hradec Králové', zip: '50002', lat: 50.2104, lon: 15.8252, aliases: ['hradec', 'hradec kralove'] },
+            { name: 'Pardubice', zip: '53002', lat: 50.0343, lon: 15.7812, aliases: ['pardubice'] },
+            { name: 'České Budějovice', zip: '37001', lat: 48.9745, lon: 14.4743, aliases: ['budejovice', 'ceske budejovice'] },
+            { name: 'Zlín', zip: '76001', lat: 49.2244, lon: 17.6628, aliases: ['zlin'] },
+            { name: 'Liberec', zip: '46001', lat: 50.7663, lon: 15.0543, aliases: ['liberec'] },
+            { name: 'Ostrava', zip: '70200', lat: 49.8209, lon: 18.2625, aliases: ['ostrava'] }
         ];
 
         const ZIP_PREFIX_FALLBACK = [
@@ -3014,6 +3194,16 @@
                 venue: 'Statek & Stodola U Lípy',
                 freeTables: 4,
                 totalTables: 18,
+                freeVendorSpots: 3,
+                totalVendorSpots: 4,
+                confirmedVendors: [
+                    {
+                        name: 'Kávový vozík Vysočina',
+                        categories: ['Občerstvení'],
+                        offer: 'Výběrová káva z pojízdného vozíku a domácí limonády pro nevěsty',
+                        electricity: true
+                    }
+                ],
                 entry: '60 Kč (vč. výběrové kávy)',
                 desc: 'Jarní setkání nevěst z Vysočiny. Přijďte si vybrat vázy, běhouny, světýlka i šaty z druhé ruky bez poštovného.'
             },
@@ -3025,6 +3215,16 @@
                 venue: 'Stará tržnice, 1. patro',
                 freeTables: 7,
                 totalTables: 25,
+                freeVendorSpots: 4,
+                totalVendorSpots: 5,
+                confirmedVendors: [
+                    {
+                        name: 'Sladké tečky Brno',
+                        categories: ['Občerstvení'],
+                        offer: 'Ochutnávkový sweetbar, makronky a svatební dortíky na zakázku',
+                        electricity: true
+                    }
+                ],
                 entry: '80 Kč (vč. sklenky prosecca)',
                 desc: 'Největší jihomoravský výprodej dekorací od bývalých nevěst a lokálních půjčoven.'
             },
@@ -3036,6 +3236,22 @@
                 venue: 'Hala 13, Industra',
                 freeTables: 2,
                 totalTables: 30,
+                freeVendorSpots: 2,
+                totalVendorSpots: 4,
+                confirmedVendors: [
+                    {
+                        name: 'Ateliér Papír & Pečeť',
+                        categories: ['Tiskoviny'],
+                        offer: 'Svatební oznámení na ručním papíře, jmenovky a voskové pečeti',
+                        electricity: false
+                    },
+                    {
+                        name: 'Květy z louky',
+                        categories: ['Květiny'],
+                        offer: 'Ukázka svatebních kytic, korsáží a sušených aranžmá',
+                        electricity: false
+                    }
+                ],
                 entry: '90 Kč',
                 desc: 'Poslední volná místa pro prodejce! Ideální šance prodat kompletní svatbu v krabici na jednom místě.'
             }
@@ -3074,6 +3290,8 @@
         };
 
         let bookingEventId = null;
+        let pendingTableBooking = null;
+        let lastTableBookingSummary = '';
 
         function initApp() {
             renderSidebarFilters();
@@ -3369,12 +3587,12 @@
                 const discountPct = (item.type === 'Kompletní svatba' && item.originalPrice && item.originalPrice > item.price)
                     ? Math.round((1 - item.price / item.originalPrice) * 100)
                     : 0;
-                        <div class="top-upsell-box">
-                            <input type="checkbox" id="new-top" style="width: 18px; height: 18px; margin-top: 2px; accent-color: var(--gold);">
-                            <label for="new-top" style="font-size: 0.84rem; cursor: pointer;">
-                                <strong style="color: var(--gold-hover);">TOP zvýraznění v okrese na ${PAYMENT_CONFIG.topDurationDays} dní (${PAYMENT_CONFIG.topPriceCzk} Kč)</strong><br>
-                                <span style="color: var(--text-secondary); font-size: 0.78rem;">Inzerát se zobrazí na prvních místech ve vašem okolí se zlatým štítkem po uhrazení QR platby. Základní vložení je zdarma.</span>
-                            </label>
+
+                const bundleHtml = (item.type === 'Kompletní svatba' && item.bundleItems && item.bundleItems.length > 0) ? `
+                    <div class="bundle-preview">
+                        <div class="bundle-preview-head">
+                            <span>✦ Obsah svatebního balíčku</span>
+                            ${discountPct > 0 ? `<span class="discount-pill">-${discountPct} %</span>` : ''}
                         </div>
                         <ul class="bundle-preview-list">
                             ${item.bundleItems.slice(0, 3).map(bi => `<li>${escapeHtml(bi)}</li>`).join('')}
@@ -4272,39 +4490,81 @@
         }
 
         /* =====================================================================
-           12. GARÁŽOVÉ VÝPRODEJE NAŽIVO & FORMULÁŘ PRO SVATEBNÍ MÍSTA
+           12. GARÁŽOVÉ VÝPRODEJE NAŽIVO & FORMULÁŘ PRO SVATEBNÍ MÍSTA A DODAVATELE
            ===================================================================== */
+        const VENDOR_PRESENTATION_PRICE = 500;
+        let activeBookingRole = 'bride';
+        let pendingVendorBooking = null;
+        let lastVendorRecapText = '';
+
         function renderGarageEvents() {
             document.getElementById('garage-grid').innerHTML = garageEvents.map(ev => {
                 const occupied = ev.totalTables - ev.freeTables;
                 const pct = Math.round((occupied / ev.totalTables) * 100);
+                const freeVendors = typeof ev.freeVendorSpots === 'number' ? ev.freeVendorSpots : 3;
+                const totalVendors = typeof ev.totalVendorSpots === 'number' ? ev.totalVendorSpots : 4;
+                const vendorsList = Array.isArray(ev.confirmedVendors) ? ev.confirmedVendors : [];
+
+                const confirmedVendorsHtml = vendorsList.length > 0 ? `
+                    <div class="event-vendors-box">
+                        <div class="event-vendors-title">
+                            <span>✦ Doprovodný program &amp; lokální dodavatelé na místě</span>
+                            <span style="color: var(--gold-hover);">${vendorsList.length}</span>
+                        </div>
+                        ${vendorsList.map(v => `
+                            <div class="event-vendor-item">
+                                <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
+                                    <strong style="color: var(--text-primary);">${escapeHtml(v.name)}</strong>
+                                    <div class="vendor-cat-pills" style="margin-top: 0;">
+                                        ${v.categories.map(cat => `<span class="vendor-cat-badge">${escapeHtml(cat)}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <div style="color: var(--text-secondary); font-size: 0.76rem; margin-top: 3px;">${escapeHtml(v.offer)}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : '';
 
                 return `
                 <article class="event-card">
                     <div>
-                        <span class="event-date-pill">📅 ${ev.date}</span>
-                        <h3 style="font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; line-height: 1.25; margin-bottom: 6px;">${ev.title}</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary);">${ev.desc}</p>
+                        <span class="event-date-pill">📅 ${escapeHtml(ev.date)}</span>
+                        <h3 style="font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; line-height: 1.25; margin-bottom: 6px;">${escapeHtml(ev.title)}</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">${escapeHtml(ev.desc)}</p>
                         <div class="event-meta">
-                            <div><strong>Místo:</strong> ${ev.venue}, ${ev.city}</div>
-                            <div><strong>Vstupné pro kupující:</strong> ${ev.entry}</div>
+                            <div><strong>Místo:</strong> ${escapeHtml(ev.venue)}, ${escapeHtml(ev.city)}</div>
+                            <div><strong>Vstupné pro kupující:</strong> ${escapeHtml(ev.entry)}</div>
                         </div>
+                        ${confirmedVendorsHtml}
                     </div>
 
                     <div>
                         <div class="tables-meter">
-                            <span>Volné prodejní stoly</span>
+                            <span>Volné prodejní stoly (nevěsty)</span>
                             <span style="color: var(--gold-hover);">${ev.freeTables} z ${ev.totalTables} volných</span>
                         </div>
                         <div class="meter-bar">
                             <div class="meter-fill" style="width: ${pct}%;"></div>
                         </div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <button type="button" class="btn-gold" style="flex: 1;" ${ev.freeTables === 0 ? 'disabled' : ''} onclick="openBookingModal('${ev.id}')">
-                                ${ev.freeTables > 0 ? 'Rezervovat stůl (290 Kč)' : 'Stoly obsazeny'}
+                            <button type="button" class="btn-gold" style="flex: 1;" ${ev.freeTables === 0 ? 'disabled' : ''} onclick="openBookingModal('${ev.id}', 'bride')">
+                                ${ev.freeTables > 0 ? 'Rezervovat prodejní stůl (290 Kč)' : 'Stoly obsazeny'}
                             </button>
-                            <button type="button" class="btn-outline-gold" onclick="showToast('Přihláška kupující na akci „${ev.title}“ uložena!')">
+                            <button type="button" class="btn-outline-gold" onclick="showToast('Přihláška kupující na akci „${escapeHtml(ev.title)}“ uložena!')">
                                 Přijdu nakoupit
+                            </button>
+                        </div>
+
+                        <div class="vendor-promo-box">
+                            <div class="vendor-promo-head">
+                                <span>☕ Pro lokální dodavatele</span>
+                                <span>${freeVendors} z ${totalVendors} míst volných</span>
+                            </div>
+                            <p class="vendor-promo-text">
+                                Pořádáme výprodej svatebních věcí ve vaší lokalitě – chcete nevěstám ukázat svoje služby? Vhodné pro kávové vozíky, zmrzlinu, sweetbar, tiskoviny, květiny či drobné služby.
+                            </p>
+                            <button type="button" class="btn-outline-gold" style="width: 100%; background: var(--bg-surface);" ${freeVendors === 0 ? 'disabled' : ''} onclick="openBookingModal('${ev.id}', 'vendor')">
+                                ${freeVendors > 0 ? 'Prezentace pro dodavatele (500 Kč)' : 'Místa pro dodavatele obsazena'}
                             </button>
                         </div>
                     </div>
@@ -4313,12 +4573,36 @@
             }).join('');
         }
 
-        function openBookingModal(eventId) {
+        function openBookingModal(eventId, role = 'bride') {
             const ev = garageEvents.find(e => e.id === eventId);
             if (!ev) return;
             bookingEventId = eventId;
+            pendingVendorBooking = null;
             document.getElementById('booking-event-summary').textContent = `${ev.title} • ${ev.date} (${ev.venue})`;
+
+            document.getElementById('bride-booking-form').reset();
+            document.getElementById('vendor-booking-form').reset();
+            document.getElementById('vendor-step-form').style.display = 'block';
+            document.getElementById('vendor-step-qr').style.display = 'none';
+            document.getElementById('vendor-step-done').style.display = 'none';
+
+            setBookingRole(role);
             openModal('booking-modal');
+        }
+
+        function setBookingRole(role) {
+            activeBookingRole = role;
+            const isVendor = role === 'vendor';
+
+            document.getElementById('book-tab-bride').classList.toggle('active', !isVendor);
+            document.getElementById('book-tab-vendor').classList.toggle('active', isVendor);
+
+            document.getElementById('booking-bride-pane').style.display = isVendor ? 'none' : 'block';
+            document.getElementById('booking-vendor-pane').style.display = isVendor ? 'block' : 'none';
+
+            document.getElementById('booking-modal-title').textContent = isVendor
+                ? 'Rezervace prezentačního místa pro lokální dodavatele (500 Kč)'
+                : 'Rezervace prodejního stolu';
         }
 
         function confirmTableBooking(e) {
@@ -4332,11 +4616,175 @@
             showToast('Prodejní stůl rezervován! Potvrzení jsme odeslali na e-mail.');
         }
 
+        function proceedVendorToQr(e) {
+            e.preventDefault();
+            const ev = garageEvents.find(item => item.id === bookingEventId);
+            if (!ev) return;
+
+            const categories = Array.from(document.querySelectorAll('input[name="v-cat"]:checked')).map(cb => cb.value);
+            if (categories.length === 0) {
+                showToast('Vyberte prosím alespoň jeden typ služby (např. Občerstvení, Květiny...).');
+                return;
+            }
+
+            const name = document.getElementById('vendor-name').value.trim();
+            const email = document.getElementById('vendor-email').value.trim();
+            const phone = document.getElementById('vendor-phone').value.trim() || 'Neuvedeno';
+            const offer = document.getElementById('vendor-offer-desc').value.trim();
+            const electricity = document.getElementById('vendor-electricity').checked;
+            const message = document.getElementById('vendor-message').value.trim() || 'Bez dalších požadavků';
+            const vs = generateVariableSymbol();
+            const paymentMsg = `Dodavatel ${ev.id.toUpperCase()} ${name}`.slice(0, 35);
+
+            pendingVendorBooking = {
+                eventId: ev.id,
+                eventTitle: ev.title,
+                eventDate: ev.date,
+                eventVenue: `${ev.venue}, ${ev.city}`,
+                name,
+                email,
+                phone,
+                categories,
+                offer,
+                electricity,
+                message,
+                vs,
+                paymentMsg
+            };
+
+            const amountFormatted = VENDOR_PRESENTATION_PRICE.toFixed(2);
+            const spdPayload = `SPD*1.0*ACC:${PAYMENT_CONFIG.iban}*AM:${amountFormatted}*CC:${PAYMENT_CONFIG.currency}*X-VS:${vs}*MSG:${paymentMsg}`;
+
+            document.getElementById('vendor-qr-brand-title').textContent = `${name} • ${ev.title}`;
+            document.getElementById('vqr-bank-account').textContent = PAYMENT_CONFIG.accountCz;
+            document.getElementById('vqr-recipient').textContent = PAYMENT_CONFIG.recipientName;
+            document.getElementById('vqr-vs-value').textContent = vs;
+            document.getElementById('vqr-msg-value').textContent = paymentMsg;
+
+            const qrBox = document.getElementById('vendor-qr-container');
+            qrBox.innerHTML = '';
+            if (typeof QRCode !== 'undefined') {
+                new QRCode(qrBox, {
+                    text: spdPayload,
+                    width: 176,
+                    height: 176,
+                    colorDark: '#26221E',
+                    colorLight: '#FFFFFF',
+                    correctLevel: QRCode.CorrectLevel.M
+                });
+            } else {
+                qrBox.innerHTML = renderFallbackSpdSvg(spdPayload);
+            }
+
+            document.getElementById('vendor-step-form').style.display = 'none';
+            document.getElementById('vendor-step-qr').style.display = 'block';
+        }
+
+        function backToVendorForm() {
+            document.getElementById('vendor-step-qr').style.display = 'none';
+            document.getElementById('vendor-step-form').style.display = 'block';
+        }
+
+        function confirmVendorPayment() {
+            if (!pendingVendorBooking) return;
+            const data = pendingVendorBooking;
+            const ev = garageEvents.find(item => item.id === data.eventId);
+
+            if (ev) {
+                if (typeof ev.freeVendorSpots === 'number' && ev.freeVendorSpots > 0) {
+                    ev.freeVendorSpots -= 1;
+                }
+                if (!Array.isArray(ev.confirmedVendors)) {
+                    ev.confirmedVendors = [];
+                }
+                ev.confirmedVendors.push({
+                    name: data.name,
+                    categories: data.categories,
+                    offer: data.offer,
+                    electricity: data.electricity
+                });
+                renderGarageEvents();
+            }
+
+            const recapLines = [
+                `Akce: ${data.eventTitle}`,
+                `Termín a místo: ${data.eventDate} (${data.eventVenue})`,
+                `Jméno / Značka dodavatele: ${data.name}`,
+                `E-mail: ${data.email}`,
+                `Telefon: ${data.phone}`,
+                `Typ služby: ${data.categories.join(', ')}`,
+                `Nabídka pro nevěsty: ${data.offer}`,
+                `Potřeba elektřiny (230 V): ${data.electricity ? 'ANO – požaduje zásuvku' : 'NE'}`,
+                `Zpráva / požadavky: ${data.message}`,
+                `Uhrazená částka: 500 Kč (VS: ${data.vs})`
+            ].join('\n');
+
+            lastVendorRecapText = recapLines;
+
+            const subject = `Potvrzení prezentace dodavatele (${data.name}) – ${data.eventTitle}`;
+            const body = `Dobrý den, ${data.name},\n\npotvrzujeme vaši rezervaci prezentačního místa pro lokální dodavatele na akci ${data.eventTitle}.\n\nRekapitulace vaší rezervace:\n${recapLines}\n\nTěšíme se na viděnou na místě!\nTým Moderní nevěsta`;
+
+            document.getElementById('vendor-mailto-link').href = `mailto:${encodeURIComponent(data.email)}?cc=${encodeURIComponent(PLATFORM_OWNER_EMAIL)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            document.getElementById('vendor-email-recap').innerHTML = `
+                <div class="email-preview-card" style="margin-bottom: 0;">
+                    <div class="email-preview-meta">
+                        <div><strong>Příjemce potvrzení:</strong> ${escapeHtml(data.email)} (kopie: ${escapeHtml(PLATFORM_OWNER_EMAIL)})</div>
+                        <div><strong>Předmět:</strong> ${escapeHtml(subject)}</div>
+                    </div>
+                    <div class="email-preview-content">${escapeHtml(body)}</div>
+                </div>
+            `;
+
+            document.getElementById('vendor-step-qr').style.display = 'none';
+            document.getElementById('vendor-step-done').style.display = 'block';
+            showToast(`★ Rezervace dokončena! Značka ${data.name} byla přidána na kartu akce.`);
+        }
+
+        function copyVendorRecap() {
+            if (!lastVendorRecapText) return;
+            const tempArea = document.createElement('textarea');
+            tempArea.value = lastVendorRecapText;
+            tempArea.style.position = 'fixed';
+            tempArea.style.opacity = '0';
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            try {
+                document.execCommand('copy');
+                showToast('Rekapitulace rezervace dodavatele zkopírována do schránky!');
+            } catch (err) {
+                showToast('Nepodařilo se zkopírovat text.');
+            }
+            document.body.removeChild(tempArea);
+        }
+
         const PLATFORM_OWNER_EMAIL = 'stodoly@moderninevesta.cz';
         let lastVenueSummaryText = '';
 
+        function calculateVenueSplit(totalSpots) {
+            const total = Math.max(4, parseInt(totalSpots, 10) || 0);
+            const vendorSpots = Math.floor(total * 0.25);
+            const brideTables = total - vendorSpots;
+            return { total, brideTables, vendorSpots };
+        }
+
+        function updateVenueCapacityBreakdown() {
+            const input = document.getElementById('venue-capacity');
+            const box = document.getElementById('venue-capacity-breakdown');
+            if (!input || !box) return;
+            const rawVal = parseInt(input.value, 10);
+            if (!rawVal || rawVal < 4) {
+                box.textContent = 'Zadejte celkový počet míst (min. 4 stoly pro výpočet poměru 75 % / 25 %).';
+                return;
+            }
+            const { brideTables, vendorSpots } = calculateVenueSplit(rawVal);
+            box.textContent = `Rozdělení kapacity: ${brideTables} prodejních stolů pro nevěsty (75 %) + max. ${vendorSpots} míst pro lokální dodavatele (25 %)`;
+        }
+
         function openVenueModal() {
             document.getElementById('venue-host-form').reset();
+            document.getElementById('venue-capacity').value = '20';
+            updateVenueCapacityBreakdown();
             document.getElementById('venue-form-container').style.display = 'block';
             document.getElementById('venue-confirmation-container').style.display = 'none';
             openModal('venue-modal');
@@ -4357,6 +4805,8 @@
             const phone = document.getElementById('venue-phone').value.trim() || 'Neuvedeno';
             const email = document.getElementById('venue-email').value.trim();
             const place = document.getElementById('venue-place').value.trim();
+            const capacityRaw = parseInt(document.getElementById('venue-capacity').value, 10) || 20;
+            const { total, brideTables, vendorSpots } = calculateVenueSplit(capacityRaw);
             const vendors = document.getElementById('venue-vendors').value.trim() || 'Bez doprovodného programu / neuvedeno';
             const message = document.getElementById('venue-message').value.trim() || 'Bez dalších poznámek';
 
@@ -4365,6 +4815,7 @@
                 `Telefon: ${phone}`,
                 `Email: ${email}`,
                 `Místo výprodeje (název objektu, adresa): ${place}`,
+                `Počet míst pro vystavovatele celkem: ${total} (75 % prodejní stoly nevěst: ${brideTables} míst | max. 25 % prezentace lokálních dodavatelů: ${vendorSpots} míst)`,
                 `Dodavatelé profíci (doprovodný program): ${vendors}`,
                 `Vaše zpráva (představa, požadavky, podmínky): ${message}`
             ].join('\n');
